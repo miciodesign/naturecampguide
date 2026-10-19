@@ -44,6 +44,7 @@ T = {
     "criteria": {"clean": "Pulizia e manutenzione", "location": "Posizione e natura", "facilities": "Servizi", "atmosphere": "Atmosfera e rispetto delle regole", "family": "Adatto alle famiglie", "beginner": "Adatto ai principianti", "value": "Rapporto qualità-prezzo"},
     "overall": "voto", "strengths": "Punti forti", "weaknesses": "Punti deboli", "for": "Per chi è", "not_for": "Per chi no", "tip": "Consiglio pratico",
     "demo": "Scheda dimostrativa: dati inventati per mostrare il formato. Le schede reali riportano solo informazioni verificate.",
+    "verified": "Verificato da fonti", "sources_h2": "Fonti", "desk_note": "Scheda compilata da sito ufficiale e recensioni pubbliche, non da una visita: i voti riflettono quanto documentato alla data indicata. Hai informazioni più recenti? Scrivi una recensione.",
     "review_h1": "Scrivi una recensione", "review_p": "Ci sei stato? Racconta com'è andata. Le recensioni vengono lette prima della pubblicazione e restano anonime: il cognome e l'e-mail non vengono mai mostrati.",
     "f": {"camp": "Campeggio o spiaggia", "camp_other": "Altro (scrivilo nel testo)", "name": "Nome o nickname", "email": "E-mail (non pubblicata)", "when": "Mese e anno del soggiorno", "trip": "Tipo di viaggio", "trips": ["Coppia", "Famiglia", "Da solo/a", "Gruppo"], "acc": "Sistemazione usata", "ratings": "I tuoi voti (1–5)", "text": "La tua recensione (almeno 300 caratteri)", "tip": "Consigli pratici (facoltativo)", "consent": "Ho letto le regole e accetto che la recensione venga pubblicata con il mio nickname.", "send": "Invia la recensione"},
     "rules_h3": "Regole in breve",
@@ -81,6 +82,7 @@ T = {
     "criteria": {"clean": "Cleanliness and upkeep", "location": "Location and nature", "facilities": "Facilities", "atmosphere": "Atmosphere and respect for the rules", "family": "Family-friendly", "beginner": "Beginner-friendly", "value": "Value for money"},
     "overall": "score", "strengths": "Strengths", "weaknesses": "Weaknesses", "for": "Who it's for", "not_for": "Who should skip it", "tip": "Practical tip",
     "demo": "Sample listing: invented data to show the format. Real listings contain verified information only.",
+    "verified": "Verified from sources", "sources_h2": "Sources", "desk_note": "Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.",
     "review_h1": "Write a review", "review_p": "Been there? Tell us how it went. Reviews are read before publication and stay anonymous: your surname and e-mail are never shown.",
     "f": {"camp": "Campsite or beach", "camp_other": "Other (name it in the text)", "name": "Name or nickname", "email": "E-mail (not published)", "when": "Month and year of your stay", "trip": "Type of trip", "trips": ["Couple", "Family", "Solo", "Group"], "acc": "Accommodation used", "ratings": "Your scores (1–5)", "text": "Your review (at least 300 characters)", "tip": "Practical tips (optional)", "consent": "I have read the rules and agree to have my review published under my nickname.", "send": "Send review"},
     "rules_h3": "Rules in short",
@@ -118,6 +120,7 @@ T = {
     "criteria": {"clean": "Sauberkeit und Pflege", "location": "Lage und Natur", "facilities": "Ausstattung", "atmosphere": "Atmosphäre und Einhaltung der Regeln", "family": "Familienfreundlich", "beginner": "Für Einsteiger geeignet", "value": "Preis-Leistungs-Verhältnis"},
     "overall": "Note", "strengths": "Stärken", "weaknesses": "Schwächen", "for": "Für wen", "not_for": "Für wen nicht", "tip": "Praktischer Tipp",
     "demo": "Beispieleintrag: erfundene Daten, um das Format zu zeigen. Echte Einträge enthalten nur geprüfte Angaben.",
+    "verified": "Geprüft anhand von Quellen", "sources_h2": "Quellen", "desk_note": "Eintrag anhand der offiziellen Website und öffentlicher Bewertungen erstellt, nicht nach einem Besuch: Die Noten spiegeln den dokumentierten Stand zum angegebenen Datum wider. Haben Sie neuere Informationen? Schreiben Sie eine Bewertung.",
     "review_h1": "Bewertung schreiben", "review_p": "Waren Sie dort? Erzählen Sie, wie es war. Bewertungen werden vor der Veröffentlichung gelesen und bleiben anonym: Nachname und E-Mail werden nie angezeigt.",
     "f": {"camp": "Campingplatz oder Strand", "camp_other": "Anderer (im Text nennen)", "name": "Name oder Nickname", "email": "E-Mail (wird nicht veröffentlicht)", "when": "Monat und Jahr des Aufenthalts", "trip": "Art der Reise", "trips": ["Paar", "Familie", "Allein", "Gruppe"], "acc": "Genutzte Unterkunft", "ratings": "Ihre Noten (1–5)", "text": "Ihre Bewertung (mindestens 300 Zeichen)", "tip": "Praktische Tipps (optional)", "consent": "Ich habe die Regeln gelesen und bin einverstanden, dass meine Bewertung unter meinem Nickname veröffentlicht wird.", "send": "Bewertung senden"},
     "rules_h3": "Regeln in Kürze",
@@ -145,6 +148,22 @@ def lang_url(lang, kind, slug=None):
     if kind == "camp": return f"/{lang}/{p['camps']}/{slug}/"
     if kind == "beach": return f"/{lang}/{p['beaches']}/{slug}/"
     return f"/{lang}/{p[kind]}/"
+
+def basis_label(x, lang):
+    t = T[lang]
+    if x.get("basis") == "desk":
+        return f'{t["verified"]} {x["visited"]}'
+    return f'{t["facts"]["visited"]} {x["visited"]}'
+
+def sources_block(x, lang):
+    t = T[lang]
+    out = ""
+    if x.get("basis") == "desk":
+        out += f'<p class="meta">{e(t["desk_note"])}</p>'
+    if x.get("sources"):
+        items = "".join(f'<li><a href="{e(u)}" rel="nofollow">{e(u.replace("https://", "").replace("http://", "").rstrip("/"))}</a></li>' for u in x["sources"])
+        out += f'<h2>{e(t["sources_h2"])}</h2><ul class="sources">{items}</ul>'
+    return out
 
 def overall(c):
     vals = [v[0] for v in c["scores"].values()]
@@ -250,7 +269,7 @@ def sheet(c, lang):
         (f["card"], t["card"][c["card"]]),
         (f["type"], c["type"][lang]),
         (f["accommodation"], c["accommodation"][lang]),
-        (f["visited"], c["visited"]),
+        (f["visited"] if c.get("basis") != "desk" else t["verified"], c["visited"]),
     ]
     rows = "".join(f"<tr><th scope='row'>{e(k)}</th><td>{e(v)}</td></tr>" for k, v in facts)
     rows += f'<tr><th scope="row">{e(f["website"])}</th><td><a href="{e(c["website"])}" rel="nofollow">{e(c["website"].replace("https://", ""))}</a></td></tr>'
@@ -258,7 +277,7 @@ def sheet(c, lang):
     demo = f'<div class="demo">{e(t["demo"])}</div>' if c.get("demo") else ""
     body = f"""<section class="block"><div class="wrap">
   <div class="sheet-head">
-    <div><h1>{e(c['name'])}</h1><p class="meta"><span>{e(t['country_names'].get(c['country'], c['country']))}, {e(c['region'][lang])}</span><span>{e(f['visited'])} {e(c['visited'])}</span></p><p class="lead">{e(c['summary'][lang])}</p></div>
+    <div><h1>{e(c['name'])}</h1><p class="meta"><span>{e(t['country_names'].get(c['country'], c['country']))}, {e(c['region'][lang])}</span><span>{e(basis_label(c, lang))}</span></p><p class="lead">{e(c['summary'][lang])}</p></div>
     <div class="score"><b>{fmt_score(sc, lang)}</b><small>{e(t['overall'])} /5</small></div>
   </div>
   {demo}
@@ -274,6 +293,7 @@ def sheet(c, lang):
     <div class="no"><h3>{e(t['not_for'])}</h3><p>{e(c['not_for'][lang])}</p></div>
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(c['tip'][lang])}</p></div>
   </div>
+  {sources_block(c, lang)}
 </div></section>"""
     return page(lang, "camp", f'{c["name"]} — NaturCamp Guide', c["summary"][lang], body, c["slug"])
 
@@ -310,7 +330,7 @@ def beach_sheet(b, lang):
         (f["access"], b["access"][lang]),
         (f["services"], b["services"][lang]),
         (f["season"], b["season"][lang]),
-        (t["facts"]["visited"], b["visited"]),
+        (t["facts"]["visited"] if b.get("basis") != "desk" else t["verified"], b["visited"]),
     ]
     rows = "".join(f"<tr><th scope='row'>{e(k)}</th><td>{e(v)}</td></tr>" for k, v in facts)
     lat, lon = [x.strip() for x in b["coords"].split(",")]
@@ -322,7 +342,7 @@ def beach_sheet(b, lang):
     demo = f'<div class="demo">{e(t["demo"])}</div>' if b.get("demo") else ""
     body = f"""<section class="block"><div class="wrap">
   <div class="sheet-head">
-    <div><h1>{e(b['name'])}</h1><p class="meta"><span>{e(t['country_names'].get(b['country'], b['country']))}, {e(b['region'][lang])}</span><span>{e(t['status_short'][b['status']])}</span><span>{e(t['facts']['visited'])} {e(b['visited'])}</span></p><p class="lead">{e(b['summary'][lang])}</p></div>
+    <div><h1>{e(b['name'])}</h1><p class="meta"><span>{e(t['country_names'].get(b['country'], b['country']))}, {e(b['region'][lang])}</span><span>{e(t['status_short'][b['status']])}</span><span>{e(basis_label(b, lang))}</span></p><p class="lead">{e(b['summary'][lang])}</p></div>
     <div class="score"><b>{fmt_score(sc, lang)}</b><small>{e(t['overall'])} /5</small></div>
   </div>
   {demo}
@@ -337,6 +357,7 @@ def beach_sheet(b, lang):
     <div class="no"><h3>{e(t['not_for'])}</h3><p>{e(b['not_for'][lang])}</p></div>
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(b['tip'][lang])}</p></div>
   </div>
+  {sources_block(b, lang)}
 </div></section>"""
     return page(lang, "beach", f'{b["name"]} — NaturCamp Guide', b["summary"][lang], body, b["slug"])
 
