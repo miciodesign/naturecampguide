@@ -8,6 +8,7 @@ Il sito è HTML puro: nessun server, nessun database, si pubblica copiando i fil
 ```
 build.py            genera tutte le pagine (python3 build.py)
 data/campeggi.json  i campeggi: UNA voce per campeggio, con i testi nelle tre lingue
+data/spiagge.json   le spiagge naturiste, stessa logica
 src/                CSS, logo e favicon (sorgenti)
 assets/             copia di src/ usata dal sito (generata)
 index.html          pagina radice: manda alla lingua del browser
@@ -31,6 +32,14 @@ Le due schede presenti sono **esempi con dati inventati**: vanno sostituite con 
 
 Per aggiungere un paese nuovo basta usare il suo codice in `country`; i nomi
 dei paesi nelle tre lingue sono in `build.py` → `country_names`.
+
+## Aggiungere una spiaggia
+
+Stessa procedura in `data/spiagge.json`. Campi particolari:
+- `status`: `official` (segnalata con cartelli), `tolerated`, `unofficial`
+- `coords`: "lat, lon" — diventa un link alla mappa
+- `nearby`: lista di `slug` di campeggi vicini (facoltativo)
+- sei criteri: natura, pulizia, accesso, servizi, atmosfera, affollamento
 
 ## Pubblicare su Hostinger tramite GitHub
 
