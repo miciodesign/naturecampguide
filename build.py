@@ -44,7 +44,7 @@ T = {
     "criteria": {"clean": "Pulizia e manutenzione", "location": "Posizione e natura", "facilities": "Servizi", "atmosphere": "Atmosfera e rispetto delle regole", "family": "Adatto alle famiglie", "beginner": "Adatto ai principianti", "value": "Rapporto qualità-prezzo"},
     "overall": "voto", "strengths": "Punti forti", "weaknesses": "Punti deboli", "for": "Per chi è", "not_for": "Per chi no", "tip": "Consiglio pratico",
     "demo": "Scheda dimostrativa: dati inventati per mostrare il formato. Le schede reali riportano solo informazioni verificate.",
-    "verified": "Verificato da fonti", "price_na": "non pubblicato: chiedere al campeggio", "sources_h2": "Fonti", "desk_note": "Scheda compilata da sito ufficiale e recensioni pubbliche, non da una visita: i voti riflettono quanto documentato alla data indicata. Hai informazioni più recenti? Scrivi una recensione.",
+    "verified": "Verificato da fonti", "stay_h2": "Dove dormire nelle vicinanze", "stay_p": "Hotel e appartamenti vicino a questo posto. Se prenoti da qui, riceviamo una piccola commissione senza costi per te: è così che la guida resta gratuita e senza pubblicità.", "price_na": "non pubblicato: chiedere al campeggio", "sources_h2": "Fonti", "desk_note": "Scheda compilata da sito ufficiale e recensioni pubbliche, non da una visita: i voti riflettono quanto documentato alla data indicata. Hai informazioni più recenti? Scrivi una recensione.",
     "review_h1": "Scrivi una recensione", "review_p": "Ci sei stato? Racconta com'è andata. Le recensioni vengono lette prima della pubblicazione e restano anonime: il cognome e l'e-mail non vengono mai mostrati.",
     "f": {"camp": "Campeggio o spiaggia", "camp_other": "Altro (scrivilo nel testo)", "name": "Nome o nickname", "email": "E-mail (non pubblicata)", "when": "Mese e anno del soggiorno", "trip": "Tipo di viaggio", "trips": ["Coppia", "Famiglia", "Da solo/a", "Gruppo"], "acc": "Sistemazione usata", "ratings": "I tuoi voti (1–5)", "text": "La tua recensione (almeno 300 caratteri)", "tip": "Consigli pratici (facoltativo)", "consent": "Ho letto le regole e accetto che la recensione venga pubblicata con il mio nickname.", "send": "Invia la recensione"},
     "rules_h3": "Regole in breve",
@@ -82,7 +82,7 @@ T = {
     "criteria": {"clean": "Cleanliness and upkeep", "location": "Location and nature", "facilities": "Facilities", "atmosphere": "Atmosphere and respect for the rules", "family": "Family-friendly", "beginner": "Beginner-friendly", "value": "Value for money"},
     "overall": "score", "strengths": "Strengths", "weaknesses": "Weaknesses", "for": "Who it's for", "not_for": "Who should skip it", "tip": "Practical tip",
     "demo": "Sample listing: invented data to show the format. Real listings contain verified information only.",
-    "verified": "Verified from sources", "price_na": "not published: ask the campsite", "sources_h2": "Sources", "desk_note": "Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.",
+    "verified": "Verified from sources", "stay_h2": "Where to stay nearby", "stay_p": "Hotels and apartments near this place. If you book from here we earn a small commission at no cost to you: that is how the guide stays free and ad-free.", "price_na": "not published: ask the campsite", "sources_h2": "Sources", "desk_note": "Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.",
     "review_h1": "Write a review", "review_p": "Been there? Tell us how it went. Reviews are read before publication and stay anonymous: your surname and e-mail are never shown.",
     "f": {"camp": "Campsite or beach", "camp_other": "Other (name it in the text)", "name": "Name or nickname", "email": "E-mail (not published)", "when": "Month and year of your stay", "trip": "Type of trip", "trips": ["Couple", "Family", "Solo", "Group"], "acc": "Accommodation used", "ratings": "Your scores (1–5)", "text": "Your review (at least 300 characters)", "tip": "Practical tips (optional)", "consent": "I have read the rules and agree to have my review published under my nickname.", "send": "Send review"},
     "rules_h3": "Rules in short",
@@ -120,7 +120,7 @@ T = {
     "criteria": {"clean": "Sauberkeit und Pflege", "location": "Lage und Natur", "facilities": "Ausstattung", "atmosphere": "Atmosphäre und Einhaltung der Regeln", "family": "Familienfreundlich", "beginner": "Für Einsteiger geeignet", "value": "Preis-Leistungs-Verhältnis"},
     "overall": "Note", "strengths": "Stärken", "weaknesses": "Schwächen", "for": "Für wen", "not_for": "Für wen nicht", "tip": "Praktischer Tipp",
     "demo": "Beispieleintrag: erfundene Daten, um das Format zu zeigen. Echte Einträge enthalten nur geprüfte Angaben.",
-    "verified": "Geprüft anhand von Quellen", "price_na": "nicht veröffentlicht: beim Platz erfragen", "sources_h2": "Quellen", "desk_note": "Eintrag anhand der offiziellen Website und öffentlicher Bewertungen erstellt, nicht nach einem Besuch: Die Noten spiegeln den dokumentierten Stand zum angegebenen Datum wider. Haben Sie neuere Informationen? Schreiben Sie eine Bewertung.",
+    "verified": "Geprüft anhand von Quellen", "stay_h2": "Übernachten in der Nähe", "stay_p": "Hotels und Apartments in der Nähe. Wer hier bucht, beschert uns eine kleine Provision ohne Mehrkosten: So bleibt der Führer kostenlos und werbefrei.", "price_na": "nicht veröffentlicht: beim Platz erfragen", "sources_h2": "Quellen", "desk_note": "Eintrag anhand der offiziellen Website und öffentlicher Bewertungen erstellt, nicht nach einem Besuch: Die Noten spiegeln den dokumentierten Stand zum angegebenen Datum wider. Haben Sie neuere Informationen? Schreiben Sie eine Bewertung.",
     "review_h1": "Bewertung schreiben", "review_p": "Waren Sie dort? Erzählen Sie, wie es war. Bewertungen werden vor der Veröffentlichung gelesen und bleiben anonym: Nachname und E-Mail werden nie angezeigt.",
     "f": {"camp": "Campingplatz oder Strand", "camp_other": "Anderer (im Text nennen)", "name": "Name oder Nickname", "email": "E-Mail (wird nicht veröffentlicht)", "when": "Monat und Jahr des Aufenthalts", "trip": "Art der Reise", "trips": ["Paar", "Familie", "Allein", "Gruppe"], "acc": "Genutzte Unterkunft", "ratings": "Ihre Noten (1–5)", "text": "Ihre Bewertung (mindestens 300 Zeichen)", "tip": "Praktische Tipps (optional)", "consent": "Ich habe die Regeln gelesen und bin einverstanden, dass meine Bewertung unter meinem Nickname veröffentlicht wird.", "send": "Bewertung senden"},
     "rules_h3": "Regeln in Kürze",
@@ -131,7 +131,8 @@ T = {
   },
 }
 CONTACT = "info@naturcampguide.com"
-FORM_ACTION = "#"  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
+FORM_ACTION = "#"
+STAY22_AID = ""  # il tuo ID affiliato Stay22 (es. "naturcampguide"); vuoto = blocco nascosto  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
 
 LOGO = (ROOT / "src" / "logo.svg").read_text(encoding="utf-8").replace('role="img" aria-label="NaturCamp Guide"', 'aria-hidden="true"')
 HORIZON = """<svg class="horizon" viewBox="0 0 1200 160" aria-hidden="true" preserveAspectRatio="none">
@@ -154,6 +155,14 @@ def basis_label(x, lang):
     if x.get("basis") == "desk":
         return f'{t["verified"]} {x["visited"]}'
     return f'{t["facts"]["visited"]} {x["visited"]}'
+
+def stay_block(x, lang):
+    if not STAY22_AID or not x.get("coords"):
+        return ""
+    t = T[lang]
+    lat, lon = [v.strip() for v in x["coords"].split(",")]
+    src = f"https://www.stay22.com/embed/gm?aid={STAY22_AID}&lat={lat}&lng={lon}&maincolor=1F5A3C&language={lang}"
+    return f'<h2>{e(t["stay_h2"])}</h2><p class="meta">{e(t["stay_p"])}</p><div class="stay"><iframe src="{src}" title="{e(t["stay_h2"])}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>'
 
 def sources_block(x, lang):
     t = T[lang]
@@ -293,6 +302,7 @@ def sheet(c, lang):
     <div class="no"><h3>{e(t['not_for'])}</h3><p>{e(c['not_for'][lang])}</p></div>
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(c['tip'][lang])}</p></div>
   </div>
+  {stay_block(c, lang)}
   {sources_block(c, lang)}
 </div></section>"""
     return page(lang, "camp", f'{c["name"]} — NaturCamp Guide', c["summary"][lang], body, c["slug"])
@@ -357,6 +367,7 @@ def beach_sheet(b, lang):
     <div class="no"><h3>{e(t['not_for'])}</h3><p>{e(b['not_for'][lang])}</p></div>
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(b['tip'][lang])}</p></div>
   </div>
+  {stay_block(b, lang)}
   {sources_block(b, lang)}
 </div></section>"""
     return page(lang, "beach", f'{b["name"]} — NaturCamp Guide', b["summary"][lang], body, b["slug"])

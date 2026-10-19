@@ -74,10 +74,17 @@ Opzioni semplici senza backend:
   tu aggiungendole al JSON (moderazione manuale, come da regole).
 - In futuro, con più traffico: un piccolo backend o una piattaforma di recensioni.
 
+## Affiliazione Stay22 (dove dormire)
+
+Ogni scheda può mostrare una mappa Stay22 con hotel e appartamenti vicini.
+Iscriviti su stay22.com, copia il tuo `aid` e mettilo in `build.py` → `STAY22_AID`.
+Finché è vuoto il blocco non compare. Rilancia `python3 build.py`.
+
 ## Da completare prima della pubblicazione
 
-- [ ] Sostituire le due schede di esempio con schede reali verificate
+- [x] Prime schede reali: 11 campeggi e 6 spiagge (da fonti, ottobre 2026)
 - [ ] Impostare `FORM_ACTION` con l'endpoint del modulo
+- [ ] Inserire `STAY22_AID` dopo l'iscrizione a Stay22
 - [ ] Scrivere il testo privacy in `build.py` (funzione `about`) nelle tre lingue
 - [ ] Verificare l'indirizzo e-mail `CONTACT` in `build.py`
 - [ ] Se il dominio principale non è `naturcampguide.com`, cambiare `SITE` in `build.py`
