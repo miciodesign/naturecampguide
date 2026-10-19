@@ -81,7 +81,8 @@ Iscriviti su stay22.com, copia il tuo `aid` e mettilo in `build.py` → `STAY22_
 Finché è vuoto il blocco non compare. Rilancia `python3 build.py`.
 
 Link referral Stay22 (per invitare altri siti/creator, non per i lettori):
-https://hub.stay22.com/referral/naturcampguide/travel
+https://hub.stay22.com/referral/naturcampguide/travel (viaggi)
+https://hub.stay22.com/referral/naturcampguide/retail (prodotti)
 
 ## Da completare prima della pubblicazione
 
