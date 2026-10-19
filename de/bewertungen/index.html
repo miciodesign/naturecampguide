@@ -32,6 +32,7 @@
 </svg>
 <span><b>NaturCamp</b><small>Guide</small></span></a>
   <nav class="nav" aria-label="Menu"><a href="/de/campingplaetze/">Campingplätze</a>
+<a href="/de/straende/">Strände</a>
 <a href="/de/bewertungen/">Bewertung schreiben</a>
 <a href="/de/ueber-uns/">Über uns</a></nav>
   <div class="lang" aria-label="Language"><a href="/it/recensioni/" lang="it" hreflang="it">IT</a>
@@ -43,7 +44,7 @@
   <h1>Bewertung schreiben</h1>
   <p class="lead">Waren Sie dort? Erzählen Sie, wie es war. Bewertungen werden vor der Veröffentlichung gelesen und bleiben anonym: Nachname und E-Mail werden nie angezeigt.</p>
   <form class="review" method="post" action="#">
-    <label for="camp">Campingplatz<select id="camp" name="camp" required><option value=""></option><option value="esempio-costa-ligure">Campeggio Sole Libero (esempio)</option><option value="esempio-istria">Naturist Village Pineta (esempio)</option><option value="other">Anderer (im Text nennen)</option></select></label>
+    <label for="camp">Campingplatz oder Strand<select id="camp" name="camp" required><option value=""></option><optgroup label="Campingplätze"><option value="camp:esempio-costa-ligure">Campeggio Sole Libero (esempio)</option><option value="camp:esempio-istria">Naturist Village Pineta (esempio)</option></optgroup><optgroup label="Strände"><option value="beach:esempio-cala-del-sole">Cala del Sole (esempio)</option><option value="beach:esempio-punta-rossa">Punta Rossa (esempio)</option></optgroup><option value="other">Anderer (im Text nennen)</option></select></label>
     <div class="row">
       <label for="name">Name oder Nickname<input id="name" name="name" required maxlength="40"></label>
       <label for="email">E-Mail (wird nicht veröffentlicht)<input id="email" name="email" type="email" required></label>

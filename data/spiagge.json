@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "esempio-cala-del-sole",
+    "demo": true,
+    "country": "IT",
+    "region": {"it": "Toscana", "en": "Tuscany", "de": "Toskana"},
+    "name": "Cala del Sole (esempio)",
+    "coords": "43.080, 10.520",
+    "status": "official",
+    "ground": {"it": "sabbia fine, fondale basso", "en": "fine sand, shallow water", "de": "feiner Sand, flaches Wasser"},
+    "length": "800 m",
+    "access": {"it": "Parcheggio a pagamento (€ 6/giorno), poi 10 minuti a piedi nella pineta su sentiero piano.", "en": "Paid car park (€6/day), then a 10-minute flat walk through the pine forest.", "de": "Gebührenpflichtiger Parkplatz (6 €/Tag), dann 10 Minuten ebener Fußweg durch den Pinienwald."},
+    "services": {"it": "chiosco bar, docce, noleggio lettini, bagnino luglio-agosto", "en": "beach bar, showers, sunbed hire, lifeguard July-August", "de": "Strandbar, Duschen, Liegenverleih, Rettungsschwimmer Juli-August"},
+    "season": {"it": "maggio – settembre", "en": "May – September", "de": "Mai – September"},
+    "visited": "2026-07",
+    "nearby": ["esempio-costa-ligure"],
+    "scores": {
+      "setting": [4.5, {"it": "Pineta alle spalle, dune, nessun edificio in vista.", "en": "Pine forest behind, dunes, no buildings in sight.", "de": "Pinienwald im Rücken, Dünen, kein Gebäude in Sicht."}],
+      "clean": [4, {"it": "Pulita al mattino; qualche rifiuto portato dal mare dopo le mareggiate.", "en": "Clean in the morning; some sea-borne litter after storms.", "de": "Morgens sauber; nach Stürmen etwas angeschwemmter Müll."}],
+      "access": [4, {"it": "Facile anche con bambini e borse; non adatta a chi ha difficoltà motorie.", "en": "Easy even with children and bags; not suitable for people with mobility issues.", "de": "Auch mit Kindern und Gepäck einfach; nicht für Gehbehinderte geeignet."}],
+      "services": [3.5, {"it": "Chiosco con prezzi onesti; docce solo fredde.", "en": "Beach bar with fair prices; cold showers only.", "de": "Kiosk mit fairen Preisen; nur kalte Duschen."}],
+      "atmosphere": [4.5, {"it": "Spiaggia ufficiale con cartelli: nessun curioso, frequentazione mista di famiglie e coppie.", "en": "Official beach with signage: no onlookers, a mix of families and couples.", "de": "Offizieller Strand mit Beschilderung: keine Gaffer, Familien und Paare gemischt."}],
+      "crowd": [3, {"it": "Ad agosto piena già alle 10; a giugno e settembre tranquilla.", "en": "Full by 10 a.m. in August; quiet in June and September.", "de": "Im August schon um 10 Uhr voll; im Juni und September ruhig."}]
+    },
+    "summary": {"it": "Una delle poche spiagge naturiste ufficiali della Toscana: sabbia, pineta e servizi essenziali. Ideale per la prima volta.", "en": "One of Tuscany's few official naturist beaches: sand, pine forest and basic services. Ideal for a first time.", "de": "Einer der wenigen offiziellen FKK-Strände der Toskana: Sand, Pinienwald und Grundausstattung. Ideal fürs erste Mal."},
+    "for": {"it": "Famiglie, principianti, chi vuole il bagnino.", "en": "Families, beginners, anyone wanting a lifeguard.", "de": "Familien, Einsteiger, wer einen Rettungsschwimmer möchte."},
+    "not_for": {"it": "Chi cerca solitudine ad agosto.", "en": "Anyone seeking solitude in August.", "de": "Wer im August Einsamkeit sucht."},
+    "tip": {"it": "Arrivare entro le 9 in alta stagione; la parte nord, oltre il torrente, è la più tranquilla.", "en": "Arrive by 9 a.m. in high season; the northern end, past the stream, is the quietest.", "de": "In der Hauptsaison bis 9 Uhr kommen; der Nordteil hinter dem Bach ist am ruhigsten."}
+  },
+  {
+    "slug": "esempio-punta-rossa",
+    "demo": true,
+    "country": "HR",
+    "region": {"it": "Dalmazia", "en": "Dalmatia", "de": "Dalmatien"},
+    "name": "Punta Rossa (esempio)",
+    "coords": "43.510, 16.250",
+    "status": "tolerated",
+    "ground": {"it": "ciottoli e scogli piatti, acqua subito profonda", "en": "pebbles and flat rocks, deep water immediately", "de": "Kiesel und flache Felsen, sofort tiefes Wasser"},
+    "length": "300 m",
+    "access": {"it": "Parcheggio gratuito sulla strada, poi 20 minuti di sentiero ripido tra la macchia. Scarpe chiuse.", "en": "Free roadside parking, then a steep 20-minute path through scrub. Closed shoes needed.", "de": "Kostenloses Parken an der Straße, dann 20 Minuten steiler Pfad durch Macchia. Feste Schuhe nötig."},
+    "services": {"it": "nessuno: portare acqua e ombra", "en": "none: bring water and shade", "de": "keine: Wasser und Schatten mitbringen"},
+    "season": {"it": "giugno – settembre", "en": "June – September", "de": "Juni – September"},
+    "visited": "2026-08",
+    "nearby": ["esempio-istria"],
+    "scores": {
+      "setting": [5, {"it": "Acqua trasparente, pini fino alla riva, vista sulle isole.", "en": "Crystal-clear water, pines down to the shore, island views.", "de": "Glasklares Wasser, Pinien bis ans Ufer, Blick auf die Inseln."}],
+      "clean": [4.5, {"it": "Nessun servizio ma nessun rifiuto: chi arriva fin qui porta via tutto.", "en": "No services but no litter: those who make it here take everything away.", "de": "Keine Einrichtungen, aber kein Müll: Wer herkommt, nimmt alles wieder mit."}],
+      "access": [2, {"it": "Sentiero ripido e scivoloso; impossibile con passeggini o borse pesanti.", "en": "Steep, slippery path; impossible with pushchairs or heavy bags.", "de": "Steiler, rutschiger Pfad; mit Kinderwagen oder schwerem Gepäck unmöglich."}],
+      "services": [1, {"it": "Nulla, nemmeno ombra naturale a mezzogiorno.", "en": "Nothing, not even natural shade at midday.", "de": "Nichts, mittags nicht einmal natürlicher Schatten."}],
+      "atmosphere": [4, {"it": "Tollerata da sempre, frequentata da naturisti locali; qualche barca curiosa nel weekend.", "en": "Long tolerated, used by local naturists; the odd curious boat at weekends.", "de": "Seit jeher geduldet, von einheimischen Naturisten besucht; am Wochenende gelegentlich neugierige Boote."}],
+      "crowd": [5, {"it": "Mai più di venti persone, anche a Ferragosto.", "en": "Never more than twenty people, even in mid-August.", "de": "Nie mehr als zwanzig Leute, selbst Mitte August."}]
+    },
+    "summary": {"it": "Una caletta selvaggia e quasi vuota, conquistata con venti minuti di sentiero. Per chi sa arrangiarsi.", "en": "A wild, almost empty cove, earned with a twenty-minute path. For the self-sufficient.", "de": "Eine wilde, fast leere Bucht, die man sich mit zwanzig Minuten Pfad verdient. Für Selbstversorger."},
+    "for": {"it": "Coppie, nuotatori, chi cerca silenzio.", "en": "Couples, swimmers, anyone seeking quiet.", "de": "Paare, Schwimmer, Ruhesuchende."},
+    "not_for": {"it": "Famiglie con bambini piccoli, chi vuole servizi.", "en": "Families with small children, anyone wanting services.", "de": "Familien mit kleinen Kindern, wer Service möchte."},
+    "tip": {"it": "Scarpette da scoglio e ombrellone obbligatori; tornare prima delle 17, il sentiero in salita al sole è duro.", "en": "Rock shoes and a parasol are a must; head back before 5 p.m., the uphill path in the sun is tough.", "de": "Badeschuhe und Sonnenschirm sind Pflicht; vor 17 Uhr zurück, der Aufstieg in der Sonne ist hart."}
+  }
+]

@@ -32,6 +32,7 @@
 </svg>
 <span><b>NaturCamp</b><small>Guide</small></span></a>
   <nav class="nav" aria-label="Menu"><a href="/it/campeggi/">Campeggi</a>
+<a href="/it/spiagge/">Spiagge</a>
 <a href="/it/recensioni/">Scrivi una recensione</a>
 <a href="/it/chi-siamo/">Chi siamo</a></nav>
   <div class="lang" aria-label="Language"><a href="/it/recensioni/" lang="it" hreflang="it" aria-current="true">IT</a>
@@ -43,7 +44,7 @@
   <h1>Scrivi una recensione</h1>
   <p class="lead">Ci sei stato? Racconta com&#x27;è andata. Le recensioni vengono lette prima della pubblicazione e restano anonime: il cognome e l&#x27;e-mail non vengono mai mostrati.</p>
   <form class="review" method="post" action="#">
-    <label for="camp">Campeggio<select id="camp" name="camp" required><option value=""></option><option value="esempio-costa-ligure">Campeggio Sole Libero (esempio)</option><option value="esempio-istria">Naturist Village Pineta (esempio)</option><option value="other">Altro (scrivilo nel testo)</option></select></label>
+    <label for="camp">Campeggio o spiaggia<select id="camp" name="camp" required><option value=""></option><optgroup label="Campeggi"><option value="camp:esempio-costa-ligure">Campeggio Sole Libero (esempio)</option><option value="camp:esempio-istria">Naturist Village Pineta (esempio)</option></optgroup><optgroup label="Spiagge"><option value="beach:esempio-cala-del-sole">Cala del Sole (esempio)</option><option value="beach:esempio-punta-rossa">Punta Rossa (esempio)</option></optgroup><option value="other">Altro (scrivilo nel testo)</option></select></label>
     <div class="row">
       <label for="name">Nome o nickname<input id="name" name="name" required maxlength="40"></label>
       <label for="email">E-mail (non pubblicata)<input id="email" name="email" type="email" required></label>

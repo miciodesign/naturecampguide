@@ -32,6 +32,7 @@
 </svg>
 <span><b>NaturCamp</b><small>Guide</small></span></a>
   <nav class="nav" aria-label="Menu"><a href="/en/campsites/">Campsites</a>
+<a href="/en/beaches/">Beaches</a>
 <a href="/en/reviews/">Write a review</a>
 <a href="/en/about/">About</a></nav>
   <div class="lang" aria-label="Language"><a href="/it/recensioni/" lang="it" hreflang="it">IT</a>
@@ -43,7 +44,7 @@
   <h1>Write a review</h1>
   <p class="lead">Been there? Tell us how it went. Reviews are read before publication and stay anonymous: your surname and e-mail are never shown.</p>
   <form class="review" method="post" action="#">
-    <label for="camp">Campsite<select id="camp" name="camp" required><option value=""></option><option value="esempio-costa-ligure">Campeggio Sole Libero (esempio)</option><option value="esempio-istria">Naturist Village Pineta (esempio)</option><option value="other">Other (name it in the text)</option></select></label>
+    <label for="camp">Campsite or beach<select id="camp" name="camp" required><option value=""></option><optgroup label="Campsites"><option value="camp:esempio-costa-ligure">Campeggio Sole Libero (esempio)</option><option value="camp:esempio-istria">Naturist Village Pineta (esempio)</option></optgroup><optgroup label="Beaches"><option value="beach:esempio-cala-del-sole">Cala del Sole (esempio)</option><option value="beach:esempio-punta-rossa">Punta Rossa (esempio)</option></optgroup><option value="other">Other (name it in the text)</option></select></label>
     <div class="row">
       <label for="name">Name or nickname<input id="name" name="name" required maxlength="40"></label>
       <label for="email">E-mail (not published)<input id="email" name="email" type="email" required></label>

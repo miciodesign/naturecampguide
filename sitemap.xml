@@ -2,20 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://naturcampguide.com/it/</loc></url>
   <url><loc>https://naturcampguide.com/it/campeggi/</loc></url>
+  <url><loc>https://naturcampguide.com/it/spiagge/</loc></url>
   <url><loc>https://naturcampguide.com/it/recensioni/</loc></url>
   <url><loc>https://naturcampguide.com/it/chi-siamo/</loc></url>
   <url><loc>https://naturcampguide.com/it/campeggi/esempio-costa-ligure/</loc></url>
   <url><loc>https://naturcampguide.com/it/campeggi/esempio-istria/</loc></url>
+  <url><loc>https://naturcampguide.com/it/spiagge/esempio-cala-del-sole/</loc></url>
+  <url><loc>https://naturcampguide.com/it/spiagge/esempio-punta-rossa/</loc></url>
   <url><loc>https://naturcampguide.com/en/</loc></url>
   <url><loc>https://naturcampguide.com/en/campsites/</loc></url>
+  <url><loc>https://naturcampguide.com/en/beaches/</loc></url>
   <url><loc>https://naturcampguide.com/en/reviews/</loc></url>
   <url><loc>https://naturcampguide.com/en/about/</loc></url>
   <url><loc>https://naturcampguide.com/en/campsites/esempio-costa-ligure/</loc></url>
   <url><loc>https://naturcampguide.com/en/campsites/esempio-istria/</loc></url>
+  <url><loc>https://naturcampguide.com/en/beaches/esempio-cala-del-sole/</loc></url>
+  <url><loc>https://naturcampguide.com/en/beaches/esempio-punta-rossa/</loc></url>
   <url><loc>https://naturcampguide.com/de/</loc></url>
   <url><loc>https://naturcampguide.com/de/campingplaetze/</loc></url>
+  <url><loc>https://naturcampguide.com/de/straende/</loc></url>
   <url><loc>https://naturcampguide.com/de/bewertungen/</loc></url>
   <url><loc>https://naturcampguide.com/de/ueber-uns/</loc></url>
   <url><loc>https://naturcampguide.com/de/campingplaetze/esempio-costa-ligure/</loc></url>
   <url><loc>https://naturcampguide.com/de/campingplaetze/esempio-istria/</loc></url>
+  <url><loc>https://naturcampguide.com/de/straende/esempio-cala-del-sole/</loc></url>
+  <url><loc>https://naturcampguide.com/de/straende/esempio-punta-rossa/</loc></url>
 </urlset>

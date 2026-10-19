@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 DATA = json.loads((ROOT / "data" / "campeggi.json").read_text(encoding="utf-8"))
+BEACHES = json.loads((ROOT / "data" / "spiagge.json").read_text(encoding="utf-8"))
 SITE = "https://naturcampguide.com"
 LANGS = ["it", "en", "de"]
 
@@ -16,8 +17,16 @@ LANGS = ["it", "en", "de"]
 T = {
   "it": {
     "brand_sub": "Guide", "lang_name": "Italiano",
-    "nav": {"camps": "Campeggi", "review": "Scrivi una recensione", "about": "Chi siamo"},
-    "paths": {"camps": "campeggi", "review": "recensioni", "about": "chi-siamo"},
+    "nav": {"camps": "Campeggi", "beaches": "Spiagge", "review": "Scrivi una recensione", "about": "Chi siamo"},
+    "paths": {"camps": "campeggi", "beaches": "spiagge", "review": "recensioni", "about": "chi-siamo"},
+    "beaches_h1": "Spiagge naturiste", "beaches_p": "Ufficiali e tollerate, ordinate per paese. Il numero è il voto complessivo su 5.",
+    "beaches_home_h2": "Spiagge naturiste", "beaches_home_p": "Dove si può stare nudi in spiaggia, con stato ufficiale, accesso e servizi verificati.",
+    "beaches_all": "Tutte le spiagge",
+    "bfacts": {"status": "Stato", "ground": "Fondo e fondale", "length": "Lunghezza", "access": "Accesso", "services": "Servizi", "season": "Periodo", "coords": "Coordinate", "nearby": "Campeggi vicini"},
+    "status": {"official": "ufficiale, segnalata con cartelli", "tolerated": "tollerata, non segnalata", "unofficial": "non ufficiale: possibili controlli"},
+    "status_short": {"official": "ufficiale", "tolerated": "tollerata", "unofficial": "non ufficiale"},
+    "bcriteria": {"setting": "Natura e paesaggio", "clean": "Pulizia", "access": "Facilità di accesso", "services": "Servizi", "atmosphere": "Atmosfera e tranquillità", "crowd": "Spazio e affollamento"},
+    "status_note": "Lo stato può cambiare: ordinanze comunali e stagioni balneari variano ogni anno. Verifica i cartelli sul posto.",
     "title": "NaturCamp Guide — campeggi naturisti in Europa",
     "desc": "Guida indipendente ai campeggi naturisti e nudisti in Europa: schede verificate, voti su sette criteri, recensioni oneste in italiano, inglese e tedesco.",
     "hero_h1": "Campeggi naturisti in Europa, raccontati con onestà",
@@ -36,7 +45,7 @@ T = {
     "overall": "voto", "strengths": "Punti forti", "weaknesses": "Punti deboli", "for": "Per chi è", "not_for": "Per chi no", "tip": "Consiglio pratico",
     "demo": "Scheda dimostrativa: dati inventati per mostrare il formato. Le schede reali riportano solo informazioni verificate.",
     "review_h1": "Scrivi una recensione", "review_p": "Ci sei stato? Racconta com'è andata. Le recensioni vengono lette prima della pubblicazione e restano anonime: il cognome e l'e-mail non vengono mai mostrati.",
-    "f": {"camp": "Campeggio", "camp_other": "Altro (scrivilo nel testo)", "name": "Nome o nickname", "email": "E-mail (non pubblicata)", "when": "Mese e anno del soggiorno", "trip": "Tipo di viaggio", "trips": ["Coppia", "Famiglia", "Da solo/a", "Gruppo"], "acc": "Sistemazione usata", "ratings": "I tuoi voti (1–5)", "text": "La tua recensione (almeno 300 caratteri)", "tip": "Consigli pratici (facoltativo)", "consent": "Ho letto le regole e accetto che la recensione venga pubblicata con il mio nickname.", "send": "Invia la recensione"},
+    "f": {"camp": "Campeggio o spiaggia", "camp_other": "Altro (scrivilo nel testo)", "name": "Nome o nickname", "email": "E-mail (non pubblicata)", "when": "Mese e anno del soggiorno", "trip": "Tipo di viaggio", "trips": ["Coppia", "Famiglia", "Da solo/a", "Gruppo"], "acc": "Sistemazione usata", "ratings": "I tuoi voti (1–5)", "text": "La tua recensione (almeno 300 caratteri)", "tip": "Consigli pratici (facoltativo)", "consent": "Ho letto le regole e accetto che la recensione venga pubblicata con il mio nickname.", "send": "Invia la recensione"},
     "rules_h3": "Regole in breve",
     "rules": ["Solo esperienze dirette, con mese e anno del soggiorno.", "Niente contenuti sessuali o allusivi, niente descrizioni di altri ospiti.", "Le critiche sono benvenute se concrete; il gestore può rispondere.", "Niente foto con persone riconoscibili."],
     "about_h1": "Chi siamo", "about_p1": "NaturCamp Guide è una guida indipendente ai campeggi naturisti e nudisti in Europa, scritta in italiano, inglese e tedesco. Non siamo un'agenzia e non vendiamo soggiorni: raccontiamo i posti come li abbiamo trovati.", "about_p2": "Ogni scheda nasce da una visita o da fonti verificate con data. Se un campeggio ci sembra deludente lo scriviamo; se è eccellente anche.", "about_p3": "Hai una correzione o un campeggio da segnalare? Scrivici: ",
@@ -45,8 +54,16 @@ T = {
   },
   "en": {
     "brand_sub": "Guide", "lang_name": "English",
-    "nav": {"camps": "Campsites", "review": "Write a review", "about": "About"},
-    "paths": {"camps": "campsites", "review": "reviews", "about": "about"},
+    "nav": {"camps": "Campsites", "beaches": "Beaches", "review": "Write a review", "about": "About"},
+    "paths": {"camps": "campsites", "beaches": "beaches", "review": "reviews", "about": "about"},
+    "beaches_h1": "Naturist beaches", "beaches_p": "Official and tolerated, sorted by country. The number is the overall score out of 5.",
+    "beaches_home_h2": "Naturist beaches", "beaches_home_p": "Where you can be nude on the beach, with official status, access and services checked.",
+    "beaches_all": "All beaches",
+    "bfacts": {"status": "Status", "ground": "Ground and seabed", "length": "Length", "access": "Access", "services": "Services", "season": "Season", "coords": "Coordinates", "nearby": "Campsites nearby"},
+    "status": {"official": "official, signposted", "tolerated": "tolerated, not signposted", "unofficial": "unofficial: checks possible"},
+    "status_short": {"official": "official", "tolerated": "tolerated", "unofficial": "unofficial"},
+    "bcriteria": {"setting": "Nature and scenery", "clean": "Cleanliness", "access": "Ease of access", "services": "Services", "atmosphere": "Atmosphere and peace", "crowd": "Space and crowds"},
+    "status_note": "Status can change: municipal rules and bathing seasons vary every year. Check the signs on site.",
     "title": "NaturCamp Guide — naturist campsites in Europe",
     "desc": "Independent guide to naturist and nudist campsites in Europe: verified listings, seven-criteria ratings and honest reviews in English, Italian and German.",
     "hero_h1": "Naturist campsites in Europe, told honestly",
@@ -65,7 +82,7 @@ T = {
     "overall": "score", "strengths": "Strengths", "weaknesses": "Weaknesses", "for": "Who it's for", "not_for": "Who should skip it", "tip": "Practical tip",
     "demo": "Sample listing: invented data to show the format. Real listings contain verified information only.",
     "review_h1": "Write a review", "review_p": "Been there? Tell us how it went. Reviews are read before publication and stay anonymous: your surname and e-mail are never shown.",
-    "f": {"camp": "Campsite", "camp_other": "Other (name it in the text)", "name": "Name or nickname", "email": "E-mail (not published)", "when": "Month and year of your stay", "trip": "Type of trip", "trips": ["Couple", "Family", "Solo", "Group"], "acc": "Accommodation used", "ratings": "Your scores (1–5)", "text": "Your review (at least 300 characters)", "tip": "Practical tips (optional)", "consent": "I have read the rules and agree to have my review published under my nickname.", "send": "Send review"},
+    "f": {"camp": "Campsite or beach", "camp_other": "Other (name it in the text)", "name": "Name or nickname", "email": "E-mail (not published)", "when": "Month and year of your stay", "trip": "Type of trip", "trips": ["Couple", "Family", "Solo", "Group"], "acc": "Accommodation used", "ratings": "Your scores (1–5)", "text": "Your review (at least 300 characters)", "tip": "Practical tips (optional)", "consent": "I have read the rules and agree to have my review published under my nickname.", "send": "Send review"},
     "rules_h3": "Rules in short",
     "rules": ["First-hand experiences only, with month and year of the stay.", "No sexual or suggestive content, no descriptions of other guests.", "Criticism is welcome when concrete; the owner may reply.", "No photos with recognisable people."],
     "about_h1": "About", "about_p1": "NaturCamp Guide is an independent guide to naturist and nudist campsites in Europe, written in English, Italian and German. We are not an agency and we don't sell holidays: we describe places as we found them.", "about_p2": "Every listing comes from a visit or from dated, verified sources. If a campsite disappoints we say so; if it is excellent, we say that too.", "about_p3": "Have a correction or a campsite to suggest? Write to us: ",
@@ -74,8 +91,16 @@ T = {
   },
   "de": {
     "brand_sub": "Guide", "lang_name": "Deutsch",
-    "nav": {"camps": "Campingplätze", "review": "Bewertung schreiben", "about": "Über uns"},
-    "paths": {"camps": "campingplaetze", "review": "bewertungen", "about": "ueber-uns"},
+    "nav": {"camps": "Campingplätze", "beaches": "Strände", "review": "Bewertung schreiben", "about": "Über uns"},
+    "paths": {"camps": "campingplaetze", "beaches": "straende", "review": "bewertungen", "about": "ueber-uns"},
+    "beaches_h1": "FKK-Strände", "beaches_p": "Offiziell und geduldet, nach Land sortiert. Die Zahl ist die Gesamtnote von 5.",
+    "beaches_home_h2": "FKK-Strände", "beaches_home_p": "Wo man nackt am Strand sein darf, mit geprüftem Status, Zugang und Ausstattung.",
+    "beaches_all": "Alle Strände",
+    "bfacts": {"status": "Status", "ground": "Untergrund und Wasser", "length": "Länge", "access": "Zugang", "services": "Ausstattung", "season": "Zeitraum", "coords": "Koordinaten", "nearby": "Campingplätze in der Nähe"},
+    "status": {"official": "offiziell, ausgeschildert", "tolerated": "geduldet, nicht ausgeschildert", "unofficial": "inoffiziell: Kontrollen möglich"},
+    "status_short": {"official": "offiziell", "tolerated": "geduldet", "unofficial": "inoffiziell"},
+    "bcriteria": {"setting": "Natur und Landschaft", "clean": "Sauberkeit", "access": "Zugänglichkeit", "services": "Ausstattung", "atmosphere": "Atmosphäre und Ruhe", "crowd": "Platz und Andrang"},
+    "status_note": "Der Status kann sich ändern: Gemeindeverordnungen und Badesaisons variieren jedes Jahr. Beschilderung vor Ort beachten.",
     "title": "NaturCamp Guide — FKK-Campingplätze in Europa",
     "desc": "Unabhängiger Führer zu FKK- und Naturisten-Campingplätzen in Europa: geprüfte Einträge, Bewertung nach sieben Kriterien, ehrliche Erfahrungsberichte auf Deutsch, Englisch und Italienisch.",
     "hero_h1": "FKK-Campingplätze in Europa, ehrlich beschrieben",
@@ -94,7 +119,7 @@ T = {
     "overall": "Note", "strengths": "Stärken", "weaknesses": "Schwächen", "for": "Für wen", "not_for": "Für wen nicht", "tip": "Praktischer Tipp",
     "demo": "Beispieleintrag: erfundene Daten, um das Format zu zeigen. Echte Einträge enthalten nur geprüfte Angaben.",
     "review_h1": "Bewertung schreiben", "review_p": "Waren Sie dort? Erzählen Sie, wie es war. Bewertungen werden vor der Veröffentlichung gelesen und bleiben anonym: Nachname und E-Mail werden nie angezeigt.",
-    "f": {"camp": "Campingplatz", "camp_other": "Anderer (im Text nennen)", "name": "Name oder Nickname", "email": "E-Mail (wird nicht veröffentlicht)", "when": "Monat und Jahr des Aufenthalts", "trip": "Art der Reise", "trips": ["Paar", "Familie", "Allein", "Gruppe"], "acc": "Genutzte Unterkunft", "ratings": "Ihre Noten (1–5)", "text": "Ihre Bewertung (mindestens 300 Zeichen)", "tip": "Praktische Tipps (optional)", "consent": "Ich habe die Regeln gelesen und bin einverstanden, dass meine Bewertung unter meinem Nickname veröffentlicht wird.", "send": "Bewertung senden"},
+    "f": {"camp": "Campingplatz oder Strand", "camp_other": "Anderer (im Text nennen)", "name": "Name oder Nickname", "email": "E-Mail (wird nicht veröffentlicht)", "when": "Monat und Jahr des Aufenthalts", "trip": "Art der Reise", "trips": ["Paar", "Familie", "Allein", "Gruppe"], "acc": "Genutzte Unterkunft", "ratings": "Ihre Noten (1–5)", "text": "Ihre Bewertung (mindestens 300 Zeichen)", "tip": "Praktische Tipps (optional)", "consent": "Ich habe die Regeln gelesen und bin einverstanden, dass meine Bewertung unter meinem Nickname veröffentlicht wird.", "send": "Bewertung senden"},
     "rules_h3": "Regeln in Kürze",
     "rules": ["Nur eigene Erfahrungen, mit Monat und Jahr des Aufenthalts.", "Keine sexuellen oder anzüglichen Inhalte, keine Beschreibungen anderer Gäste.", "Kritik ist willkommen, wenn sie konkret ist; der Betreiber darf antworten.", "Keine Fotos mit erkennbaren Personen."],
     "about_h1": "Über uns", "about_p1": "NaturCamp Guide ist ein unabhängiger Führer zu FKK- und Naturisten-Campingplätzen in Europa, auf Deutsch, Englisch und Italienisch. Wir sind keine Agentur und verkaufen keine Reisen: Wir beschreiben die Plätze so, wie wir sie vorgefunden haben.", "about_p2": "Jeder Eintrag beruht auf einem Besuch oder auf datierten, geprüften Quellen. Enttäuscht uns ein Platz, schreiben wir das; ist er ausgezeichnet, ebenfalls.", "about_p3": "Haben Sie eine Korrektur oder einen Platz vorzuschlagen? Schreiben Sie uns: ",
@@ -118,6 +143,7 @@ def lang_url(lang, kind, slug=None):
     p = T[lang]["paths"]
     if kind == "home": return f"/{lang}/"
     if kind == "camp": return f"/{lang}/{p['camps']}/{slug}/"
+    if kind == "beach": return f"/{lang}/{p['beaches']}/{slug}/"
     return f"/{lang}/{p[kind]}/"
 
 def overall(c):
@@ -138,7 +164,7 @@ def dots(x):
 def page(lang, kind, title, desc, body, slug=None):
     t = T[lang]
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{lang_url(l, kind, slug)}">' for l in LANGS)
-    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("camps", "review", "about"))
+    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("camps", "beaches", "review", "about"))
     langs = "\n".join(f'<a href="{lang_url(l, kind, slug)}" lang="{l}" hreflang="{l}"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
     return f"""<!doctype html>
 <html lang="{lang}">
@@ -190,6 +216,7 @@ def home(lang):
     for c in DATA: countries[c["country"]] = countries.get(c["country"], 0) + 1
     cl = "".join(f'<li><a href="{lang_url(lang, "camps")}#{k}">{e(t["country_names"].get(k, k))}<span>{n}</span></a></li>' for k, n in sorted(countries.items(), key=lambda kv: t["country_names"].get(kv[0], kv[0])))
     latest = "".join(camp_item(c, lang) for c in sorted(DATA, key=lambda c: c["visited"], reverse=True)[:5])
+    beach_latest = "".join(beach_item(b, lang) for b in sorted(BEACHES, key=lambda b: b["visited"], reverse=True)[:3])
     body = f"""<section class="hero"><div class="wrap">
   <h1>{e(t['hero_h1'])}</h1>
   <p>{e(t['hero_p'])}</p>
@@ -198,6 +225,7 @@ def home(lang):
 </div></section>
 <section class="block"><div class="wrap"><h2>{e(t['countries_h2'])}</h2><ul class="countries">{cl}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['latest_h2'])}</h2><ul class="camps">{latest}</ul></div></section>
+<section class="block"><div class="wrap"><h2>{e(t['beaches_home_h2'])}</h2><p class="lead">{e(t['beaches_home_p'])}</p><ul class="camps">{beach_latest}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'beaches')}">{e(t['beaches_all'])}</a></p></div></section>
 <section class="block" id="how"><div class="wrap"><h2>{e(t['how_h2'])}</h2><p class="lead">{e(t['how_p'])}</p></div></section>"""
     return page(lang, "home", t["title"], t["desc"], body)
 
@@ -249,9 +277,73 @@ def sheet(c, lang):
 </div></section>"""
     return page(lang, "camp", f'{c["name"]} — NaturCamp Guide', c["summary"][lang], body, c["slug"])
 
+def beach_item(b, lang):
+    t = T[lang]
+    sc = overall(b)
+    return f"""<li class="camp">
+  <div class="score"><b>{fmt_score(sc, lang)}</b><small>/5</small></div>
+  <div>
+    <h3><a href="{lang_url(lang, 'beach', b['slug'])}">{e(b['name'])}</a></h3>
+    <p class="meta"><span>{e(t['country_names'].get(b['country'], b['country']))}, {e(b['region'][lang])}</span><span>{e(t['status_short'][b['status']])}</span><span>{e(b['ground'][lang])}</span></p>
+    <p class="forwhom"><strong>{e(t['for'])}:</strong> {e(b['for'][lang])}</p>
+  </div>
+</li>"""
+
+def beaches(lang):
+    t = T[lang]
+    groups = {}
+    for b in BEACHES: groups.setdefault(b["country"], []).append(b)
+    sections = ""
+    for k in sorted(groups, key=lambda k: t["country_names"].get(k, k)):
+        items = "".join(beach_item(b, lang) for b in sorted(groups[k], key=overall, reverse=True))
+        sections += f'<section class="block" id="{k}"><div class="wrap"><h2>{e(t["country_names"].get(k, k))}</h2><ul class="camps">{items}</ul></div></section>'
+    body = f'<section class="block"><div class="wrap"><h1>{e(t["beaches_h1"])}</h1><p class="lead">{e(t["beaches_p"])} {e(t["count"].format(n=len(BEACHES)))}.</p><p class="meta">{e(t["status_note"])}</p></div></section>{sections}'
+    return page(lang, "beaches", f'{t["beaches_h1"]} — NaturCamp Guide', t["beaches_p"], body)
+
+def beach_sheet(b, lang):
+    t = T[lang]; f = t["bfacts"]; sc = overall(b)
+    by_slug = {c["slug"]: c for c in DATA}
+    facts = [
+        (f["status"], t["status"][b["status"]]),
+        (f["ground"], b["ground"][lang]),
+        (f["length"], b["length"]),
+        (f["access"], b["access"][lang]),
+        (f["services"], b["services"][lang]),
+        (f["season"], b["season"][lang]),
+        (t["facts"]["visited"], b["visited"]),
+    ]
+    rows = "".join(f"<tr><th scope='row'>{e(k)}</th><td>{e(v)}</td></tr>" for k, v in facts)
+    lat, lon = [x.strip() for x in b["coords"].split(",")]
+    rows += f'<tr><th scope="row">{e(f["coords"])}</th><td><a href="https://www.openstreetmap.org/?mlat={lat}&amp;mlon={lon}#map=15/{lat}/{lon}" rel="nofollow">{e(b["coords"])}</a></td></tr>'
+    near = [by_slug[s] for s in b.get("nearby", []) if s in by_slug]
+    if near:
+        rows += f'<tr><th scope="row">{e(f["nearby"])}</th><td>' + ", ".join(f'<a href="{lang_url(lang, "camp", c["slug"])}">{e(c["name"])}</a>' for c in near) + "</td></tr>"
+    crit = "".join(f'<li><span class="name">{e(t["bcriteria"][k])}</span><span>{dots(v[0])} <strong>{fmt_score(v[0], lang)}</strong></span><span class="why">{e(v[1][lang])}</span></li>' for k, v in b["scores"].items())
+    demo = f'<div class="demo">{e(t["demo"])}</div>' if b.get("demo") else ""
+    body = f"""<section class="block"><div class="wrap">
+  <div class="sheet-head">
+    <div><h1>{e(b['name'])}</h1><p class="meta"><span>{e(t['country_names'].get(b['country'], b['country']))}, {e(b['region'][lang])}</span><span>{e(t['status_short'][b['status']])}</span><span>{e(t['facts']['visited'])} {e(b['visited'])}</span></p><p class="lead">{e(b['summary'][lang])}</p></div>
+    <div class="score"><b>{fmt_score(sc, lang)}</b><small>{e(t['overall'])} /5</small></div>
+  </div>
+  {demo}
+  <h2>{e(t['facts_h2'])}</h2>
+  <table class="facts"><tbody>{rows}</tbody></table>
+  <p class="meta">{e(t['status_note'])}</p>
+  <h2>{e(t['criteria_h2'])}</h2>
+  <ul class="criteria">{crit}</ul>
+  <h2>{e(t['verdict_h2'])}</h2>
+  <div class="verdict">
+    <div><h3>{e(t['for'])}</h3><p>{e(b['for'][lang])}</p></div>
+    <div class="no"><h3>{e(t['not_for'])}</h3><p>{e(b['not_for'][lang])}</p></div>
+    <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(b['tip'][lang])}</p></div>
+  </div>
+</div></section>"""
+    return page(lang, "beach", f'{b["name"]} — NaturCamp Guide', b["summary"][lang], body, b["slug"])
+
 def review(lang):
     t = T[lang]; f = t["f"]
-    opts = "".join(f'<option value="{e(c["slug"])}">{e(c["name"])}</option>' for c in sorted(DATA, key=lambda c: c["name"]))
+    opts = f'<optgroup label="{e(t["nav"]["camps"])}">' + "".join(f'<option value="camp:{e(c["slug"])}">{e(c["name"])}</option>' for c in sorted(DATA, key=lambda c: c["name"])) + "</optgroup>"
+    opts += f'<optgroup label="{e(t["nav"]["beaches"])}">' + "".join(f'<option value="beach:{e(b["slug"])}">{e(b["name"])}</option>' for b in sorted(BEACHES, key=lambda b: b["name"])) + "</optgroup>"
     trips = "".join(f'<option>{e(x)}</option>' for x in f["trips"])
     sel = '<select name="{k}" id="r-{k}" required><option value=""></option>' + "".join(f'<option>{x}</option>' for x in ["1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"]) + "</select>"
     ratings = "".join(f'<label for="r-{k}">{e(v)}{sel.format(k=k)}</label>' for k, v in t["criteria"].items())
@@ -310,6 +402,9 @@ def main():
         write(ROOT / lang / p["about"] / "index.html", about(lang))
         for c in DATA:
             write(ROOT / lang / p["camps"] / c["slug"] / "index.html", sheet(c, lang))
+        write(ROOT / lang / p["beaches"] / "index.html", beaches(lang))
+        for b in BEACHES:
+            write(ROOT / lang / p["beaches"] / b["slug"] / "index.html", beach_sheet(b, lang))
     # Pagina radice: sceglie la lingua del browser, altrimenti inglese
     write(ROOT / "index.html", """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>NaturCamp Guide</title>
@@ -321,10 +416,11 @@ def main():
     write(ROOT / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     urls = []
     for lang in LANGS:
-        urls += [lang_url(lang, k) for k in ("home", "camps", "review", "about")]
+        urls += [lang_url(lang, k) for k in ("home", "camps", "beaches", "review", "about")]
         urls += [lang_url(lang, "camp", c["slug"]) for c in DATA]
+        urls += [lang_url(lang, "beach", b["slug"]) for b in BEACHES]
     write(ROOT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
-    print(f"Generato: {len(LANGS)} lingue, {len(DATA)} schede, {len(urls)} pagine.")
+    print(f"Generato: {len(LANGS)} lingue, {len(DATA)} campeggi, {len(BEACHES)} spiagge, {len(urls)} pagine.")
 
 if __name__ == "__main__":
     main()
