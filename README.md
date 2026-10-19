@@ -80,6 +80,9 @@ Ogni scheda può mostrare una mappa Stay22 con hotel e appartamenti vicini.
 Iscriviti su stay22.com, copia il tuo `aid` e mettilo in `build.py` → `STAY22_AID`.
 Finché è vuoto il blocco non compare. Rilancia `python3 build.py`.
 
+Link referral Stay22 (per invitare altri siti/creator, non per i lettori):
+https://hub.stay22.com/referral/naturcampguide/travel
+
 ## Da completare prima della pubblicazione
 
 - [x] Prime schede reali: 11 campeggi e 6 spiagge (da fonti, ottobre 2026)
