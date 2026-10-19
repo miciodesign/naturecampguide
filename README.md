@@ -84,6 +84,13 @@ Link referral Stay22 (per invitare altri siti/creator, non per i lettori):
 https://hub.stay22.com/referral/naturcampguide/travel (viaggi)
 https://hub.stay22.com/referral/naturcampguide/retail (prodotti)
 
+## Pagina "Cosa portare" e Amazon
+
+I link della pagina puntano a ricerche Amazon (.it / .co.uk / .de). Quando apri Amazon Associates
+(consigliato solo quando il sito ha traffico: servono 3 vendite nei primi 180 giorni),
+inserisci i tre tag in `build.py` → `AMAZON_TAGS`. Finché sono vuoti i link sono normali e
+la nota sulla commissione non compare.
+
 ## Da completare prima della pubblicazione
 
 - [x] Prime schede reali: 11 campeggi e 6 spiagge (da fonti, ottobre 2026)

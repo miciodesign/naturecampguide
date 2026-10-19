@@ -17,8 +17,8 @@ LANGS = ["it", "en", "de"]
 T = {
   "it": {
     "brand_sub": "Guide", "lang_name": "Italiano",
-    "nav": {"camps": "Campeggi", "beaches": "Spiagge", "review": "Scrivi una recensione", "about": "Chi siamo"},
-    "paths": {"camps": "campeggi", "beaches": "spiagge", "review": "recensioni", "about": "chi-siamo"},
+    "nav": {"camps": "Campeggi", "beaches": "Spiagge", "pack": "Cosa portare", "review": "Scrivi una recensione", "about": "Chi siamo"},
+    "paths": {"camps": "campeggi", "beaches": "spiagge", "pack": "cosa-portare", "review": "recensioni", "about": "chi-siamo"},
     "beaches_h1": "Spiagge naturiste", "beaches_p": "Ufficiali e tollerate, ordinate per paese. Il numero è il voto complessivo su 5.",
     "beaches_home_h2": "Spiagge naturiste", "beaches_home_p": "Dove si può stare nudi in spiaggia, con stato ufficiale, accesso e servizi verificati.",
     "beaches_all": "Tutte le spiagge",
@@ -55,8 +55,8 @@ T = {
   },
   "en": {
     "brand_sub": "Guide", "lang_name": "English",
-    "nav": {"camps": "Campsites", "beaches": "Beaches", "review": "Write a review", "about": "About"},
-    "paths": {"camps": "campsites", "beaches": "beaches", "review": "reviews", "about": "about"},
+    "nav": {"camps": "Campsites", "beaches": "Beaches", "pack": "What to pack", "review": "Write a review", "about": "About"},
+    "paths": {"camps": "campsites", "beaches": "beaches", "pack": "what-to-pack", "review": "reviews", "about": "about"},
     "beaches_h1": "Naturist beaches", "beaches_p": "Official and tolerated, sorted by country. The number is the overall score out of 5.",
     "beaches_home_h2": "Naturist beaches", "beaches_home_p": "Where you can be nude on the beach, with official status, access and services checked.",
     "beaches_all": "All beaches",
@@ -93,8 +93,8 @@ T = {
   },
   "de": {
     "brand_sub": "Guide", "lang_name": "Deutsch",
-    "nav": {"camps": "Campingplätze", "beaches": "Strände", "review": "Bewertung schreiben", "about": "Über uns"},
-    "paths": {"camps": "campingplaetze", "beaches": "straende", "review": "bewertungen", "about": "ueber-uns"},
+    "nav": {"camps": "Campingplätze", "beaches": "Strände", "pack": "Packliste", "review": "Bewertung schreiben", "about": "Über uns"},
+    "paths": {"camps": "campingplaetze", "beaches": "straende", "pack": "packliste", "review": "bewertungen", "about": "ueber-uns"},
     "beaches_h1": "FKK-Strände", "beaches_p": "Offiziell und geduldet, nach Land sortiert. Die Zahl ist die Gesamtnote von 5.",
     "beaches_home_h2": "FKK-Strände", "beaches_home_p": "Wo man nackt am Strand sein darf, mit geprüftem Status, Zugang und Ausstattung.",
     "beaches_all": "Alle Strände",
@@ -132,7 +132,9 @@ T = {
 }
 CONTACT = "info@naturcampguide.com"
 FORM_ACTION = "#"
-STAY22_AID = "naturcampguide"  # il tuo ID affiliato Stay22 (es. "naturcampguide"); vuoto = blocco nascosto  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
+STAY22_AID = "naturcampguide"
+AMAZON_TAGS = {"it": "", "en": "", "de": ""}  # tag Amazon Associates per amazon.it / .co.uk / .de; vuoto = link senza affiliazione
+AMAZON_HOST = {"it": "www.amazon.it", "en": "www.amazon.co.uk", "de": "www.amazon.de"}  # il tuo ID affiliato Stay22 (es. "naturcampguide"); vuoto = blocco nascosto  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
 
 LOGO = (ROOT / "src" / "logo.svg").read_text(encoding="utf-8").replace('role="img" aria-label="NaturCamp Guide"', 'aria-hidden="true"')
 HORIZON = """<svg class="horizon" viewBox="0 0 1200 160" aria-hidden="true" preserveAspectRatio="none">
@@ -192,7 +194,7 @@ def dots(x):
 def page(lang, kind, title, desc, body, slug=None):
     t = T[lang]
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{lang_url(l, kind, slug)}">' for l in LANGS)
-    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("camps", "beaches", "review", "about"))
+    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("camps", "beaches", "pack", "review", "about"))
     langs = "\n".join(f'<a href="{lang_url(l, kind, slug)}" lang="{l}" hreflang="{l}"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
     return f"""<!doctype html>
 <html lang="{lang}">
@@ -372,6 +374,129 @@ def beach_sheet(b, lang):
 </div></section>"""
     return page(lang, "beach", f'{b["name"]} — NaturCamp Guide', b["summary"][lang], body, b["slug"])
 
+PACK = {
+  "it": {
+    "h1": "Cosa portare in un campeggio naturista",
+    "lead": "Meno di quanto pensi. Il naturismo semplifica la valigia, ma alcune cose sono obbligatorie e altre fanno la differenza tra una vacanza comoda e una scomoda. Ecco la lista che useremmo noi, divisa per situazione.",
+    "disclosure": "I link ai prodotti portano ad Amazon: se acquisti da lì riceviamo una piccola commissione, senza costi per te. Non indichiamo marche: scegli il prodotto che preferisci.",
+    "btn": "Vedi su Amazon",
+    "sections": [
+      {"h": "Obbligatorio o quasi", "items": [
+        ["Telo da sedia", "La regola numero uno del naturismo: ci si siede sempre su un telo proprio, anche al bar e in piscina. Portane due, uno piccolo da tenere in borsa.", "telo mare microfibra"],
+        ["Tessera naturista INF", "Richiesta in molti campeggi italiani e tedeschi, consigliata ovunque. Si ottiene dalla federazione del proprio paese (FENAIT, DFK, FFN) e vale un anno.", None],
+        ["Crema solare SPF 50", "Senza costume si scottano parti che non hanno mai visto il sole. Serve un formato grande e un'applicazione ogni due ore.", "crema solare spf 50 resistente acqua"],
+        ["Sandali o ciabatte lavabili", "Per docce, sanitari e vialetti caldi. Meglio un modello che si asciuga in fretta.", "sandali acqua uomo donna"]
+      ]},
+      {"h": "Spiaggia e mare", "items": [
+        ["Scarpette da scoglio", "Istria, Calabria, Liguria: costa di scogli e ciottoli. Le spiagge di Solaris, Pizzo Greco e Guvano le richiedono.", "scarpe scoglio"],
+        ["Ombrellone con picchetto a vite", "Molte spiagge naturiste non hanno ombra né noleggio; il picchetto a vite tiene con il vento dell'Atlantico e del Mare del Nord.", "ombrellone spiaggia picchetto antivento"],
+        ["Zaino da spiaggia impermeabile", "Per i 20 minuti di sabbia a Maspalomas o il sentiero di Montalivet: mani libere e telefono asciutto.", "zaino mare impermeabile"],
+        ["Borraccia termica", "Nessun chiosco nel tratto centrale di molte spiagge: un litro d'acqua fredda a testa.", "borraccia termica 1 litro"]
+      ]},
+      {"h": "Campeggio", "items": [
+        ["Frigo portatile", "In piazzola, con l'elettricità inclusa nel prezzo, un frigo elettrico vale più di qualsiasi borsa termica.", "frigo portatile elettrico campeggio"],
+        ["Prolunga da campeggio CEE", "Le colonnine europee usano la presa blu CEE 16 A; servono 25 metri e un adattatore per le prese nazionali.", "cavo prolunga campeggio cee"],
+        ["Lampada frontale", "Molti campeggi naturisti sono poco illuminati di notte, La Sablière per esempio.", "lampada frontale ricaricabile"],
+        ["Telo e mollette", "Per stendere costumi che non userai e teli che userai sempre.", "stendibiancheria campeggio"]
+      ]},
+      {"h": "Piccole cose che si dimenticano", "items": [
+        ["Pareo o kimono leggero", "Per i momenti in cui coprirsi è richiesto: ristorante, negozio, zone tessili di resort misti come Koversada.", "pareo uomo donna"],
+        ["Repellente per zanzare", "Pinete e fiumi, da Euronat alla Cèze, ne sono pieni al tramonto.", "repellente zanzare"],
+        ["Monete da 1 €", "Per le docce a gettone (Hilsbachtal) e le lavatrici.", None],
+        ["Guida cartacea", "Dove il Wi-Fi è a pagamento o assente: la guida naturista INF-FNI o una guida ai campeggi.", "guida campeggi europa"]
+      ]}
+    ]
+  },
+  "en": {
+    "h1": "What to pack for a naturist campsite",
+    "lead": "Less than you think. Naturism simplifies the suitcase, but some things are compulsory and others make the difference between a comfortable holiday and an awkward one. Here is the list we would use, by situation.",
+    "disclosure": "Product links go to Amazon: if you buy there we earn a small commission at no cost to you. We don't name brands: pick the product you prefer.",
+    "btn": "See on Amazon",
+    "sections": [
+      {"h": "Compulsory, or nearly", "items": [
+        ["Sitting towel", "Rule number one of naturism: always sit on your own towel, at the bar and by the pool too. Bring two, one small enough for your bag.", "microfibre beach towel"],
+        ["INF naturist card", "Required at many Italian and German campsites, recommended everywhere. Issued by your national federation (British Naturism, FFN, DFK) and valid for a year.", None],
+        ["SPF 50 sunscreen", "Without a swimsuit, parts that have never seen the sun will burn. Get a large bottle and reapply every two hours.", "spf 50 sunscreen water resistant"],
+        ["Washable sandals or flip-flops", "For showers, sanitary blocks and hot paths. Choose a quick-drying model.", "water sandals"]
+      ]},
+      {"h": "Beach and sea", "items": [
+        ["Rock shoes", "Istria, Calabria, Liguria: rocky and pebbly coasts. The beaches at Solaris, Pizzo Greco and Guvano all need them.", "water shoes rocks"],
+        ["Parasol with screw anchor", "Many naturist beaches have no shade and no hire; a screw anchor holds in Atlantic and North Sea winds.", "beach umbrella sand anchor windproof"],
+        ["Waterproof beach backpack", "For the 20 minutes of sand at Maspalomas or the path at Montalivet: hands free and phone dry.", "waterproof beach backpack"],
+        ["Insulated bottle", "No kiosk in the central stretch of many beaches: a litre of cold water each.", "insulated water bottle 1 litre"]
+      ]},
+      {"h": "Campsite", "items": [
+        ["Portable fridge", "On a pitch with electricity included, an electric cool box beats any cool bag.", "electric cool box camping"],
+        ["CEE camping extension lead", "European hook-ups use the blue 16 A CEE plug; you need 25 metres and an adapter for national sockets.", "camping extension lead cee 16a"],
+        ["Head torch", "Many naturist campsites are poorly lit at night, La Sablière for one.", "rechargeable head torch"],
+        ["Washing line and pegs", "For the swimsuits you won't use and the towels you always will.", "camping washing line"]
+      ]},
+      {"h": "Small things people forget", "items": [
+        ["Sarong or light kimono", "For moments when covering up is required: restaurant, shop, textile zones of mixed resorts such as Koversada.", "sarong unisex"],
+        ["Mosquito repellent", "Pine forests and rivers, from Euronat to the Cèze, are full of them at dusk.", "mosquito repellent"],
+        ["€1 coins", "For token showers (Hilsbachtal) and washing machines.", None],
+        ["Paper guide", "Where Wi-Fi is paid or absent: the INF-FNI naturist guide or a campsite guide.", "europe campsite guide book"]
+      ]}
+    ]
+  },
+  "de": {
+    "h1": "Packliste für den FKK-Campingplatz",
+    "lead": "Weniger, als man denkt. FKK vereinfacht den Koffer, aber einiges ist Pflicht und anderes macht den Unterschied zwischen einem bequemen und einem mühsamen Urlaub. Hier unsere Liste, nach Situation.",
+    "disclosure": "Produktlinks führen zu Amazon: Wer dort kauft, beschert uns eine kleine Provision ohne Mehrkosten. Wir nennen keine Marken: Wählen Sie das Produkt, das Ihnen gefällt.",
+    "btn": "Bei Amazon ansehen",
+    "sections": [
+      {"h": "Pflicht oder fast", "items": [
+        ["Sitzhandtuch", "Regel Nummer eins beim FKK: Man sitzt immer auf dem eigenen Handtuch, auch an der Bar und am Pool. Zwei mitnehmen, eines klein genug für die Tasche.", "mikrofaser handtuch strand"],
+        ["INF-Naturistenausweis", "Auf vielen italienischen und deutschen Plätzen Pflicht, überall empfohlen. Gibt es beim DFK (bzw. FENAIT, FFN) und gilt ein Jahr.", None],
+        ["Sonnencreme LSF 50", "Ohne Badehose verbrennen Stellen, die nie Sonne gesehen haben. Große Flasche, alle zwei Stunden nachcremen.", "sonnencreme lsf 50 wasserfest"],
+        ["Abwaschbare Sandalen oder Badelatschen", "Für Duschen, Sanitärgebäude und heiße Wege. Am besten ein schnell trocknendes Modell.", "wassersandalen"]
+      ]},
+      {"h": "Strand und Meer", "items": [
+        ["Badeschuhe", "Istrien, Kalabrien, Ligurien: Fels- und Kieselküsten. Die Strände von Solaris, Pizzo Greco und Guvano verlangen sie.", "badeschuhe felsen"],
+        ["Sonnenschirm mit Schraubanker", "Viele FKK-Strände haben weder Schatten noch Verleih; der Schraubanker hält bei Atlantik- und Nordseewind.", "sonnenschirm strand bodenhülse windfest"],
+        ["Wasserdichter Strandrucksack", "Für die 20 Minuten Sand in Maspalomas oder den Weg in Montalivet: Hände frei, Handy trocken.", "strandrucksack wasserdicht"],
+        ["Thermoflasche", "Kein Kiosk im mittleren Abschnitt vieler Strände: ein Liter kaltes Wasser pro Person.", "thermoflasche 1 liter"]
+      ]},
+      {"h": "Campingplatz", "items": [
+        ["Kühlbox elektrisch", "Am Stellplatz mit inklusivem Strom schlägt eine elektrische Kühlbox jede Kühltasche.", "kühlbox elektrisch camping"],
+        ["CEE-Verlängerungskabel", "Europäische Stromsäulen haben den blauen CEE-Stecker 16 A; 25 Meter und ein Adapter für Landessteckdosen sind nötig.", "camping verlängerungskabel cee 16a"],
+        ["Stirnlampe", "Viele FKK-Plätze sind nachts schlecht beleuchtet, La Sablière zum Beispiel.", "stirnlampe aufladbar"],
+        ["Wäscheleine und Klammern", "Für die Badesachen, die man nicht braucht, und die Handtücher, die man immer braucht.", "wäscheleine camping"]
+      ]},
+      {"h": "Kleinigkeiten, die man vergisst", "items": [
+        ["Pareo oder leichter Kimono", "Für Momente, in denen Bekleidung verlangt wird: Restaurant, Laden, Textilbereiche gemischter Resorts wie Koversada.", "pareo unisex"],
+        ["Mückenschutz", "Pinienwälder und Flüsse, von Euronat bis zur Cèze, sind abends voll davon.", "mückenschutz spray"],
+        ["1-Euro-Münzen", "Für Münzduschen (Hilsbachtal) und Waschmaschinen.", None],
+        ["Gedruckter Führer", "Wo WLAN kostet oder fehlt: der INF-FNI-Naturistenführer oder ein Campingführer.", "campingführer europa buch"]
+      ]}
+    ]
+  },
+}
+
+def amazon_url(lang, q):
+    from urllib.parse import quote_plus
+    u = f"https://{AMAZON_HOST[lang]}/s?k={quote_plus(q)}"
+    if AMAZON_TAGS.get(lang):
+        u += f"&tag={AMAZON_TAGS[lang]}"
+    return u
+
+def pack(lang):
+    t = T[lang]; pk = PACK[lang]
+    secs = ""
+    for sec in pk["sections"]:
+        items = ""
+        for name, why, q in sec["items"]:
+            link = f'<a class="btn ghost small" href="{amazon_url(lang, q)}" rel="nofollow sponsored noopener" target="_blank">{e(pk["btn"])}</a>' if q else ""
+            items += f'<li><div><h3>{e(name)}</h3><p>{e(why)}</p></div>{link}</li>'
+        secs += f'<h2>{e(sec["h"])}</h2><ul class="pack">{items}</ul>'
+    body = f"""<section class="block"><div class="wrap">
+  <h1>{e(pk['h1'])}</h1>
+  <p class="lead">{e(pk['lead'])}</p>
+  {('<p class="meta">' + e(pk['disclosure']) + '</p>') if AMAZON_TAGS.get(lang) else ''}
+  {secs}
+</div></section>"""
+    return page(lang, "pack", f'{pk["h1"]} — NaturCamp Guide', pk["lead"], body)
+
 def review(lang):
     t = T[lang]; f = t["f"]
     opts = f'<optgroup label="{e(t["nav"]["camps"])}">' + "".join(f'<option value="camp:{e(c["slug"])}">{e(c["name"])}</option>' for c in sorted(DATA, key=lambda c: c["name"])) + "</optgroup>"
@@ -432,6 +557,7 @@ def main():
         write(ROOT / lang / p["camps"] / "index.html", camps(lang))
         write(ROOT / lang / p["review"] / "index.html", review(lang))
         write(ROOT / lang / p["about"] / "index.html", about(lang))
+        write(ROOT / lang / p["pack"] / "index.html", pack(lang))
         for c in DATA:
             write(ROOT / lang / p["camps"] / c["slug"] / "index.html", sheet(c, lang))
         write(ROOT / lang / p["beaches"] / "index.html", beaches(lang))
@@ -448,7 +574,7 @@ def main():
     write(ROOT / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     urls = []
     for lang in LANGS:
-        urls += [lang_url(lang, k) for k in ("home", "camps", "beaches", "review", "about")]
+        urls += [lang_url(lang, k) for k in ("home", "camps", "beaches", "pack", "review", "about")]
         urls += [lang_url(lang, "camp", c["slug"]) for c in DATA]
         urls += [lang_url(lang, "beach", b["slug"]) for b in BEACHES]
     write(ROOT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
