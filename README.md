@@ -84,7 +84,7 @@ Finché è vuoto il blocco non compare. Rilancia `python3 build.py`.
 
 - [x] Prime schede reali: 11 campeggi e 6 spiagge (da fonti, ottobre 2026)
 - [ ] Impostare `FORM_ACTION` con l'endpoint del modulo
-- [ ] Inserire `STAY22_AID` dopo l'iscrizione a Stay22
+- [x] Stay22 attivo (AID naturcampguide)
 - [ ] Scrivere il testo privacy in `build.py` (funzione `about`) nelle tre lingue
 - [ ] Verificare l'indirizzo e-mail `CONTACT` in `build.py`
 - [ ] Se il dominio principale non è `naturcampguide.com`, cambiare `SITE` in `build.py`

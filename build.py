@@ -132,7 +132,7 @@ T = {
 }
 CONTACT = "info@naturcampguide.com"
 FORM_ACTION = "#"
-STAY22_AID = ""  # il tuo ID affiliato Stay22 (es. "naturcampguide"); vuoto = blocco nascosto  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
+STAY22_AID = "naturcampguide"  # il tuo ID affiliato Stay22 (es. "naturcampguide"); vuoto = blocco nascosto  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
 
 LOGO = (ROOT / "src" / "logo.svg").read_text(encoding="utf-8").replace('role="img" aria-label="NaturCamp Guide"', 'aria-hidden="true"')
 HORIZON = """<svg class="horizon" viewBox="0 0 1200 160" aria-hidden="true" preserveAspectRatio="none">
