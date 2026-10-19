@@ -44,7 +44,7 @@ T = {
     "criteria": {"clean": "Pulizia e manutenzione", "location": "Posizione e natura", "facilities": "Servizi", "atmosphere": "Atmosfera e rispetto delle regole", "family": "Adatto alle famiglie", "beginner": "Adatto ai principianti", "value": "Rapporto qualità-prezzo"},
     "overall": "voto", "strengths": "Punti forti", "weaknesses": "Punti deboli", "for": "Per chi è", "not_for": "Per chi no", "tip": "Consiglio pratico",
     "demo": "Scheda dimostrativa: dati inventati per mostrare il formato. Le schede reali riportano solo informazioni verificate.",
-    "verified": "Verificato da fonti", "sources_h2": "Fonti", "desk_note": "Scheda compilata da sito ufficiale e recensioni pubbliche, non da una visita: i voti riflettono quanto documentato alla data indicata. Hai informazioni più recenti? Scrivi una recensione.",
+    "verified": "Verificato da fonti", "price_na": "non pubblicato: chiedere al campeggio", "sources_h2": "Fonti", "desk_note": "Scheda compilata da sito ufficiale e recensioni pubbliche, non da una visita: i voti riflettono quanto documentato alla data indicata. Hai informazioni più recenti? Scrivi una recensione.",
     "review_h1": "Scrivi una recensione", "review_p": "Ci sei stato? Racconta com'è andata. Le recensioni vengono lette prima della pubblicazione e restano anonime: il cognome e l'e-mail non vengono mai mostrati.",
     "f": {"camp": "Campeggio o spiaggia", "camp_other": "Altro (scrivilo nel testo)", "name": "Nome o nickname", "email": "E-mail (non pubblicata)", "when": "Mese e anno del soggiorno", "trip": "Tipo di viaggio", "trips": ["Coppia", "Famiglia", "Da solo/a", "Gruppo"], "acc": "Sistemazione usata", "ratings": "I tuoi voti (1–5)", "text": "La tua recensione (almeno 300 caratteri)", "tip": "Consigli pratici (facoltativo)", "consent": "Ho letto le regole e accetto che la recensione venga pubblicata con il mio nickname.", "send": "Invia la recensione"},
     "rules_h3": "Regole in breve",
@@ -82,7 +82,7 @@ T = {
     "criteria": {"clean": "Cleanliness and upkeep", "location": "Location and nature", "facilities": "Facilities", "atmosphere": "Atmosphere and respect for the rules", "family": "Family-friendly", "beginner": "Beginner-friendly", "value": "Value for money"},
     "overall": "score", "strengths": "Strengths", "weaknesses": "Weaknesses", "for": "Who it's for", "not_for": "Who should skip it", "tip": "Practical tip",
     "demo": "Sample listing: invented data to show the format. Real listings contain verified information only.",
-    "verified": "Verified from sources", "sources_h2": "Sources", "desk_note": "Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.",
+    "verified": "Verified from sources", "price_na": "not published: ask the campsite", "sources_h2": "Sources", "desk_note": "Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.",
     "review_h1": "Write a review", "review_p": "Been there? Tell us how it went. Reviews are read before publication and stay anonymous: your surname and e-mail are never shown.",
     "f": {"camp": "Campsite or beach", "camp_other": "Other (name it in the text)", "name": "Name or nickname", "email": "E-mail (not published)", "when": "Month and year of your stay", "trip": "Type of trip", "trips": ["Couple", "Family", "Solo", "Group"], "acc": "Accommodation used", "ratings": "Your scores (1–5)", "text": "Your review (at least 300 characters)", "tip": "Practical tips (optional)", "consent": "I have read the rules and agree to have my review published under my nickname.", "send": "Send review"},
     "rules_h3": "Rules in short",
@@ -120,7 +120,7 @@ T = {
     "criteria": {"clean": "Sauberkeit und Pflege", "location": "Lage und Natur", "facilities": "Ausstattung", "atmosphere": "Atmosphäre und Einhaltung der Regeln", "family": "Familienfreundlich", "beginner": "Für Einsteiger geeignet", "value": "Preis-Leistungs-Verhältnis"},
     "overall": "Note", "strengths": "Stärken", "weaknesses": "Schwächen", "for": "Für wen", "not_for": "Für wen nicht", "tip": "Praktischer Tipp",
     "demo": "Beispieleintrag: erfundene Daten, um das Format zu zeigen. Echte Einträge enthalten nur geprüfte Angaben.",
-    "verified": "Geprüft anhand von Quellen", "sources_h2": "Quellen", "desk_note": "Eintrag anhand der offiziellen Website und öffentlicher Bewertungen erstellt, nicht nach einem Besuch: Die Noten spiegeln den dokumentierten Stand zum angegebenen Datum wider. Haben Sie neuere Informationen? Schreiben Sie eine Bewertung.",
+    "verified": "Geprüft anhand von Quellen", "price_na": "nicht veröffentlicht: beim Platz erfragen", "sources_h2": "Quellen", "desk_note": "Eintrag anhand der offiziellen Website und öffentlicher Bewertungen erstellt, nicht nach einem Besuch: Die Noten spiegeln den dokumentierten Stand zum angegebenen Datum wider. Haben Sie neuere Informationen? Schreiben Sie eine Bewertung.",
     "review_h1": "Bewertung schreiben", "review_p": "Waren Sie dort? Erzählen Sie, wie es war. Bewertungen werden vor der Veröffentlichung gelesen und bleiben anonym: Nachname und E-Mail werden nie angezeigt.",
     "f": {"camp": "Campingplatz oder Strand", "camp_other": "Anderer (im Text nennen)", "name": "Name oder Nickname", "email": "E-Mail (wird nicht veröffentlicht)", "when": "Monat und Jahr des Aufenthalts", "trip": "Art der Reise", "trips": ["Paar", "Familie", "Allein", "Gruppe"], "acc": "Genutzte Unterkunft", "ratings": "Ihre Noten (1–5)", "text": "Ihre Bewertung (mindestens 300 Zeichen)", "tip": "Praktische Tipps (optional)", "consent": "Ich habe die Regeln gelesen und bin einverstanden, dass meine Bewertung unter meinem Nickname veröffentlicht wird.", "send": "Bewertung senden"},
     "rules_h3": "Regeln in Kürze",
@@ -224,7 +224,7 @@ def camp_item(c, lang):
   <div class="score"><b>{fmt_score(sc, lang)}</b><small>/5</small></div>
   <div>
     <h3><a href="{lang_url(lang, 'camp', c['slug'])}">{e(c['name'])}</a></h3>
-    <p class="meta"><span>{e(t['country_names'].get(c['country'], c['country']))}, {e(c['region'][lang])}</span><span>{e(c['season'])}</span><span>€ {c['price']}</span></p>
+    <p class="meta"><span>{e(t['country_names'].get(c['country'], c['country']))}, {e(c['region'][lang])}</span><span>{e(c['season'])}</span><span>{'€ ' + str(c['price']) if c.get('price') else e(t['price_na'])}</span></p>
     <p class="forwhom"><strong>{e(t['for'])}:</strong> {e(c['for'][lang])}</p>
   </div>
 </li>"""
@@ -264,7 +264,7 @@ def sheet(c, lang):
     facts = [
         (f["region"], f'{t["country_names"].get(c["country"], c["country"])}, {c["region"][lang]}'),
         (f["season"], c["season"]),
-        (f["price"], f'€ {c["price"]} — {f["price_note"]}'),
+        (f["price"], f'€ {c["price"]} — {f["price_note"]}' if c.get("price") else t["price_na"]),
         (f["affiliation"], c["affiliation"]),
         (f["card"], t["card"][c["card"]]),
         (f["type"], c["type"][lang]),
