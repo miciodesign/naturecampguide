@@ -131,7 +131,7 @@ T = {
   },
 }
 CONTACT = "info@naturcampguide.com"
-FORM_ACTION = "#"
+FORM_ACTION = "https://formspree.io/f/mbggrnyn"
 STAY22_AID = "naturcampguide"
 AMAZON_TAGS = {"it": "", "en": "", "de": ""}  # tag Amazon Associates per amazon.it / .co.uk / .de; vuoto = link senza affiliazione
 AMAZON_HOST = {"it": "www.amazon.it", "en": "www.amazon.co.uk", "de": "www.amazon.de"}  # il tuo ID affiliato Stay22 (es. "naturcampguide"); vuoto = blocco nascosto  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
