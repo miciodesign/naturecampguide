@@ -202,8 +202,14 @@ def stay_block(x, lang):
         return ""
     t = T[lang]
     lat, lon = [v.strip() for v in x["coords"].split(",")]
-    src = f"https://www.stay22.com/embed/gm?aid={STAY22_AID}&lat={lat}&lng={lon}&maincolor=1F5A3C&language={lang}"
-    return f'<h2>{e(t["stay_h2"])}</h2><p class="meta">{e(t["stay_p"])}</p><div class="stay"><iframe src="{src}" title="{e(t["stay_h2"])}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>'
+    stay_url = f"https://www.stay22.com/map?aid={STAY22_AID}&lat={lat}&lng={lon}&language={lang}"
+    return f'''<h2>{e(t["stay_h2"])}</h2>
+<p class="meta">{e(t["stay_p"])}</p>
+<a class="stay-link" href="{stay_url}" rel="nofollow noopener" target="_blank">
+  <span class="stay-icon">🏨</span>
+  <span class="stay-text">{e(t["stay_h2"])}</span>
+  <span class="stay-arrow">→</span>
+</a>'''
 
 def sources_block(x, lang):
     t = T[lang]
