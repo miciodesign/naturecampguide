@@ -23,6 +23,18 @@ T = {
     "beaches_home_h2": "Spiagge naturiste", "beaches_home_p": "Dove si può stare nudi in spiaggia, con stato ufficiale, accesso e servizi verificati.",
     "beaches_all": "Tutte le spiagge",
     "map_h2": "Dove siamo", "map_p": "Tutti i campeggi (🏕) e le spiagge (🏖) naturiste in mappa. Clicca su un segnaposto per aprire la scheda.",
+    "europe_h2": "Tutta Europa", "europe_p": "Tutti i posti nella guida, per paese. Le schede complete hanno il voto; gli altri sono in preparazione.",
+    "europe_camps": "Campeggi", "europe_beaches": "Spiagge", "europe_soon": "scheda in arrivo",
+    "news_h2": "Novità", "news_all": "Tutte le novità",
+    "weather_h2": "Meteo nelle zone naturiste", "weather_p": "Prima di partire controlla le previsioni locali.",
+    "weather_check": "Previsioni",
+    "weather_zones": [
+      {"name": "Istria (Croazia)", "lat": 45.14, "lon": 13.62},
+      {"name": "Landes (Francia)", "lat": 43.93, "lon": -1.35},
+      {"name": "Ravenna (Italia)", "lat": 44.39, "lon": 12.20},
+      {"name": "Algarve (Portogallo)", "lat": 37.10, "lon": -8.67},
+    ],
+    "weather_link": "Vedi il meteo vicino a",
     "bfacts": {"status": "Stato", "ground": "Fondo e fondale", "length": "Lunghezza", "access": "Accesso", "services": "Servizi", "season": "Periodo", "coords": "Coordinate", "nearby": "Campeggi vicini"},
     "status": {"official": "ufficiale, segnalata con cartelli", "tolerated": "tollerata, non segnalata", "unofficial": "non ufficiale: possibili controlli"},
     "status_short": {"official": "ufficiale", "tolerated": "tollerata", "unofficial": "non ufficiale"},
@@ -62,6 +74,18 @@ T = {
     "beaches_home_h2": "Naturist beaches", "beaches_home_p": "Where you can be nude on the beach, with official status, access and services checked.",
     "beaches_all": "All beaches",
     "map_h2": "Where we are", "map_p": "All naturist campsites (🏕) and beaches (🏖) on the map. Click a pin to open the listing.",
+    "europe_h2": "All of Europe", "europe_p": "Every place in the guide, by country. Listings with a score are complete; others are in preparation.",
+    "europe_camps": "Campsites", "europe_beaches": "Beaches", "europe_soon": "listing coming soon",
+    "news_h2": "News", "news_all": "All news",
+    "weather_h2": "Weather in naturist areas", "weather_p": "Check the local forecast before you set off.",
+    "weather_check": "Forecast",
+    "weather_zones": [
+      {"name": "Istria (Croatia)", "lat": 45.14, "lon": 13.62},
+      {"name": "Landes (France)", "lat": 43.93, "lon": -1.35},
+      {"name": "Ravenna (Italy)", "lat": 44.39, "lon": 12.20},
+      {"name": "Algarve (Portugal)", "lat": 37.10, "lon": -8.67},
+    ],
+    "weather_link": "See weather near",
     "bfacts": {"status": "Status", "ground": "Ground and seabed", "length": "Length", "access": "Access", "services": "Services", "season": "Season", "coords": "Coordinates", "nearby": "Campsites nearby"},
     "status": {"official": "official, signposted", "tolerated": "tolerated, not signposted", "unofficial": "unofficial: checks possible"},
     "status_short": {"official": "official", "tolerated": "tolerated", "unofficial": "unofficial"},
@@ -101,6 +125,18 @@ T = {
     "beaches_home_h2": "FKK-Strände", "beaches_home_p": "Wo man nackt am Strand sein darf, mit geprüftem Status, Zugang und Ausstattung.",
     "beaches_all": "Alle Strände",
     "map_h2": "Wo wir sind", "map_p": "Alle FKK-Campingplätze (🏕) und Strände (🏖) auf der Karte. Auf einen Marker klicken, um den Eintrag zu öffnen.",
+    "europe_h2": "Ganz Europa", "europe_p": "Alle Orte im Führer, nach Land. Einträge mit Note sind fertig; andere sind in Vorbereitung.",
+    "europe_camps": "Campingplätze", "europe_beaches": "Strände", "europe_soon": "Eintrag folgt",
+    "news_h2": "Neuigkeiten", "news_all": "Alle Neuigkeiten",
+    "weather_h2": "Wetter in FKK-Gebieten", "weather_p": "Lokale Vorhersage vor der Abreise prüfen.",
+    "weather_check": "Vorhersage",
+    "weather_zones": [
+      {"name": "Istrien (Kroatien)", "lat": 45.14, "lon": 13.62},
+      {"name": "Landes (Frankreich)", "lat": 43.93, "lon": -1.35},
+      {"name": "Ravenna (Italien)", "lat": 44.39, "lon": 12.20},
+      {"name": "Algarve (Portugal)", "lat": 37.10, "lon": -8.67},
+    ],
+    "weather_link": "Wetter bei",
     "bfacts": {"status": "Status", "ground": "Untergrund und Wasser", "length": "Länge", "access": "Zugang", "services": "Ausstattung", "season": "Zeitraum", "coords": "Koordinaten", "nearby": "Campingplätze in der Nähe"},
     "status": {"official": "offiziell, ausgeschildert", "tolerated": "geduldet, nicht ausgeschildert", "unofficial": "inoffiziell: Kontrollen möglich"},
     "status_short": {"official": "offiziell", "tolerated": "geduldet", "unofficial": "inoffiziell"},
@@ -231,6 +267,79 @@ def page(lang, kind, title, desc, body, slug=None):
 </html>
 """
 
+NEWS = [
+  {
+    "date": "2026-10-01",
+    "slug": "apertura-guida",
+    "title": {"it": "NaturCamp Guide è online", "en": "NaturCamp Guide is live", "de": "NaturCamp Guide ist online"},
+    "summary": {"it": "La guida indipendente ai campeggi naturisti in Europa apre con 11 campeggi e 6 spiagge verificate in 6 paesi.", "en": "The independent guide to naturist campsites in Europe launches with 11 campsites and 6 verified beaches across 6 countries.", "de": "Der unabhängige Führer zu FKK-Campingplätzen in Europa startet mit 11 Campingplätzen und 6 geprüften Stränden in 6 Ländern."},
+  },
+  {
+    "date": "2026-10-15",
+    "slug": "nuove-schede-croazia",
+    "title": {"it": "Nuove schede: Croazia e Landes", "en": "New listings: Croatia and Landes", "de": "Neue Einträge: Kroatien und Landes"},
+    "summary": {"it": "Aggiunte le schede di Valalta, Koversada e Solaris in Istria, e di Arnaoutchot nelle Landes francesi.", "en": "Added listings for Valalta, Koversada and Solaris in Istria, and Arnaoutchot in the French Landes.", "de": "Neue Einträge für Valalta, Koversada und Solaris in Istrien sowie Arnaoutchot in den französischen Landes."},
+  },
+]
+
+def europe_section(lang):
+    t = T[lang]
+    countries = {}
+    for c in DATA:
+        countries.setdefault(c["country"], {"camps": [], "beaches": []})["camps"].append(c)
+    for b in BEACHES:
+        countries.setdefault(b["country"], {"camps": [], "beaches": []})["beaches"].append(b)
+    html_out = ""
+    for k in sorted(countries, key=lambda k: t["country_names"].get(k, k)):
+        grp = countries[k]
+        items = ""
+        for c in sorted(grp["camps"], key=lambda x: x["name"]):
+            sc = overall(c)
+            score = f'<span class="eu-score">{fmt_score(sc, lang)}/5</span>'
+            items += f'<li><a href="{lang_url(lang, "camp", c["slug"])}">{e(c["name"])}</a>{score}</li>'
+        for b in sorted(grp["beaches"], key=lambda x: x["name"]):
+            sc = overall(b)
+            score = f'<span class="eu-score">{fmt_score(sc, lang)}/5</span>'
+            items += f'<li><a href="{lang_url(lang, "beach", b["slug"])}">{e(b["name"])}</a>{score} <small>({e(t["europe_beaches"].lower())})</small></li>'
+        html_out += f'<div class="eu-country"><h3>{e(t["country_names"].get(k, k))}</h3><ul class="eu-list">{items}</ul></div>'
+    return f"""<section class="block" id="europa"><div class="wrap">
+  <h2>{e(t['europe_h2'])}</h2>
+  <p class="lead">{e(t['europe_p'])}</p>
+  <div class="eu-grid">{html_out}</div>
+</div></section>"""
+
+def news_section(lang):
+    t = T[lang]
+    items = ""
+    for n in NEWS[:3]:
+        items += f'<article class="news-item"><time>{n["date"]}</time><h3>{e(n["title"][lang])}</h3><p>{e(n["summary"][lang])}</p></article>'
+    return f"""<section class="block" id="news"><div class="wrap">
+  <h2>{e(t['news_h2'])}</h2>
+  <div class="news-grid">{items}</div>
+</div></section>"""
+
+def weather_section(lang):
+    t = T[lang]
+    zones = t["weather_zones"]
+    cards = ""
+    for z in zones:
+        yr_url = f"https://www.yr.no/en/forecast/daily-table/{z['lat']},{z['lon']}"
+        cards += f'<div class="wx-card"><div class="wx-name">{e(z["name"])}</div><a class="btn ghost small" href="{yr_url}" rel="nofollow noopener" target="_blank">{e(t["weather_check"])}</a></div>'
+    return f"""<section class="block" id="meteo"><div class="wrap">
+  <h2>{e(t['weather_h2'])}</h2>
+  <p class="lead">{e(t['weather_p'])}</p>
+  <div class="wx-grid">{cards}</div>
+</div></section>"""
+
+def weather_link(x, lang):
+    """Bottone meteo yr.no per scheda campeggio/spiaggia."""
+    t = T[lang]
+    if not x.get("coords"):
+        return ""
+    lat, lon = [v.strip() for v in x["coords"].split(",")]
+    yr_url = f"https://www.yr.no/en/forecast/daily-table/{lat},{lon}"
+    return f'<p style="margin-top:12px"><a class="btn ghost small" href="{yr_url}" rel="nofollow noopener" target="_blank">🌤 {e(t["weather_link"])} {e(x["name"])}</a></p>'
+
 def map_section(lang):
     import json as _json
     t = T[lang]
@@ -300,6 +409,9 @@ def home(lang):
 <section class="block"><div class="wrap"><h2>{e(t['latest_h2'])}</h2><ul class="camps">{latest}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['beaches_home_h2'])}</h2><p class="lead">{e(t['beaches_home_p'])}</p><ul class="camps">{beach_latest}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'beaches')}">{e(t['beaches_all'])}</a></p></div></section>
 {map_section(lang)}
+{europe_section(lang)}
+{news_section(lang)}
+{weather_section(lang)}
 <section class="block" id="how"><div class="wrap"><h2>{e(t['how_h2'])}</h2><p class="lead">{e(t['how_p'])}</p></div></section>"""
     return page(lang, "home", t["title"], t["desc"], body)
 
@@ -349,6 +461,7 @@ def sheet(c, lang):
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(c['tip'][lang])}</p></div>
   </div>
   {stay_block(c, lang)}
+  {weather_link(c, lang)}
   {sources_block(c, lang)}
 </div></section>"""
     return page(lang, "camp", f'{c["name"]} — NaturCamp Guide', c["summary"][lang], body, c["slug"])
@@ -414,6 +527,7 @@ def beach_sheet(b, lang):
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(b['tip'][lang])}</p></div>
   </div>
   {stay_block(b, lang)}
+  {weather_link(b, lang)}
   {sources_block(b, lang)}
 </div></section>"""
     return page(lang, "beach", f'{b["name"]} — NaturCamp Guide', b["summary"][lang], body, b["slug"])
