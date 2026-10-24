@@ -687,6 +687,27 @@ def review(lang):
 </div></section>"""
     return page(lang, "review", f'{t["review_h1"]} — NaturCamp Guide', t["review_p"], body)
 
+PRIVACY = {
+  "it": """<p>Titolare del trattamento: Roberto — <a href="mailto:info@naturcampguide.com">info@naturcampguide.com</a>.</p>
+<p><strong>Dati raccolti.</strong> Questo sito non installa cookie di profilazione né sistemi di analisi del traffico. L'unico dato personale raccolto è l'indirizzo e-mail inserito volontariamente nel modulo recensioni. L'e-mail viene utilizzata esclusivamente per verificare l'autenticità della recensione e non viene mai pubblicata né ceduta a terzi.</p>
+<p><strong>Servizi terzi.</strong> Il modulo recensioni è gestito da Formspree Inc. (USA). I dati inviati tramite il modulo vengono trasmessi e conservati sui server di Formspree secondo la loro <a href="https://formspree.io/legal/privacy-policy/" rel="nofollow">informativa sulla privacy</a>. Le mappe interattive utilizzano OpenStreetMap (dati © <a href="https://www.openstreetmap.org/copyright" rel="nofollow">OpenStreetMap contributors</a>). I link alle previsioni meteo aprono yr.no (MET Norway), sito esterno.</p>
+<p><strong>Diritti dell'interessato.</strong> Puoi richiedere in qualsiasi momento la cancellazione dei dati inviati scrivendo a <a href="mailto:info@naturcampguide.com">info@naturcampguide.com</a>. Hai inoltre il diritto di accesso, rettifica, limitazione del trattamento e portabilità ai sensi del Regolamento UE 2016/679 (GDPR).</p>
+<p><small>Informativa aggiornata al 2026.</small></p>""",
+  "en": """<p>Data controller: Roberto — <a href="mailto:info@naturcampguide.com">info@naturcampguide.com</a>.</p>
+<p><strong>Data collected.</strong> This site does not use tracking cookies or traffic-analysis tools. The only personal data collected is the e-mail address voluntarily entered in the review form. It is used solely to verify the authenticity of the review and is never published or shared with third parties.</p>
+<p><strong>Third-party services.</strong> The review form is handled by Formspree Inc. (USA). Data submitted through the form is transmitted to and stored on Formspree's servers under their <a href="https://formspree.io/legal/privacy-policy/" rel="nofollow">privacy policy</a>. Interactive maps use OpenStreetMap (data © <a href="https://www.openstreetmap.org/copyright" rel="nofollow">OpenStreetMap contributors</a>). Weather forecast links open yr.no (MET Norway), an external site.</p>
+<p><strong>Your rights.</strong> You may request deletion of any data you have submitted by writing to <a href="mailto:info@naturcampguide.com">info@naturcampguide.com</a>. You also have the right of access, rectification, restriction of processing and data portability under EU Regulation 2016/679 (GDPR).</p>
+<p><small>Privacy policy last updated 2026.</small></p>""",
+  "de": """<p>Verantwortlicher: Roberto — <a href="mailto:info@naturcampguide.com">info@naturcampguide.com</a>.</p>
+<p><strong>Erhobene Daten.</strong> Diese Website verwendet keine Tracking-Cookies oder Analysetools. Die einzige erhobene personenbezogene Information ist die E-Mail-Adresse, die freiwillig im Bewertungsformular angegeben wird. Sie wird ausschließlich zur Überprüfung der Echtheit der Bewertung verwendet und wird weder veröffentlicht noch an Dritte weitergegeben.</p>
+<p><strong>Drittanbieter.</strong> Das Bewertungsformular wird von Formspree Inc. (USA) verwaltet. Über das Formular übermittelte Daten werden gemäß deren <a href="https://formspree.io/legal/privacy-policy/" rel="nofollow">Datenschutzrichtlinie</a> auf Formspree-Servern gespeichert. Interaktive Karten verwenden OpenStreetMap (Daten © <a href="https://www.openstreetmap.org/copyright" rel="nofollow">OpenStreetMap contributors</a>). Wettervorschau-Links öffnen yr.no (MET Norway), eine externe Website.</p>
+<p><strong>Ihre Rechte.</strong> Sie können jederzeit die Löschung übermittelter Daten unter <a href="mailto:info@naturcampguide.com">info@naturcampguide.com</a> beantragen. Darüber hinaus haben Sie gemäß EU-Verordnung 2016/679 (DSGVO) das Recht auf Auskunft, Berichtigung, Einschränkung der Verarbeitung und Datenübertragbarkeit.</p>
+<p><small>Datenschutzerklärung zuletzt aktualisiert 2026.</small></p>""",
+}
+
+def privacy_block(lang):
+    return PRIVACY[lang]
+
 def about(lang):
     t = T[lang]
     body = f"""<section class="block"><div class="wrap">
@@ -695,7 +716,7 @@ def about(lang):
   <p>{e(t['about_p2'])}</p>
   <p>{e(t['about_p3'])}<a href="mailto:{CONTACT}">{CONTACT}</a></p>
   <h2 id="privacy">{e(t['privacy'])}</h2>
-  <p>[TESTO PRIVACY — da completare con i dati del titolare e la gestione delle e-mail ricevute tramite il modulo recensioni]</p>
+  {privacy_block(lang)}
 </div></section>"""
     return page(lang, "about", f'{t["about_h1"]} — NaturCamp Guide', t["about_p1"], body)
 
