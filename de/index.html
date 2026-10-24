@@ -110,6 +110,30 @@
     <p class="forwhom"><strong>Für wen:</strong> Erfahrene Schwimmer und Kajakfahrer, in der Gruppe, bei ruhiger See.</p>
   </div>
 </li></ul><p style="margin-top:20px"><a class="btn ghost" href="/de/straende/">Alle Strände</a></p></div></section>
+<section class="block" id="mappa"><div class="wrap">
+  <h2>Wo wir sind</h2>
+  <p class="lead">Alle FKK-Campingplätze (🏕) und Strände (🏖) auf der Karte. Auf einen Marker klicken, um den Eintrag zu öffnen.</p>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <div id="naturmap" style="height:480px;border-radius:12px;overflow:hidden;margin-top:16px"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (function(){
+    var markers = [{"type": "camp", "lat": 45.187, "lon": 7.516, "name": "Le Betulle Villaggio Naturista", "url": "/de/campingplaetze/le-betulle-la-cassa/"}, {"type": "camp", "lat": 44.496, "lon": 8.528, "name": "Campeggio Naturista Costalunga", "url": "/de/campingplaetze/costalunga-sassello/"}, {"type": "camp", "lat": 38.923, "lon": 17.124, "name": "Pizzo Greco Campeggio Naturista", "url": "/de/campingplaetze/pizzo-greco-capo-rizzuto/"}, {"type": "camp", "lat": 45.123, "lon": 13.631, "name": "Naturist Camping Valalta", "url": "/de/campingplaetze/valalta-rovinj/"}, {"type": "camp", "lat": 45.14, "lon": 13.6, "name": "Koversada Uncovered Naturist (Maistra)", "url": "/de/campingplaetze/koversada-vrsar/"}, {"type": "camp", "lat": 45.301, "lon": 13.626, "name": "Solaris Naturist Camping Resort (Valamar)", "url": "/de/campingplaetze/solaris-porec/"}, {"type": "camp", "lat": 45.42, "lon": -1.15, "name": "Euronat", "url": "/de/campingplaetze/euronat-grayan/"}, {"type": "camp", "lat": 43.93, "lon": -1.35, "name": "Arnaoutchot (Arna)", "url": "/de/campingplaetze/arnaoutchot-landes/"}, {"type": "camp", "lat": 44.267, "lon": 4.352, "name": "Domaine de la Sablière", "url": "/de/campingplaetze/la-sabliere-gard/"}, {"type": "camp", "lat": 47.76, "lon": 7.548, "name": "Dreiländereck Ferienpark der Naturisten", "url": "/de/campingplaetze/dreilaendereck-neuenburg/"}, {"type": "camp", "lat": 49.19, "lon": 8.83, "name": "FKK-Camping Hilsbachtal", "url": "/de/campingplaetze/hilsbachtal-sinsheim/"}, {"type": "beach", "lat": 44.385, "lon": 12.325, "name": "Lido di Dante, spiaggia naturista (Bassona)", "url": "/de/straende/lido-di-dante-ravenna/"}, {"type": "beach", "lat": 41.664, "lon": 12.403, "name": "Capocotta, Oasi Naturista (Roma)", "url": "/de/straende/capocotta-roma/"}, {"type": "beach", "lat": 44.125, "lon": 9.705, "name": "Guvano (Corniglia)", "url": "/de/straende/guvano-cinque-terre/"}, {"type": "beach", "lat": 45.375, "lon": -1.165, "name": "Montalivet, plage naturiste (CHM)", "url": "/de/straende/montalivet-gironde/"}, {"type": "beach", "lat": 27.735, "lon": -15.59, "name": "Maspalomas, zona naturista (chioschi 3-7)", "url": "/de/straende/maspalomas-gran-canaria/"}, {"type": "beach", "lat": 54.965, "lon": 8.34, "name": "Sylt, Buhne 16 (Kampen)", "url": "/de/straende/sylt-buhne-16/"}];
+    var map = L.map('naturmap', {scrollWheelZoom: false}).setView([46, 8], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18
+    }).addTo(map);
+    var campIcon = L.divIcon({className:'', html:'<span style="font-size:22px;line-height:1;filter:drop-shadow(0 1px 2px #0006)">🏕</span>', iconSize:[28,28], iconAnchor:[14,14], popupAnchor:[0,-14]});
+    var beachIcon = L.divIcon({className:'', html:'<span style="font-size:22px;line-height:1;filter:drop-shadow(0 1px 2px #0006)">🏖</span>', iconSize:[28,28], iconAnchor:[14,14], popupAnchor:[0,-14]});
+    markers.forEach(function(m){
+      L.marker([m.lat, m.lon], {icon: m.type==='camp' ? campIcon : beachIcon})
+        .addTo(map)
+        .bindPopup('<a href="'+m.url+'" style="font-weight:700;color:#1F5A3C">'+m.name+'</a>');
+    });
+  })();
+  </script>
+</div></section>
 <section class="block" id="how"><div class="wrap"><h2>So bewerten wir</h2><p class="lead">Jeder Platz bekommt eine Note von 1 bis 5 in sieben Kriterien, jede mit einem konkreten Fakt begründet. Die Gesamtnote ist der Durchschnitt. Wir nennen immer, wann wir dort waren, denn Preise und Ausstattung ändern sich jede Saison.</p></div></section>
 </main>
 <footer class="site-footer"><div class="wrap">

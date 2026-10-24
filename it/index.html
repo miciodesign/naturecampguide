@@ -110,6 +110,30 @@
     <p class="forwhom"><strong>Per chi è:</strong> Nuotatori e kayakisti esperti, in gruppo, con mare calmo.</p>
   </div>
 </li></ul><p style="margin-top:20px"><a class="btn ghost" href="/it/spiagge/">Tutte le spiagge</a></p></div></section>
+<section class="block" id="mappa"><div class="wrap">
+  <h2>Dove siamo</h2>
+  <p class="lead">Tutti i campeggi (🏕) e le spiagge (🏖) naturiste in mappa. Clicca su un segnaposto per aprire la scheda.</p>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <div id="naturmap" style="height:480px;border-radius:12px;overflow:hidden;margin-top:16px"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (function(){
+    var markers = [{"type": "camp", "lat": 45.187, "lon": 7.516, "name": "Le Betulle Villaggio Naturista", "url": "/it/campeggi/le-betulle-la-cassa/"}, {"type": "camp", "lat": 44.496, "lon": 8.528, "name": "Campeggio Naturista Costalunga", "url": "/it/campeggi/costalunga-sassello/"}, {"type": "camp", "lat": 38.923, "lon": 17.124, "name": "Pizzo Greco Campeggio Naturista", "url": "/it/campeggi/pizzo-greco-capo-rizzuto/"}, {"type": "camp", "lat": 45.123, "lon": 13.631, "name": "Naturist Camping Valalta", "url": "/it/campeggi/valalta-rovinj/"}, {"type": "camp", "lat": 45.14, "lon": 13.6, "name": "Koversada Uncovered Naturist (Maistra)", "url": "/it/campeggi/koversada-vrsar/"}, {"type": "camp", "lat": 45.301, "lon": 13.626, "name": "Solaris Naturist Camping Resort (Valamar)", "url": "/it/campeggi/solaris-porec/"}, {"type": "camp", "lat": 45.42, "lon": -1.15, "name": "Euronat", "url": "/it/campeggi/euronat-grayan/"}, {"type": "camp", "lat": 43.93, "lon": -1.35, "name": "Arnaoutchot (Arna)", "url": "/it/campeggi/arnaoutchot-landes/"}, {"type": "camp", "lat": 44.267, "lon": 4.352, "name": "Domaine de la Sablière", "url": "/it/campeggi/la-sabliere-gard/"}, {"type": "camp", "lat": 47.76, "lon": 7.548, "name": "Dreiländereck Ferienpark der Naturisten", "url": "/it/campeggi/dreilaendereck-neuenburg/"}, {"type": "camp", "lat": 49.19, "lon": 8.83, "name": "FKK-Camping Hilsbachtal", "url": "/it/campeggi/hilsbachtal-sinsheim/"}, {"type": "beach", "lat": 44.385, "lon": 12.325, "name": "Lido di Dante, spiaggia naturista (Bassona)", "url": "/it/spiagge/lido-di-dante-ravenna/"}, {"type": "beach", "lat": 41.664, "lon": 12.403, "name": "Capocotta, Oasi Naturista (Roma)", "url": "/it/spiagge/capocotta-roma/"}, {"type": "beach", "lat": 44.125, "lon": 9.705, "name": "Guvano (Corniglia)", "url": "/it/spiagge/guvano-cinque-terre/"}, {"type": "beach", "lat": 45.375, "lon": -1.165, "name": "Montalivet, plage naturiste (CHM)", "url": "/it/spiagge/montalivet-gironde/"}, {"type": "beach", "lat": 27.735, "lon": -15.59, "name": "Maspalomas, zona naturista (chioschi 3-7)", "url": "/it/spiagge/maspalomas-gran-canaria/"}, {"type": "beach", "lat": 54.965, "lon": 8.34, "name": "Sylt, Buhne 16 (Kampen)", "url": "/it/spiagge/sylt-buhne-16/"}];
+    var map = L.map('naturmap', {scrollWheelZoom: false}).setView([46, 8], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18
+    }).addTo(map);
+    var campIcon = L.divIcon({className:'', html:'<span style="font-size:22px;line-height:1;filter:drop-shadow(0 1px 2px #0006)">🏕</span>', iconSize:[28,28], iconAnchor:[14,14], popupAnchor:[0,-14]});
+    var beachIcon = L.divIcon({className:'', html:'<span style="font-size:22px;line-height:1;filter:drop-shadow(0 1px 2px #0006)">🏖</span>', iconSize:[28,28], iconAnchor:[14,14], popupAnchor:[0,-14]});
+    markers.forEach(function(m){
+      L.marker([m.lat, m.lon], {icon: m.type==='camp' ? campIcon : beachIcon})
+        .addTo(map)
+        .bindPopup('<a href="'+m.url+'" style="font-weight:700;color:#1F5A3C">'+m.name+'</a>');
+    });
+  })();
+  </script>
+</div></section>
 <section class="block" id="how"><div class="wrap"><h2>Come votiamo</h2><p class="lead">Ogni campeggio riceve un voto da 1 a 5 su sette criteri, sempre motivato con un fatto concreto. Il voto complessivo è la media. Indichiamo sempre quando siamo stati sul posto, perché prezzi e servizi cambiano ogni stagione.</p></div></section>
 </main>
 <footer class="site-footer"><div class="wrap">

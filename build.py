@@ -22,6 +22,7 @@ T = {
     "beaches_h1": "Spiagge naturiste", "beaches_p": "Ufficiali e tollerate, ordinate per paese. Il numero è il voto complessivo su 5.",
     "beaches_home_h2": "Spiagge naturiste", "beaches_home_p": "Dove si può stare nudi in spiaggia, con stato ufficiale, accesso e servizi verificati.",
     "beaches_all": "Tutte le spiagge",
+    "map_h2": "Dove siamo", "map_p": "Tutti i campeggi (🏕) e le spiagge (🏖) naturiste in mappa. Clicca su un segnaposto per aprire la scheda.",
     "bfacts": {"status": "Stato", "ground": "Fondo e fondale", "length": "Lunghezza", "access": "Accesso", "services": "Servizi", "season": "Periodo", "coords": "Coordinate", "nearby": "Campeggi vicini"},
     "status": {"official": "ufficiale, segnalata con cartelli", "tolerated": "tollerata, non segnalata", "unofficial": "non ufficiale: possibili controlli"},
     "status_short": {"official": "ufficiale", "tolerated": "tollerata", "unofficial": "non ufficiale"},
@@ -60,6 +61,7 @@ T = {
     "beaches_h1": "Naturist beaches", "beaches_p": "Official and tolerated, sorted by country. The number is the overall score out of 5.",
     "beaches_home_h2": "Naturist beaches", "beaches_home_p": "Where you can be nude on the beach, with official status, access and services checked.",
     "beaches_all": "All beaches",
+    "map_h2": "Where we are", "map_p": "All naturist campsites (🏕) and beaches (🏖) on the map. Click a pin to open the listing.",
     "bfacts": {"status": "Status", "ground": "Ground and seabed", "length": "Length", "access": "Access", "services": "Services", "season": "Season", "coords": "Coordinates", "nearby": "Campsites nearby"},
     "status": {"official": "official, signposted", "tolerated": "tolerated, not signposted", "unofficial": "unofficial: checks possible"},
     "status_short": {"official": "official", "tolerated": "tolerated", "unofficial": "unofficial"},
@@ -98,6 +100,7 @@ T = {
     "beaches_h1": "FKK-Strände", "beaches_p": "Offiziell und geduldet, nach Land sortiert. Die Zahl ist die Gesamtnote von 5.",
     "beaches_home_h2": "FKK-Strände", "beaches_home_p": "Wo man nackt am Strand sein darf, mit geprüftem Status, Zugang und Ausstattung.",
     "beaches_all": "Alle Strände",
+    "map_h2": "Wo wir sind", "map_p": "Alle FKK-Campingplätze (🏕) und Strände (🏖) auf der Karte. Auf einen Marker klicken, um den Eintrag zu öffnen.",
     "bfacts": {"status": "Status", "ground": "Untergrund und Wasser", "length": "Länge", "access": "Zugang", "services": "Ausstattung", "season": "Zeitraum", "coords": "Koordinaten", "nearby": "Campingplätze in der Nähe"},
     "status": {"official": "offiziell, ausgeschildert", "tolerated": "geduldet, nicht ausgeschildert", "unofficial": "inoffiziell: Kontrollen möglich"},
     "status_short": {"official": "offiziell", "tolerated": "geduldet", "unofficial": "inoffiziell"},
@@ -228,6 +231,46 @@ def page(lang, kind, title, desc, body, slug=None):
 </html>
 """
 
+def map_section(lang):
+    import json as _json
+    t = T[lang]
+    markers = []
+    for c in DATA:
+        if c.get("coords"):
+            lat, lon = [v.strip() for v in c["coords"].split(",")]
+            markers.append({"type": "camp", "lat": float(lat), "lon": float(lon),
+                            "name": c["name"], "url": lang_url(lang, "camp", c["slug"])})
+    for b in BEACHES:
+        if b.get("coords"):
+            lat, lon = [v.strip() for v in b["coords"].split(",")]
+            markers.append({"type": "beach", "lat": float(lat), "lon": float(lon),
+                            "name": b["name"], "url": lang_url(lang, "beach", b["slug"])})
+    markers_json = _json.dumps(markers, ensure_ascii=False)
+    return f"""<section class="block" id="mappa"><div class="wrap">
+  <h2>{e(t['map_h2'])}</h2>
+  <p class="lead">{e(t['map_p'])}</p>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <div id="naturmap" style="height:480px;border-radius:12px;overflow:hidden;margin-top:16px"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (function(){{
+    var markers = {markers_json};
+    var map = L.map('naturmap', {{scrollWheelZoom: false}}).setView([46, 8], 5);
+    L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18
+    }}).addTo(map);
+    var campIcon = L.divIcon({{className:'', html:'<span style="font-size:22px;line-height:1;filter:drop-shadow(0 1px 2px #0006)">🏕</span>', iconSize:[28,28], iconAnchor:[14,14], popupAnchor:[0,-14]}});
+    var beachIcon = L.divIcon({{className:'', html:'<span style="font-size:22px;line-height:1;filter:drop-shadow(0 1px 2px #0006)">🏖</span>', iconSize:[28,28], iconAnchor:[14,14], popupAnchor:[0,-14]}});
+    markers.forEach(function(m){{
+      L.marker([m.lat, m.lon], {{icon: m.type==='camp' ? campIcon : beachIcon}})
+        .addTo(map)
+        .bindPopup('<a href="'+m.url+'" style="font-weight:700;color:#1F5A3C">'+m.name+'</a>');
+    }});
+  }})();
+  </script>
+</div></section>"""
+
 def camp_item(c, lang):
     t = T[lang]
     sc = overall(c)
@@ -256,6 +299,7 @@ def home(lang):
 <section class="block"><div class="wrap"><h2>{e(t['countries_h2'])}</h2><ul class="countries">{cl}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['latest_h2'])}</h2><ul class="camps">{latest}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['beaches_home_h2'])}</h2><p class="lead">{e(t['beaches_home_p'])}</p><ul class="camps">{beach_latest}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'beaches')}">{e(t['beaches_all'])}</a></p></div></section>
+{map_section(lang)}
 <section class="block" id="how"><div class="wrap"><h2>{e(t['how_h2'])}</h2><p class="lead">{e(t['how_p'])}</p></div></section>"""
     return page(lang, "home", t["title"], t["desc"], body)
 
