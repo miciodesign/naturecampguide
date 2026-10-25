@@ -17,8 +17,13 @@ LANGS = ["it", "en", "de"]
 T = {
   "it": {
     "brand_sub": "Guide", "lang_name": "Italiano",
-    "nav": {"camps": "Campeggi", "beaches": "Spiagge", "pack": "Cosa portare", "review": "Scrivi una recensione", "about": "Chi siamo"},
-    "paths": {"camps": "campeggi", "beaches": "spiagge", "pack": "cosa-portare", "review": "recensioni", "about": "chi-siamo"},
+    "nav": {"camps": "Campeggi", "beaches": "Spiagge", "pack": "Cosa portare", "review": "Scrivi una recensione", "about": "Chi siamo", "assoc": "Associazioni"},
+    "paths": {"camps": "campeggi", "beaches": "spiagge", "pack": "cosa-portare", "review": "recensioni", "about": "chi-siamo", "assoc": "associazioni"},
+    "assoc_h1": "Associazioni naturiste in Europa", "assoc_p": "Le principali federazioni che promuovono e tutelano il naturismo, paese per paese. Attraverso queste organizzazioni puoi trovare campeggi affiliati, tessere riconosciute a livello internazionale e informazioni aggiornate sulle spiagge.",
+    "assoc_int_h2": "Organizzazioni internazionali", "assoc_nat_h2": "Federazioni nazionali",
+    "assoc_website": "Sito ufficiale", "assoc_members": "Soci affiliati",
+    "assoc_home_h2": "Associazioni naturiste", "assoc_home_p": "Le federazioni europee che rilasciano tessere e gestiscono campeggi affiliati.",
+    "assoc_home_cta": "Tutte le associazioni",
     "beaches_h1": "Spiagge naturiste", "beaches_p": "Ufficiali e tollerate, ordinate per paese. Il numero è il voto complessivo su 5.",
     "beaches_home_h2": "Spiagge naturiste", "beaches_home_p": "Dove si può stare nudi in spiaggia, con stato ufficiale, accesso e servizi verificati.",
     "beaches_all": "Tutte le spiagge",
@@ -68,8 +73,13 @@ T = {
   },
   "en": {
     "brand_sub": "Guide", "lang_name": "English",
-    "nav": {"camps": "Campsites", "beaches": "Beaches", "pack": "What to pack", "review": "Write a review", "about": "About"},
-    "paths": {"camps": "campsites", "beaches": "beaches", "pack": "what-to-pack", "review": "reviews", "about": "about"},
+    "nav": {"camps": "Campsites", "beaches": "Beaches", "pack": "What to pack", "review": "Write a review", "about": "About", "assoc": "Associations"},
+    "paths": {"camps": "campsites", "beaches": "beaches", "pack": "what-to-pack", "review": "reviews", "about": "about", "assoc": "associations"},
+    "assoc_h1": "Naturist associations in Europe", "assoc_p": "The main federations that promote and protect naturism, country by country. Through these organisations you can find affiliated campsites, internationally recognised membership cards and up-to-date information on beaches.",
+    "assoc_int_h2": "International organisations", "assoc_nat_h2": "National federations",
+    "assoc_website": "Official website", "assoc_members": "Affiliated members",
+    "assoc_home_h2": "Naturist associations", "assoc_home_p": "European federations that issue membership cards and manage affiliated campsites.",
+    "assoc_home_cta": "All associations",
     "beaches_h1": "Naturist beaches", "beaches_p": "Official and tolerated, sorted by country. The number is the overall score out of 5.",
     "beaches_home_h2": "Naturist beaches", "beaches_home_p": "Where you can be nude on the beach, with official status, access and services checked.",
     "beaches_all": "All beaches",
@@ -119,8 +129,13 @@ T = {
   },
   "de": {
     "brand_sub": "Guide", "lang_name": "Deutsch",
-    "nav": {"camps": "Campingplätze", "beaches": "Strände", "pack": "Packliste", "review": "Bewertung schreiben", "about": "Über uns"},
-    "paths": {"camps": "campingplaetze", "beaches": "straende", "pack": "packliste", "review": "bewertungen", "about": "ueber-uns"},
+    "nav": {"camps": "Campingplätze", "beaches": "Strände", "pack": "Packliste", "review": "Bewertung schreiben", "about": "Über uns", "assoc": "Verbände"},
+    "paths": {"camps": "campingplaetze", "beaches": "straende", "pack": "packliste", "review": "bewertungen", "about": "ueber-uns", "assoc": "verbaende"},
+    "assoc_h1": "Naturistenverbände in Europa", "assoc_p": "Die wichtigsten Verbände, die den Naturismus fördern und schützen, Land für Land. Über diese Organisationen finden Sie angeschlossene Campingplätze, international anerkannte Mitgliedsausweise und aktuelle Informationen zu Stränden.",
+    "assoc_int_h2": "Internationale Organisationen", "assoc_nat_h2": "Nationale Verbände",
+    "assoc_website": "Offizielle Website", "assoc_members": "Angeschlossene Mitglieder",
+    "assoc_home_h2": "Naturistenverbände", "assoc_home_p": "Europäische Verbände, die Ausweise ausstellen und angeschlossene Campingplätze verwalten.",
+    "assoc_home_cta": "Alle Verbände",
     "beaches_h1": "FKK-Strände", "beaches_p": "Offiziell und geduldet, nach Land sortiert. Die Zahl ist die Gesamtnote von 5.",
     "beaches_home_h2": "FKK-Strände", "beaches_home_p": "Wo man nackt am Strand sein darf, mit geprüftem Status, Zugang und Ausstattung.",
     "beaches_all": "Alle Strände",
@@ -189,7 +204,8 @@ def lang_url(lang, kind, slug=None):
     if kind == "home": return f"/{lang}/"
     if kind == "camp": return f"/{lang}/{p['camps']}/{slug}/"
     if kind == "beach": return f"/{lang}/{p['beaches']}/{slug}/"
-    return f"/{lang}/{p[kind]}/"
+    if kind in p: return f"/{lang}/{p[kind]}/"
+    return f"/{lang}/{kind}/"
 
 def basis_label(x, lang):
     t = T[lang]
@@ -239,7 +255,7 @@ def dots(x):
 def page(lang, kind, title, desc, body, slug=None):
     t = T[lang]
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{lang_url(l, kind, slug)}">' for l in LANGS)
-    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("about", "camps", "beaches", "pack", "review"))
+    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("about", "camps", "beaches", "pack", "review", "assoc"))
     langs = "\n".join(f'<a href="{lang_url(l, kind, slug)}" lang="{l}" hreflang="{l}"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
     return f"""<!doctype html>
 <html lang="{lang}">
@@ -490,6 +506,7 @@ def home(lang):
 <section class="block"><div class="wrap"><h2>{e(t['countries_h2'])}</h2><ul class="countries">{cl}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['latest_h2'])}</h2><ul class="camps">{latest}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['beaches_home_h2'])}</h2><p class="lead">{e(t['beaches_home_p'])}</p><ul class="camps">{beach_latest}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'beaches')}">{e(t['beaches_all'])}</a></p></div></section>
+<section class="block assoc-home"><div class="wrap"><h2>{e(t['assoc_home_h2'])}</h2><p class="lead">{e(t['assoc_home_p'])}</p><ul class="assoc-home-list">{"".join(f'<li><span class="assoc-flag">' + {"IT":"🇮🇹","FR":"🇫🇷","DE":"🇩🇪","ES":"🇪🇸","HR":"🇭🇷","GB":"🇬🇧","NL":"🇳🇱","DK":"🇩🇰","PT":"🇵🇹","GR":"🇬🇷"}.get(a["country"],"") + f'</span> <a href="{e(a["url"])}" rel="nofollow noopener" target="_blank">{e(a["name"].split("–")[0].strip() if "–" in a["name"] else a["name"].split("(")[0].strip())}</a></li>' for a in ASSOC["national"][:6])}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'assoc')}">{e(t['assoc_home_cta'])}</a></p></div></section>
 {map_section(lang)}
 {europe_section(lang)}
 {news_section(lang)}
@@ -737,6 +754,172 @@ def pack(lang):
 </div></section>"""
     return page(lang, "pack", f'{pk["h1"]} — NaturCamp Guide', pk["lead"], body)
 
+# ---------------------------------------------------------------- associazioni naturiste
+ASSOC = {
+  "international": [
+    {
+      "name": "International Naturist Federation (INF-FNI)",
+      "url": "https://www.inf-fni.org/",
+      "desc": {
+        "it": "La federazione mondiale del naturismo, fondata nel 1953. Raggruppa le federazioni nazionali di oltre 30 paesi e rilascia la tessera internazionale INF, riconosciuta dalla maggior parte dei campeggi e spiagge affiliati.",
+        "en": "The world federation of naturism, founded in 1953. It groups national federations from over 30 countries and issues the INF international membership card, recognised by most affiliated campsites and beaches.",
+        "de": "Der weltweite Dachverband des Naturismus, gegründet 1953. Er vereint nationale Verbände aus über 30 Ländern und gibt den internationalen INF-Ausweis heraus, der von den meisten angeschlossenen Campingplätzen und Stränden anerkannt wird.",
+      },
+      "members": None,
+    },
+    {
+      "name": "European Naturist Federation (ENF)",
+      "url": "https://www.european-naturism.eu/",
+      "desc": {
+        "it": "Il ramo europeo dell'INF, che coordina le federazioni del continente e organizza eventi come l'Europade, raduno europeo naturista itinerante.",
+        "en": "The European branch of INF, coordinating the continent's federations and organising events like the Europade, a roving European naturist gathering.",
+        "de": "Der europäische Zweig des INF, der die Verbände des Kontinents koordiniert und Veranstaltungen wie die Europade, ein wanderndes europäisches Naturistentreffen, organisiert.",
+      },
+      "members": None,
+    },
+  ],
+  "national": [
+    {
+      "country": "IT",
+      "name": "FENAIT – Federazione Naturista Italiana",
+      "url": "https://www.fenait.org/",
+      "desc": {
+        "it": "La federazione italiana del naturismo, affiliata all'INF. Rilascia la tessera INF per l'Italia e gestisce l'elenco dei campeggi e circoli naturisti affiliati.",
+        "en": "The Italian naturist federation, affiliated with INF. Issues the INF card for Italy and maintains the list of affiliated naturist campsites and clubs.",
+        "de": "Der italienische Naturistenverband, Mitglied des INF. Stellt den INF-Ausweis für Italien aus und pflegt die Liste der angeschlossenen Campingplätze und Clubs.",
+      },
+    },
+    {
+      "country": "FR",
+      "name": "FFN – Fédération Française de Naturisme",
+      "url": "https://www.ffn-naturisme.com/",
+      "desc": {
+        "it": "La più grande federazione naturista d'Europa per numero di soci. Gestisce numerosi campeggi naturisti in Francia, soprattutto nella regione delle Landes, e rilascia la tessera annuale FFN.",
+        "en": "The largest naturist federation in Europe by membership. It manages many naturist campsites in France, especially in the Landes region, and issues the annual FFN card.",
+        "de": "Der mitgliederstärkste Naturistenverband Europas. Er betreibt viele Naturistencampingplätze in Frankreich, besonders in den Landes, und gibt den jährlichen FFN-Ausweis heraus.",
+      },
+    },
+    {
+      "country": "DE",
+      "name": "DFK – Deutscher Verband für Freikörperkultur",
+      "url": "https://www.dfk.org/",
+      "desc": {
+        "it": "Il più antico movimento nudista organizzato al mondo (1898). Raggruppa i club FKK tedeschi e gestisce campeggi in tutta la Germania, rilasciando la tessera DFK riconosciuta a livello INF.",
+        "en": "The world's oldest organised nudist movement (1898). Groups German FKK clubs and manages campsites across Germany, issuing the DFK card recognised at INF level.",
+        "de": "Die älteste organisierte Freikörperkultur-Bewegung der Welt (1898). Vereint deutsche FKK-Vereine und betreibt Campingplätze in ganz Deutschland; gibt den INF-anerkannten DFK-Ausweis aus.",
+      },
+    },
+    {
+      "country": "ES",
+      "name": "FEN – Federación Española de Naturismo",
+      "url": "https://www.naturismo.org/",
+      "desc": {
+        "it": "La federazione spagnola, affiliata INF. Coordina i club e i campeggi naturisti in Spagna e promuove le spiagge naturiste ufficiali.",
+        "en": "The Spanish federation, INF-affiliated. Coordinates naturist clubs and campsites in Spain and promotes official naturist beaches.",
+        "de": "Der spanische Verband, INF-Mitglied. Koordiniert Naturistenvereine und -Campingplätze in Spanien und fördert offizielle Naturistenstrände.",
+      },
+    },
+    {
+      "country": "HR",
+      "name": "HNS – Hrvatska naturistička savez",
+      "url": "https://www.naturizam.hr/",
+      "desc": {
+        "it": "La federazione croata del naturismo. La Croazia è uno dei paesi con la più lunga tradizione naturista in Europa, con numerosi campeggi e spiagge FKK, soprattutto in Istria.",
+        "en": "The Croatian naturist federation. Croatia has one of the longest naturist traditions in Europe, with numerous FKK campsites and beaches, especially in Istria.",
+        "de": "Der kroatische Naturistenverband. Kroatien hat eine der längsten Naturistentraditionen in Europa, mit zahlreichen FKK-Campingplätzen und -Stränden, besonders in Istrien.",
+      },
+    },
+    {
+      "country": "GB",
+      "name": "British Naturism (BN)",
+      "url": "https://www.britishnaturism.org.uk/",
+      "desc": {
+        "it": "Il principale organismo britannico del naturismo, fondato nel 1964. Rilascia la tessera BN/INF e promuove spiagge, club e campeggi naturisti nel Regno Unito.",
+        "en": "The main British naturism body, founded in 1964. Issues the BN/INF card and promotes naturist beaches, clubs and campsites across the UK.",
+        "de": "Das wichtigste britische Naturismusgremium, gegründet 1964. Gibt den BN/INF-Ausweis heraus und fördert Naturistenstrände, -Clubs und -Campingplätze im Vereinigten Königreich.",
+      },
+    },
+    {
+      "country": "NL",
+      "name": "NFN – Nederlandse Federatie van Naturisten",
+      "url": "https://www.naturisme.nl/",
+      "desc": {
+        "it": "La federazione olandese, con una rete di campeggi e club affiliati nei Paesi Bassi. Rilascia la tessera INF e organizza eventi nazionali.",
+        "en": "The Dutch federation, with a network of affiliated campsites and clubs in the Netherlands. Issues the INF card and organises national events.",
+        "de": "Der niederländische Verband mit einem Netz angeschlossener Campingplätze und Vereine. Gibt den INF-Ausweis heraus und organisiert nationale Veranstaltungen.",
+      },
+    },
+    {
+      "country": "DK",
+      "name": "DNF – Dansk Naturist Forbund",
+      "url": "https://www.dnf.dk/",
+      "desc": {
+        "it": "La federazione naturista danese, affiliata INF. Gestisce i club e le strutture naturiste in Danimarca.",
+        "en": "The Danish naturist federation, INF-affiliated. Manages naturist clubs and facilities in Denmark.",
+        "de": "Der dänische Naturistenverband, INF-Mitglied. Betreibt Naturistenvereine und -Einrichtungen in Dänemark.",
+      },
+    },
+    {
+      "country": "PT",
+      "name": "FPN – Federação Portuguesa de Naturismo",
+      "url": "https://www.naturismo.pt/",
+      "desc": {
+        "it": "La federazione portoghese, affiliata INF. Il Portogallo ha spiagge naturiste tra le più belle d'Europa, specialmente in Algarve.",
+        "en": "The Portuguese federation, INF-affiliated. Portugal has some of Europe's finest naturist beaches, especially in the Algarve.",
+        "de": "Der portugiesische Verband, INF-Mitglied. Portugal bietet einige der schönsten Naturistenstrände Europas, besonders an der Algarve.",
+      },
+    },
+    {
+      "country": "GR",
+      "name": "HNF – Hellenic Naturist Federation",
+      "url": "https://www.naturism.gr/",
+      "desc": {
+        "it": "La federazione greca del naturismo. La Grecia conta numerose spiagge naturiste ufficiali e tolerate, specie sulle isole.",
+        "en": "The Greek naturist federation. Greece has numerous official and tolerated naturist beaches, especially on the islands.",
+        "de": "Der griechische Naturistenverband. Griechenland hat zahlreiche offizielle und geduldete Naturistenstrände, besonders auf den Inseln.",
+      },
+    },
+  ],
+}
+
+def assoc(lang):
+    t = T[lang]
+    country_names = t["country_names"]
+    flag = {"IT": "🇮🇹", "FR": "🇫🇷", "DE": "🇩🇪", "ES": "🇪🇸", "HR": "🇭🇷", "GB": "🇬🇧", "NL": "🇳🇱", "DK": "🇩🇰", "PT": "🇵🇹", "GR": "🇬🇷"}
+
+    int_cards = ""
+    for a in ASSOC["international"]:
+        int_cards += f'''<div class="assoc-card">
+  <div class="assoc-info">
+    <h3 class="assoc-name">{e(a["name"])}</h3>
+    <p>{e(a["desc"][lang])}</p>
+  </div>
+  <a class="btn ghost small" href="{e(a["url"])}" rel="nofollow noopener" target="_blank">{e(t["assoc_website"])} ↗</a>
+</div>'''
+
+    nat_cards = ""
+    for a in ASSOC["national"]:
+        c = a["country"]
+        country_label = f'{flag.get(c, "")} {country_names.get(c, c)}'
+        nat_cards += f'''<div class="assoc-card">
+  <div class="assoc-info">
+    <span class="assoc-country">{e(country_label)}</span>
+    <h3 class="assoc-name">{e(a["name"])}</h3>
+    <p>{e(a["desc"][lang])}</p>
+  </div>
+  <a class="btn ghost small" href="{e(a["url"])}" rel="nofollow noopener" target="_blank">{e(t["assoc_website"])} ↗</a>
+</div>'''
+
+    body = f"""<section class="block"><div class="wrap">
+  <h1>{e(t['assoc_h1'])}</h1>
+  <p class="lead">{e(t['assoc_p'])}</p>
+  <h2>{e(t['assoc_int_h2'])}</h2>
+  <div class="assoc-grid">{int_cards}</div>
+  <h2 style="margin-top:2.5rem">{e(t['assoc_nat_h2'])}</h2>
+  <div class="assoc-grid">{nat_cards}</div>
+</div></section>"""
+    return page(lang, "assoc", f'{t["assoc_h1"]} — NaturCamp Guide', t["assoc_p"], body)
+
 def review(lang):
     t = T[lang]; f = t["f"]
     opts = f'<optgroup label="{e(t["nav"]["camps"])}">' + "".join(f'<option value="camp:{e(c["slug"])}">{e(c["name"])}</option>' for c in sorted(DATA, key=lambda c: c["name"])) + "</optgroup>"
@@ -821,6 +1004,7 @@ def main():
         write(ROOT / lang / p["review"] / "index.html", review(lang))
         write(ROOT / lang / p["about"] / "index.html", about(lang))
         write(ROOT / lang / p["pack"] / "index.html", pack(lang))
+        write(ROOT / lang / p["assoc"] / "index.html", assoc(lang))
         for c in DATA:
             write(ROOT / lang / p["camps"] / c["slug"] / "index.html", sheet(c, lang))
         write(ROOT / lang / p["beaches"] / "index.html", beaches(lang))
@@ -837,7 +1021,7 @@ def main():
     write(ROOT / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     urls = []
     for lang in LANGS:
-        urls += [lang_url(lang, k) for k in ("home", "camps", "beaches", "pack", "review", "about")]
+        urls += [lang_url(lang, k) for k in ("home", "camps", "beaches", "pack", "review", "about", "assoc")]
         urls += [lang_url(lang, "camp", c["slug"]) for c in DATA]
         urls += [lang_url(lang, "beach", b["slug"]) for b in BEACHES]
     write(ROOT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")

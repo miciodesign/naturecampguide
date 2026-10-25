@@ -158,6 +158,21 @@ form.review .row { display: grid; gap: 18px; grid-template-columns: repeat(auto-
 .privacy-body strong { color: var(--ink); }
 .privacy-body a { color: var(--muted); }
 
+/* Associations page */
+.assoc-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+.assoc-card { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 24px; }
+.assoc-card .assoc-info { flex: 1; min-width: 0; }
+.assoc-country { display: inline-block; font-size: .85rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+.assoc-name { font-size: 1.05rem; margin: 0 0 8px; }
+.assoc-card p { font-size: .95rem; color: var(--muted); max-width: 72ch; margin: 0; }
+.assoc-card .btn { white-space: nowrap; flex-shrink: 0; }
+@media (max-width: 600px) { .assoc-card { flex-direction: column; } }
+
+/* Associations home teaser */
+.assoc-home-list { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.assoc-home-list li { font-size: .97rem; }
+.assoc-flag { margin-right: 4px; }
+
 /* Footer */
 .site-footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 32px 0; color: var(--muted); font-size: .92rem; }
 .site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
