@@ -65,7 +65,32 @@
   <span class="stay-text">Where to stay nearby</span>
   <span class="stay-arrow">→</span>
 </a>
-  <p style="margin-top:12px"><a class="btn ghost small" href="https://www.yr.no/en/forecast/daily-table/44.385,12.325" rel="nofollow noopener" target="_blank">🌤 See weather near Lido di Dante, spiaggia naturista (Bassona)</a></p>
+  <h2>Weather forecast</h2>
+<div id="wx-lidodidanteravenna" class="wx-widget"><p class="meta wx-loading">Loading weather…</p></div>
+<script>
+(function(){
+  var el = document.getElementById('wx-lidodidanteravenna');
+  var wmo = {"0": "Clear sky", "1": "Mainly clear", "2": "Partly cloudy", "3": "Overcast", "45": "Fog", "48": "Icy fog", "51": "Light drizzle", "53": "Drizzle", "55": "Dense drizzle", "61": "Slight rain", "63": "Rain", "65": "Heavy rain", "71": "Slight snow", "73": "Snow", "75": "Heavy snow", "77": "Snow grains", "80": "Slight showers", "81": "Showers", "82": "Heavy showers", "85": "Snow showers", "86": "Heavy snow showers", "95": "Thunderstorm", "96": "Thunderstorm w/ hail", "99": "Thunderstorm w/ heavy hail"};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=44.385&longitude=12.325&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var days = d.daily;
+      var html = '<div class="wx-days">';
+      for(var i=0;i<days.time.length;i++){
+        var dt = new Date(days.time[i]);
+        var dn = dt.toLocaleDateString('en',{weekday:'short',day:'numeric',month:'short'});
+        var code = days.weathercode[i];
+        var desc = wmo[code] || code;
+        var icons = [['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][Math.floor(i/1)]||'🌡'];
+        var icon = ['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][[0,1,2,3,45,48,51,53,55,61,63,65,71,73,75,77,80,81,82,85,86,95,96,99].indexOf(code)]||'🌡';
+        html += '<div class="wx-day"><div class="wx-dn">'+dn+'</div><div class="wx-icon">'+icon+'</div><div class="wx-desc">'+desc+'</div><div class="wx-temp"><span class="wx-max">'+Math.round(days.temperature_2m_max[i])+'°</span> <span class="wx-min">min '+Math.round(days.temperature_2m_min[i])+'°</span></div></div>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    })
+    .catch(function(){ el.innerHTML = '<p class="meta">Weather unavailable</p>'; });
+})();
+</script>
   <p class="meta">Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.</p><h2>Sources</h2><ul class="sources"><li><a href="https://www.ilrestodelcarlino.it/ravenna/cronaca/naturisti-ce-lordinanza-marcacci-soddisfatto-60844b26" rel="nofollow">www.ilrestodelcarlino.it/ravenna/cronaca/naturisti-ce-lordinanza-marcacci-soddisfatto-60844b26</a></li><li><a href="https://www.lacronacadiravenna.it/stampa/9380/articoli" rel="nofollow">www.lacronacadiravenna.it/stampa/9380/articoli</a></li><li><a href="https://www.mondobalneare.com" rel="nofollow">www.mondobalneare.com</a></li><li><a href="https://www.idealista.it/news/node/399020" rel="nofollow">www.idealista.it/news/node/399020</a></li></ul>
 </div></section>
 </main>

@@ -48,7 +48,7 @@
   </div>
   
   <h2>Key facts</h2>
-  <table class="facts"><tbody><tr><th scope='row'>Region</th><td>Italy, Calabria</td></tr><tr><th scope='row'>Season</th><td>24-04 → 31-10</td></tr><tr><th scope='row'>Indicative price</th><td>€ 34 — pitch for 2 people, high season, per night</td></tr><tr><th scope='row'>Affiliation</th><td>FENAIT / INF-FNI</td></tr><tr><th scope='row'>Naturist card</th><td>required</td></tr><tr><th scope='row'>Type</th><td>campsite and village</td></tr><tr><th scope='row'>Accommodation</th><td>about 300 pitches, bungalows, cottages, mobile homes, caravans</td></tr><tr><th scope='row'>Verified from sources</th><td>2026-10</td></tr><tr><th scope="row">Official website</th><td><a href="https://pizzogreco.com" rel="nofollow">pizzogreco.com</a></td></tr></tbody></table>
+  <table class="facts"><tbody><tr><th scope='row'>Region</th><td>Italy, Calabria</td></tr><tr><th scope='row'>Season</th><td>24-04 → 31-10<div class="season-bar"><span class="sx-label">Open:</span><span class="sx-off">Jan</span><span class="sx-off">Feb</span><span class="sx-off">Mar</span><span class="sx-on">Apr</span><span class="sx-on">May</span><span class="sx-on">Jun</span><span class="sx-on">Jul</span><span class="sx-on">Aug</span><span class="sx-on">Sep</span><span class="sx-on">Oct</span><span class="sx-off">Nov</span><span class="sx-off">Dec</span></div></td></tr><tr><th scope='row'>Indicative price</th><td>€ 34 — pitch for 2 people, high season, per night</td></tr><tr><th scope='row'>Affiliation</th><td>FENAIT / INF-FNI</td></tr><tr><th scope='row'>Naturist card</th><td>required</td></tr><tr><th scope='row'>Type</th><td>campsite and village</td></tr><tr><th scope='row'>Accommodation</th><td>about 300 pitches, bungalows, cottages, mobile homes, caravans</td></tr><tr><th scope='row'>Verified from sources</th><td>2026-10</td></tr><tr><th scope="row">Official website</th><td><a href="https://pizzogreco.com" rel="nofollow">pizzogreco.com</a></td></tr></tbody></table>
   <h2>Our scores</h2>
   <ul class="criteria"><li><span class="name">Cleanliness and upkeep</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="half"></i><i class=""></i><i class=""></i></span> <strong>2.5</strong></span><span class="why">The most cited weakness: toilets and common areas criticised on Tripadvisor (2023, 2024) and Campercontact (2023); cleaned once a day.</span></li><li><span class="name">Location and nature</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>5</strong></span><span class="why">Terrace 30 m above the sea in the Capo Rizzuto marine reserve, with its own naturist beach: location 4.6/5 on Tripadvisor.</span></li><li><span class="name">Facilities</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="half"></i><i class=""></i></span> <strong>3.5</strong></span><span class="why">Restaurant, bar, beach bar, shop, free Wi-Fi, electric shuttle to the beach; no pool.</span></li><li><span class="name">Atmosphere and respect for the rules</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span> <strong>3</strong></span><span class="why">Naturist atmosphere &#x27;unique in Italy&#x27; for some; others complain of unfriendly management, unclear entry rules and too many dogs on the beach.</span></li><li><span class="name">Family-friendly</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span> <strong>4</strong></span><span class="why">Baby club 3-6 and mini club 7-12 in July-August, evening entertainment.</span></li><li><span class="name">Beginner-friendly</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span> <strong>3</strong></span><span class="why">FENAIT or INF-FNI card required; one review reports checks on couples at the entrance.</span></li><li><span class="name">Value for money</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span> <strong>4</strong></span><span class="why">€34 flat rate per pitch for 1-2 people in high season (2026 price list), plus electricity €4.50-7.50.</span></li></ul>
   <h2>Our verdict</h2>
@@ -66,7 +66,32 @@
   <span class="stay-text">Where to stay nearby</span>
   <span class="stay-arrow">→</span>
 </a>
-  <p style="margin-top:12px"><a class="btn ghost small" href="https://www.yr.no/en/forecast/daily-table/38.923,17.124" rel="nofollow noopener" target="_blank">🌤 See weather near Pizzo Greco Campeggio Naturista</a></p>
+  <h2>Weather forecast</h2>
+<div id="wx-pizzogrecocaporizzuto" class="wx-widget"><p class="meta wx-loading">Loading weather…</p></div>
+<script>
+(function(){
+  var el = document.getElementById('wx-pizzogrecocaporizzuto');
+  var wmo = {"0": "Clear sky", "1": "Mainly clear", "2": "Partly cloudy", "3": "Overcast", "45": "Fog", "48": "Icy fog", "51": "Light drizzle", "53": "Drizzle", "55": "Dense drizzle", "61": "Slight rain", "63": "Rain", "65": "Heavy rain", "71": "Slight snow", "73": "Snow", "75": "Heavy snow", "77": "Snow grains", "80": "Slight showers", "81": "Showers", "82": "Heavy showers", "85": "Snow showers", "86": "Heavy snow showers", "95": "Thunderstorm", "96": "Thunderstorm w/ hail", "99": "Thunderstorm w/ heavy hail"};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=38.923&longitude=17.124&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var days = d.daily;
+      var html = '<div class="wx-days">';
+      for(var i=0;i<days.time.length;i++){
+        var dt = new Date(days.time[i]);
+        var dn = dt.toLocaleDateString('en',{weekday:'short',day:'numeric',month:'short'});
+        var code = days.weathercode[i];
+        var desc = wmo[code] || code;
+        var icons = [['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][Math.floor(i/1)]||'🌡'];
+        var icon = ['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][[0,1,2,3,45,48,51,53,55,61,63,65,71,73,75,77,80,81,82,85,86,95,96,99].indexOf(code)]||'🌡';
+        html += '<div class="wx-day"><div class="wx-dn">'+dn+'</div><div class="wx-icon">'+icon+'</div><div class="wx-desc">'+desc+'</div><div class="wx-temp"><span class="wx-max">'+Math.round(days.temperature_2m_max[i])+'°</span> <span class="wx-min">min '+Math.round(days.temperature_2m_min[i])+'°</span></div></div>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    })
+    .catch(function(){ el.innerHTML = '<p class="meta">Weather unavailable</p>'; });
+})();
+</script>
   <p class="meta">Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.</p><h2>Sources</h2><ul class="sources"><li><a href="https://pizzogreco.com/campeggio" rel="nofollow">pizzogreco.com/campeggio</a></li><li><a href="https://pizzogreco.com/servizi" rel="nofollow">pizzogreco.com/servizi</a></li><li><a href="https://fenait.org/centro-naturista/2-PIZZO%20GRECO%20CAMPEGGIO%20NATURISTA" rel="nofollow">fenait.org/centro-naturista/2-PIZZO%20GRECO%20CAMPEGGIO%20NATURISTA</a></li><li><a href="https://alanrogers.com/campsite/club-naturista-pizzo-greco-calabria" rel="nofollow">alanrogers.com/campsite/club-naturista-pizzo-greco-calabria</a></li><li><a href="https://www.tripadvisor.com/Hotel_Review-g675749-d7982928-Reviews-Campeggio_Villaggio_Naturista_Pizzo_Greco-Isola_di_Capo_Rizzuto_Province_of_Crotone_Ca.html" rel="nofollow">www.tripadvisor.com/Hotel_Review-g675749-d7982928-Reviews-Campeggio_Villaggio_Naturista_Pizzo_Greco-Isola_di_Capo_Rizzuto_Province_of_Crotone_Ca.html</a></li><li><a href="https://www.campercontact.com/en/md/46331" rel="nofollow">www.campercontact.com/en/md/46331</a></li></ul>
 </div></section>
 </main>

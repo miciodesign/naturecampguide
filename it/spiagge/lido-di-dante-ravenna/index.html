@@ -65,7 +65,32 @@
   <span class="stay-text">Dove dormire nelle vicinanze</span>
   <span class="stay-arrow">→</span>
 </a>
-  <p style="margin-top:12px"><a class="btn ghost small" href="https://www.yr.no/en/forecast/daily-table/44.385,12.325" rel="nofollow noopener" target="_blank">🌤 Vedi il meteo vicino a Lido di Dante, spiaggia naturista (Bassona)</a></p>
+  <h2>Meteo nei prossimi giorni</h2>
+<div id="wx-lidodidanteravenna" class="wx-widget"><p class="meta wx-loading">Caricamento meteo…</p></div>
+<script>
+(function(){
+  var el = document.getElementById('wx-lidodidanteravenna');
+  var wmo = {"0": "Sereno", "1": "Prevalentemente sereno", "2": "Parzialmente nuvoloso", "3": "Nuvoloso", "45": "Nebbia", "48": "Nebbia con brina", "51": "Pioggerella leggera", "53": "Pioggerella", "55": "Pioggerella intensa", "61": "Pioggia leggera", "63": "Pioggia", "65": "Pioggia intensa", "71": "Neve leggera", "73": "Neve", "75": "Neve intensa", "77": "Granuli di neve", "80": "Rovesci leggeri", "81": "Rovesci", "82": "Rovesci forti", "85": "Rovesci di neve", "86": "Rovesci di neve forti", "95": "Temporale", "96": "Temporale con grandine", "99": "Temporale con grandine forte"};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=44.385&longitude=12.325&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var days = d.daily;
+      var html = '<div class="wx-days">';
+      for(var i=0;i<days.time.length;i++){
+        var dt = new Date(days.time[i]);
+        var dn = dt.toLocaleDateString('it',{weekday:'short',day:'numeric',month:'short'});
+        var code = days.weathercode[i];
+        var desc = wmo[code] || code;
+        var icons = [['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][Math.floor(i/1)]||'🌡'];
+        var icon = ['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][[0,1,2,3,45,48,51,53,55,61,63,65,71,73,75,77,80,81,82,85,86,95,96,99].indexOf(code)]||'🌡';
+        html += '<div class="wx-day"><div class="wx-dn">'+dn+'</div><div class="wx-icon">'+icon+'</div><div class="wx-desc">'+desc+'</div><div class="wx-temp"><span class="wx-max">'+Math.round(days.temperature_2m_max[i])+'°</span> <span class="wx-min">min '+Math.round(days.temperature_2m_min[i])+'°</span></div></div>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    })
+    .catch(function(){ el.innerHTML = '<p class="meta">Meteo non disponibile</p>'; });
+})();
+</script>
   <p class="meta">Scheda compilata da sito ufficiale e recensioni pubbliche, non da una visita: i voti riflettono quanto documentato alla data indicata. Hai informazioni più recenti? Scrivi una recensione.</p><h2>Fonti</h2><ul class="sources"><li><a href="https://www.ilrestodelcarlino.it/ravenna/cronaca/naturisti-ce-lordinanza-marcacci-soddisfatto-60844b26" rel="nofollow">www.ilrestodelcarlino.it/ravenna/cronaca/naturisti-ce-lordinanza-marcacci-soddisfatto-60844b26</a></li><li><a href="https://www.lacronacadiravenna.it/stampa/9380/articoli" rel="nofollow">www.lacronacadiravenna.it/stampa/9380/articoli</a></li><li><a href="https://www.mondobalneare.com" rel="nofollow">www.mondobalneare.com</a></li><li><a href="https://www.idealista.it/news/node/399020" rel="nofollow">www.idealista.it/news/node/399020</a></li></ul>
 </div></section>
 </main>

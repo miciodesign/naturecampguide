@@ -170,7 +170,26 @@ form.review .row { display: grid; gap: 18px; grid-template-columns: repeat(auto-
 .news-item h3 { margin: 0 0 8px; font-size: 1.05rem; }
 .news-item p { margin: 0; font-size: .95rem; color: var(--muted); }
 
-/* Weather section */
+/* Weather section (homepage) */
 .wx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 20px; }
 .wx-card { background: var(--moss); border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
 .wx-name { font-weight: 700; font-size: .98rem; }
+
+/* Weather widget (scheda) */
+.wx-widget { margin: 0 0 32px; }
+.wx-loading { color: var(--muted); }
+.wx-days { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; }
+.wx-day { background: var(--moss); border-radius: 10px; padding: 14px 12px; text-align: center; }
+.wx-dn { font-size: .82rem; color: var(--muted); margin-bottom: 6px; text-transform: capitalize; }
+.wx-icon { font-size: 2rem; line-height: 1; margin: 6px 0; }
+.wx-desc { font-size: .78rem; color: var(--muted); margin-bottom: 8px; min-height: 2.4em; }
+.wx-temp { font-size: .95rem; }
+.wx-max { font-weight: 800; color: var(--ink); }
+.wx-min { color: var(--muted); font-size: .85rem; }
+
+/* Season bar */
+.season-bar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+.sx-label { font-size: .8rem; color: var(--muted); margin-right: 4px; }
+.season-bar span { font-size: .75rem; padding: 2px 5px; border-radius: 4px; }
+.sx-on { background: var(--green); color: #fff; font-weight: 700; }
+.sx-off { background: var(--line); color: var(--muted); }

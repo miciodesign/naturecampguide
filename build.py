@@ -337,8 +337,78 @@ def weather_section(lang):
   <div class="wx-grid">{cards}</div>
 </div></section>"""
 
+def weather_widget(x, lang):
+    """Widget meteo Open-Meteo (fetch lato client) per scheda campeggio/spiaggia."""
+    if not x.get("coords"):
+        return ""
+    t = T[lang]
+    lat, lon = [v.strip() for v in x["coords"].split(",")]
+    wmo_it = {0:"Sereno",1:"Prevalentemente sereno",2:"Parzialmente nuvoloso",3:"Nuvoloso",45:"Nebbia",48:"Nebbia con brina",51:"Pioggerella leggera",53:"Pioggerella",55:"Pioggerella intensa",61:"Pioggia leggera",63:"Pioggia",65:"Pioggia intensa",71:"Neve leggera",73:"Neve",75:"Neve intensa",77:"Granuli di neve",80:"Rovesci leggeri",81:"Rovesci",82:"Rovesci forti",85:"Rovesci di neve",86:"Rovesci di neve forti",95:"Temporale",96:"Temporale con grandine",99:"Temporale con grandine forte"}
+    wmo_en = {0:"Clear sky",1:"Mainly clear",2:"Partly cloudy",3:"Overcast",45:"Fog",48:"Icy fog",51:"Light drizzle",53:"Drizzle",55:"Dense drizzle",61:"Slight rain",63:"Rain",65:"Heavy rain",71:"Slight snow",73:"Snow",75:"Heavy snow",77:"Snow grains",80:"Slight showers",81:"Showers",82:"Heavy showers",85:"Snow showers",86:"Heavy snow showers",95:"Thunderstorm",96:"Thunderstorm w/ hail",99:"Thunderstorm w/ heavy hail"}
+    wmo_de = {0:"Klar",1:"Überwiegend klar",2:"Teils bewölkt",3:"Bedeckt",45:"Nebel",48:"Nebel mit Reif",51:"Leichter Nieselregen",53:"Nieselregen",55:"Starker Nieselregen",61:"Leichter Regen",63:"Regen",65:"Starker Regen",71:"Leichter Schnee",73:"Schnee",75:"Starker Schnee",77:"Schneekörner",80:"Leichte Schauer",81:"Schauer",82:"Starke Schauer",85:"Schneeschauer",86:"Starke Schneeschauer",95:"Gewitter",96:"Gewitter mit Hagel",99:"Gewitter mit starkem Hagel"}
+    wmo_map = {"it": wmo_it, "en": wmo_en, "de": wmo_de}
+    wmo_json = json.dumps(wmo_map[lang])
+    widget_id = f"wx-{x['slug'].replace('-','')}"
+    labels = {
+        "it": {"title": "Meteo nei prossimi giorni", "loading": "Caricamento meteo…", "min": "min", "max": "max", "error": "Meteo non disponibile"},
+        "en": {"title": "Weather forecast", "loading": "Loading weather…", "min": "min", "max": "max", "error": "Weather unavailable"},
+        "de": {"title": "Wettervorhersage", "loading": "Wetter wird geladen…", "min": "min", "max": "max", "error": "Wetter nicht verfügbar"},
+    }[lang]
+    return f'''<h2>{e(labels["title"])}</h2>
+<div id="{widget_id}" class="wx-widget"><p class="meta wx-loading">{e(labels["loading"])}</p></div>
+<script>
+(function(){{
+  var el = document.getElementById('{widget_id}');
+  var wmo = {wmo_json};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+    .then(function(r){{ return r.json(); }})
+    .then(function(d){{
+      var days = d.daily;
+      var html = '<div class="wx-days">';
+      for(var i=0;i<days.time.length;i++){{
+        var dt = new Date(days.time[i]);
+        var dn = dt.toLocaleDateString('{lang}',{{weekday:'short',day:'numeric',month:'short'}});
+        var code = days.weathercode[i];
+        var desc = wmo[code] || code;
+        var icons = [['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][Math.floor(i/1)]||'🌡'];
+        var icon = ['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][[0,1,2,3,45,48,51,53,55,61,63,65,71,73,75,77,80,81,82,85,86,95,96,99].indexOf(code)]||'🌡';
+        html += '<div class="wx-day"><div class="wx-dn">'+dn+'</div><div class="wx-icon">'+icon+'</div><div class="wx-desc">'+desc+'</div><div class="wx-temp"><span class="wx-max">'+Math.round(days.temperature_2m_max[i])+'°</span> <span class="wx-min">{e(labels["min"])} '+Math.round(days.temperature_2m_min[i])+'°</span></div></div>';
+      }}
+      html += '</div>';
+      el.innerHTML = html;
+    }})
+    .catch(function(){{ el.innerHTML = '<p class="meta">{e(labels["error"])}</p>'; }});
+}})();
+</script>'''
+
+def season_bar(x, lang):
+    """Barra mesi apertura/chiusura dalla stringa season tipo '01-05 → 10-10'."""
+    season = x.get("season", "")
+    if not season or "→" not in season:
+        return ""
+    labels = {
+        "it": ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"],
+        "en": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        "de": ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],
+    }[lang]
+    title = {"it": "Apertura", "en": "Open", "de": "Saison"}[lang]
+    try:
+        parts = season.replace(" ", "").split("→")
+        start = parts[0]  # "01-05"
+        end = parts[1]    # "10-10"
+        sm = int(start.split("-")[1])  # mese inizio
+        em = int(end.split("-")[1])    # mese fine
+    except Exception:
+        return ""
+    months = ""
+    for i in range(1, 13):
+        active = (sm <= i <= em) if sm <= em else (i >= sm or i <= em)
+        cls = "sx-on" if active else "sx-off"
+        months += f'<span class="{cls}">{labels[i-1]}</span>'
+    return f'<div class="season-bar"><span class="sx-label">{title}:</span>{months}</div>'
+
 def weather_link(x, lang):
-    """Bottone meteo yr.no per scheda campeggio/spiaggia."""
+    """Bottone meteo yr.no per scheda campeggio/spiaggia (fallback)."""
     t = T[lang]
     if not x.get("coords"):
         return ""
@@ -444,7 +514,7 @@ def sheet(c, lang):
         (f["accommodation"], c["accommodation"][lang]),
         (f["visited"] if c.get("basis") != "desk" else t["verified"], c["visited"]),
     ]
-    rows = "".join(f"<tr><th scope='row'>{e(k)}</th><td>{e(v)}</td></tr>" for k, v in facts)
+    rows = "".join(f"<tr><th scope='row'>{e(k)}</th><td>{e(v)}{season_bar(c, lang) if k == f['season'] else ''}</td></tr>" for k, v in facts)
     rows += f'<tr><th scope="row">{e(f["website"])}</th><td><a href="{e(c["website"])}" rel="nofollow">{e(c["website"].replace("https://", ""))}</a></td></tr>'
     crit = "".join(f'<li><span class="name">{e(t["criteria"][k])}</span><span>{dots(v[0])} <strong>{fmt_score(v[0], lang)}</strong></span><span class="why">{e(v[1][lang])}</span></li>' for k, v in c["scores"].items())
     demo = f'<div class="demo">{e(t["demo"])}</div>' if c.get("demo") else ""
@@ -467,7 +537,7 @@ def sheet(c, lang):
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(c['tip'][lang])}</p></div>
   </div>
   {stay_block(c, lang)}
-  {weather_link(c, lang)}
+  {weather_widget(c, lang)}
   {sources_block(c, lang)}
 </div></section>"""
     return page(lang, "camp", f'{c["name"]} — NaturCamp Guide', c["summary"][lang], body, c["slug"])
@@ -533,7 +603,7 @@ def beach_sheet(b, lang):
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(b['tip'][lang])}</p></div>
   </div>
   {stay_block(b, lang)}
-  {weather_link(b, lang)}
+  {weather_widget(b, lang)}
   {sources_block(b, lang)}
 </div></section>"""
     return page(lang, "beach", f'{b["name"]} — NaturCamp Guide', b["summary"][lang], body, b["slug"])

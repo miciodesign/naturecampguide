@@ -48,7 +48,7 @@
   </div>
   
   <h2>Key facts</h2>
-  <table class="facts"><tbody><tr><th scope='row'>Region</th><td>Italy, Piedmont</td></tr><tr><th scope='row'>Season</th><td>01-05 → 10-10</td></tr><tr><th scope='row'>Indicative price</th><td>€ 38 — pitch for 2 people, high season, per night</td></tr><tr><th scope='row'>Affiliation</th><td>INF-FNI</td></tr><tr><th scope='row'>Naturist card</th><td>required</td></tr><tr><th scope='row'>Type</th><td>holiday village</td></tr><tr><th scope='row'>Accommodation</th><td>pitches, chalets, mobile homes, bungalows, caravans</td></tr><tr><th scope='row'>Verified from sources</th><td>2026-10</td></tr><tr><th scope="row">Official website</th><td><a href="https://lebetulle.org" rel="nofollow">lebetulle.org</a></td></tr></tbody></table>
+  <table class="facts"><tbody><tr><th scope='row'>Region</th><td>Italy, Piedmont</td></tr><tr><th scope='row'>Season</th><td>01-05 → 10-10<div class="season-bar"><span class="sx-label">Open:</span><span class="sx-off">Jan</span><span class="sx-off">Feb</span><span class="sx-off">Mar</span><span class="sx-off">Apr</span><span class="sx-on">May</span><span class="sx-on">Jun</span><span class="sx-on">Jul</span><span class="sx-on">Aug</span><span class="sx-on">Sep</span><span class="sx-on">Oct</span><span class="sx-off">Nov</span><span class="sx-off">Dec</span></div></td></tr><tr><th scope='row'>Indicative price</th><td>€ 38 — pitch for 2 people, high season, per night</td></tr><tr><th scope='row'>Affiliation</th><td>INF-FNI</td></tr><tr><th scope='row'>Naturist card</th><td>required</td></tr><tr><th scope='row'>Type</th><td>holiday village</td></tr><tr><th scope='row'>Accommodation</th><td>pitches, chalets, mobile homes, bungalows, caravans</td></tr><tr><th scope='row'>Verified from sources</th><td>2026-10</td></tr><tr><th scope="row">Official website</th><td><a href="https://lebetulle.org" rel="nofollow">lebetulle.org</a></td></tr></tbody></table>
   <h2>Our scores</h2>
   <ul class="criteria"><li><span class="name">Cleanliness and upkeep</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span> <strong>4</strong></span><span class="why">Toilets and pool rated clean in 2024-2026 reviews (Tripadvisor, cleanliness 5/5).</span></li><li><span class="name">Location and nature</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="half"></i><i class=""></i></span> <strong>3.5</strong></span><span class="why">Pre-Alpine hillside at 374 m among woods, 25 km from Turin; no sea, no lake.</span></li><li><span class="name">Facilities</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="half"></i><i class=""></i></span> <strong>3.5</strong></span><span class="why">18×11 m pool with jacuzzi, sauna, steam bath, bar with library, free Wi-Fi; no shop.</span></li><li><span class="name">Atmosphere and respect for the rules</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span> <strong>4</strong></span><span class="why">Members only: no visitors, card required. Management rated friendly by most reviews, a few complaints about pool rules.</span></li><li><span class="name">Family-friendly</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span> <strong>3</strong></span><span class="why">No kids&#x27; club or entertainment documented; pool and green spaces.</span></li><li><span class="name">Beginner-friendly</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span> <strong>3</strong></span><span class="why">You need an INF-FNI or FENAIT card already: not a place to try without commitment.</span></li><li><span class="name">Value for money</span><span><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span> <strong>4</strong></span><span class="why">About €33-42 a night for two in high season: among the cheapest in northern Italy.</span></li></ul>
   <h2>Our verdict</h2>
@@ -66,7 +66,32 @@
   <span class="stay-text">Where to stay nearby</span>
   <span class="stay-arrow">→</span>
 </a>
-  <p style="margin-top:12px"><a class="btn ghost small" href="https://www.yr.no/en/forecast/daily-table/45.187,7.516" rel="nofollow noopener" target="_blank">🌤 See weather near Le Betulle Villaggio Naturista</a></p>
+  <h2>Weather forecast</h2>
+<div id="wx-lebetullelacassa" class="wx-widget"><p class="meta wx-loading">Loading weather…</p></div>
+<script>
+(function(){
+  var el = document.getElementById('wx-lebetullelacassa');
+  var wmo = {"0": "Clear sky", "1": "Mainly clear", "2": "Partly cloudy", "3": "Overcast", "45": "Fog", "48": "Icy fog", "51": "Light drizzle", "53": "Drizzle", "55": "Dense drizzle", "61": "Slight rain", "63": "Rain", "65": "Heavy rain", "71": "Slight snow", "73": "Snow", "75": "Heavy snow", "77": "Snow grains", "80": "Slight showers", "81": "Showers", "82": "Heavy showers", "85": "Snow showers", "86": "Heavy snow showers", "95": "Thunderstorm", "96": "Thunderstorm w/ hail", "99": "Thunderstorm w/ heavy hail"};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=45.187&longitude=7.516&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var days = d.daily;
+      var html = '<div class="wx-days">';
+      for(var i=0;i<days.time.length;i++){
+        var dt = new Date(days.time[i]);
+        var dn = dt.toLocaleDateString('en',{weekday:'short',day:'numeric',month:'short'});
+        var code = days.weathercode[i];
+        var desc = wmo[code] || code;
+        var icons = [['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][Math.floor(i/1)]||'🌡'];
+        var icon = ['☀','🌤','⛅','☁','🌫','🌫','🌦','🌦','🌧','🌧','🌧','❄','❄','❄','🌨','🌦','🌦','🌧','🌨','🌨','⛈','⛈','⛈'][[0,1,2,3,45,48,51,53,55,61,63,65,71,73,75,77,80,81,82,85,86,95,96,99].indexOf(code)]||'🌡';
+        html += '<div class="wx-day"><div class="wx-dn">'+dn+'</div><div class="wx-icon">'+icon+'</div><div class="wx-desc">'+desc+'</div><div class="wx-temp"><span class="wx-max">'+Math.round(days.temperature_2m_max[i])+'°</span> <span class="wx-min">min '+Math.round(days.temperature_2m_min[i])+'°</span></div></div>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    })
+    .catch(function(){ el.innerHTML = '<p class="meta">Weather unavailable</p>'; });
+})();
+</script>
   <p class="meta">Listing compiled from the official website and public reviews, not from a visit: the scores reflect what was documented on the date shown. Have more recent information? Write a review.</p><h2>Sources</h2><ul class="sources"><li><a href="https://lebetulle.org" rel="nofollow">lebetulle.org</a></li><li><a href="https://turismotorino.org/en/visit/accommodation/le-betulle-villaggio-naturista" rel="nofollow">turismotorino.org/en/visit/accommodation/le-betulle-villaggio-naturista</a></li><li><a href="https://www.italianaturista.it/centri-convenzionati/villaggio-naturista-le-betulle-la-cassa-to" rel="nofollow">www.italianaturista.it/centri-convenzionati/villaggio-naturista-le-betulle-la-cassa-to</a></li><li><a href="https://www.tripadvisor.com/Hotel_Review-g3187098-d4757736-Reviews-Villaggio_Le_Betulle-La_Cassa_Province_of_Turin_Piedmont.html" rel="nofollow">www.tripadvisor.com/Hotel_Review-g3187098-d4757736-Reviews-Villaggio_Le_Betulle-La_Cassa_Province_of_Turin_Piedmont.html</a></li><li><a href="https://www.campercontact.com/it/italia/piemonte/la-cassa/94619/le-betulle-villaggio-naturista" rel="nofollow">www.campercontact.com/it/italia/piemonte/la-cassa/94619/le-betulle-villaggio-naturista</a></li></ul>
 </div></section>
 </main>
