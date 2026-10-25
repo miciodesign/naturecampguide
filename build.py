@@ -481,6 +481,12 @@ def home(lang):
   <div class="hero-actions"><a class="btn" href="{lang_url(lang, 'camps')}">{e(t['hero_cta'])}</a><a class="btn ghost" href="#how">{e(t['hero_cta2'])}</a></div>
   {HORIZON}
 </div></section>
+<section class="block home-about"><div class="wrap">
+  <h2>{e(t['about_h1'])}</h2>
+  <p class="lead">{e(t['about_p1'])}</p>
+  <p>{e(t['about_p2'])}</p>
+  <p>{e(t['about_p3'])}<a href="mailto:{CONTACT}">{CONTACT}</a> · <a href="{lang_url(lang, 'about')}">{e(t['about_h1'])}</a></p>
+</div></section>
 <section class="block"><div class="wrap"><h2>{e(t['countries_h2'])}</h2><ul class="countries">{cl}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['latest_h2'])}</h2><ul class="camps">{latest}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['beaches_home_h2'])}</h2><p class="lead">{e(t['beaches_home_p'])}</p><ul class="camps">{beach_latest}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'beaches')}">{e(t['beaches_all'])}</a></p></div></section>
