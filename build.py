@@ -239,7 +239,7 @@ def dots(x):
 def page(lang, kind, title, desc, body, slug=None):
     t = T[lang]
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{lang_url(l, kind, slug)}">' for l in LANGS)
-    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("camps", "beaches", "pack", "review", "about"))
+    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("about", "camps", "beaches", "pack", "review"))
     langs = "\n".join(f'<a href="{lang_url(l, kind, slug)}" lang="{l}" hreflang="{l}"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
     return f"""<!doctype html>
 <html lang="{lang}">
