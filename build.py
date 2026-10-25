@@ -791,8 +791,10 @@ def about(lang):
   <p class="lead">{e(t['about_p1'])}</p>
   <p>{e(t['about_p2'])}</p>
   <p>{e(t['about_p3'])}<a href="mailto:{CONTACT}">{CONTACT}</a></p>
-  <h2 id="privacy">{e(t['privacy'])}</h2>
-  {privacy_block(lang)}
+</div></section>
+<section class="block privacy-section" id="privacy"><div class="wrap">
+  <h2 class="privacy-h2">{e(t['privacy'])}</h2>
+  <div class="privacy-body">{privacy_block(lang)}</div>
 </div></section>"""
     return page(lang, "about", f'{t["about_h1"]} — NaturCamp Guide', t["about_p1"], body)
 

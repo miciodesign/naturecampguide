@@ -150,6 +150,14 @@ form.review .row { display: grid; gap: 18px; grid-template-columns: repeat(auto-
 .btn.small { min-height: 40px; padding: 6px 16px; font-size: .9rem; white-space: nowrap; flex: none; }
 @media (max-width: 640px) { .pack li { flex-direction: column; align-items: flex-start; } }
 
+/* Privacy section */
+.privacy-section { background: var(--moss); }
+.privacy-h2 { font-size: 1.1rem; color: var(--muted); font-weight: 700; margin-bottom: 16px; }
+.privacy-body { font-size: .9rem; color: var(--muted); }
+.privacy-body p { max-width: 72ch; margin-bottom: .8em; }
+.privacy-body strong { color: var(--ink); }
+.privacy-body a { color: var(--muted); }
+
 /* Footer */
 .site-footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 32px 0; color: var(--muted); font-size: .92rem; }
 .site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
