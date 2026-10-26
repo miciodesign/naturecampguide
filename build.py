@@ -17,8 +17,11 @@ LANGS = ["it", "en", "de"]
 T = {
   "it": {
     "brand_sub": "Guide", "lang_name": "Italiano",
-    "nav": {"camps": "Campeggi", "beaches": "Spiagge", "pack": "Cosa portare", "review": "Scrivi una recensione", "about": "Chi siamo", "assoc": "Associazioni"},
-    "paths": {"camps": "campeggi", "beaches": "spiagge", "pack": "cosa-portare", "review": "recensioni", "about": "chi-siamo", "assoc": "associazioni"},
+    "nav": {"camps": "Campeggi", "beaches": "Spiagge", "pack": "Cosa portare", "review": "Scrivi una recensione", "about": "Chi siamo", "assoc": "Associazioni", "articles": "Articoli"},
+    "paths": {"camps": "campeggi", "beaches": "spiagge", "pack": "cosa-portare", "review": "recensioni", "about": "chi-siamo", "assoc": "associazioni", "articles": "articoli"},
+    "articles_h1": "Articoli", "articles_p": "Guide, consigli pratici e approfondimenti sul naturismo in Europa.",
+    "articles_home_h2": "Ultimi articoli", "articles_home_cta": "Tutti gli articoli",
+    "articles_read": "Leggi l'articolo", "articles_min_read": "min di lettura",
     "assoc_h1": "Associazioni naturiste in Europa", "assoc_p": "Le principali federazioni che promuovono e tutelano il naturismo, paese per paese. Attraverso queste organizzazioni puoi trovare campeggi affiliati, tessere riconosciute a livello internazionale e informazioni aggiornate sulle spiagge.",
     "assoc_int_h2": "Organizzazioni internazionali", "assoc_nat_h2": "Federazioni nazionali",
     "assoc_website": "Sito ufficiale", "assoc_members": "Soci affiliati",
@@ -73,8 +76,11 @@ T = {
   },
   "en": {
     "brand_sub": "Guide", "lang_name": "English",
-    "nav": {"camps": "Campsites", "beaches": "Beaches", "pack": "What to pack", "review": "Write a review", "about": "About", "assoc": "Associations"},
-    "paths": {"camps": "campsites", "beaches": "beaches", "pack": "what-to-pack", "review": "reviews", "about": "about", "assoc": "associations"},
+    "nav": {"camps": "Campsites", "beaches": "Beaches", "pack": "What to pack", "review": "Write a review", "about": "About", "assoc": "Associations", "articles": "Articles"},
+    "paths": {"camps": "campsites", "beaches": "beaches", "pack": "what-to-pack", "review": "reviews", "about": "about", "assoc": "associations", "articles": "articles"},
+    "articles_h1": "Articles", "articles_p": "Guides, practical tips and in-depth pieces on naturism in Europe.",
+    "articles_home_h2": "Latest articles", "articles_home_cta": "All articles",
+    "articles_read": "Read article", "articles_min_read": "min read",
     "assoc_h1": "Naturist associations in Europe", "assoc_p": "The main federations that promote and protect naturism, country by country. Through these organisations you can find affiliated campsites, internationally recognised membership cards and up-to-date information on beaches.",
     "assoc_int_h2": "International organisations", "assoc_nat_h2": "National federations",
     "assoc_website": "Official website", "assoc_members": "Affiliated members",
@@ -129,8 +135,11 @@ T = {
   },
   "de": {
     "brand_sub": "Guide", "lang_name": "Deutsch",
-    "nav": {"camps": "Campingplätze", "beaches": "Strände", "pack": "Packliste", "review": "Bewertung schreiben", "about": "Über uns", "assoc": "Verbände"},
-    "paths": {"camps": "campingplaetze", "beaches": "straende", "pack": "packliste", "review": "bewertungen", "about": "ueber-uns", "assoc": "verbaende"},
+    "nav": {"camps": "Campingplätze", "beaches": "Strände", "pack": "Packliste", "review": "Bewertung schreiben", "about": "Über uns", "assoc": "Verbände", "articles": "Artikel"},
+    "paths": {"camps": "campingplaetze", "beaches": "straende", "pack": "packliste", "review": "bewertungen", "about": "ueber-uns", "assoc": "verbaende", "articles": "artikel"},
+    "articles_h1": "Artikel", "articles_p": "Ratgeber, praktische Tipps und Hintergrundartikel zum Naturismus in Europa.",
+    "articles_home_h2": "Neueste Artikel", "articles_home_cta": "Alle Artikel",
+    "articles_read": "Artikel lesen", "articles_min_read": "Min. Lesezeit",
     "assoc_h1": "Naturistenverbände in Europa", "assoc_p": "Die wichtigsten Verbände, die den Naturismus fördern und schützen, Land für Land. Über diese Organisationen finden Sie angeschlossene Campingplätze, international anerkannte Mitgliedsausweise und aktuelle Informationen zu Stränden.",
     "assoc_int_h2": "Internationale Organisationen", "assoc_nat_h2": "Nationale Verbände",
     "assoc_website": "Offizielle Website", "assoc_members": "Angeschlossene Mitglieder",
@@ -204,6 +213,7 @@ def lang_url(lang, kind, slug=None):
     if kind == "home": return f"/{lang}/"
     if kind == "camp": return f"/{lang}/{p['camps']}/{slug}/"
     if kind == "beach": return f"/{lang}/{p['beaches']}/{slug}/"
+    if kind == "article": return f"/{lang}/{p['articles']}/{slug}/"
     if kind in p: return f"/{lang}/{p[kind]}/"
     return f"/{lang}/{kind}/"
 
@@ -250,7 +260,7 @@ def dots(x):
 def page(lang, kind, title, desc, body, slug=None):
     t = T[lang]
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{lang_url(l, kind, slug)}">' for l in LANGS)
-    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("about", "camps", "beaches", "pack", "review", "assoc"))
+    nav = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("about", "camps", "beaches", "pack", "review", "assoc", "articles"))
     langs = "\n".join(f'<a href="{lang_url(l, kind, slug)}" lang="{l}" hreflang="{l}"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
     return f"""<!doctype html>
 <html lang="{lang}">
@@ -486,6 +496,15 @@ def home(lang):
     cl = "".join(f'<li><a href="{lang_url(lang, "camps")}#{k}">{e(t["country_names"].get(k, k))}<span>{n}</span></a></li>' for k, n in sorted(countries.items(), key=lambda kv: t["country_names"].get(kv[0], kv[0])))
     latest = "".join(camp_item(c, lang) for c in sorted(DATA, key=lambda c: c["visited"], reverse=True)[:5])
     beach_latest = "".join(beach_item(b, lang) for b in sorted(BEACHES, key=lambda b: b["visited"], reverse=True)[:3])
+    arts_path = t["paths"]["articles"]
+    art_cards = "".join(
+        f'<article class="article-card">'
+        f'<div class="article-meta"><time>{a["date"]}</time> · <span>{a["min_read"]} {e(t["articles_min_read"])}</span></div>'
+        f'<h3 class="article-title"><a href="/{lang}/{arts_path}/{a["slug"]}/">{e(a["title"][lang])}</a></h3>'
+        f'<p>{e(a["summary"][lang])}</p>'
+        f'</article>'
+        for a in ARTICLES[:3]
+    )
     body = f"""<section class="hero"><div class="wrap">
   <h1>{e(t['hero_h1'])}</h1>
   <p>{e(t['hero_p'])}</p>
@@ -502,6 +521,7 @@ def home(lang):
 <section class="block"><div class="wrap"><h2>{e(t['latest_h2'])}</h2><ul class="camps">{latest}</ul></div></section>
 <section class="block"><div class="wrap"><h2>{e(t['beaches_home_h2'])}</h2><p class="lead">{e(t['beaches_home_p'])}</p><ul class="camps">{beach_latest}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'beaches')}">{e(t['beaches_all'])}</a></p></div></section>
 <section class="block assoc-home"><div class="wrap"><h2>{e(t['assoc_home_h2'])}</h2><p class="lead">{e(t['assoc_home_p'])}</p><ul class="assoc-home-list">{"".join(f'<li><span class="assoc-flag">' + {"IT":"🇮🇹","FR":"🇫🇷","DE":"🇩🇪","ES":"🇪🇸","HR":"🇭🇷","GB":"🇬🇧","NL":"🇳🇱","DK":"🇩🇰","PT":"🇵🇹","GR":"🇬🇷"}.get(a["country"],"") + f'</span> <a href="{e(a["url"])}" rel="nofollow noopener" target="_blank">{e(a["name"].split("–")[0].strip() if "–" in a["name"] else a["name"].split("(")[0].strip())}</a></li>' for a in ASSOC["national"][:6])}</ul><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'assoc')}">{e(t['assoc_home_cta'])}</a></p></div></section>
+<section class="block articles-home"><div class="wrap"><h2>{e(t['articles_home_h2'])}</h2><div class="articles-grid">{art_cards}</div><p style="margin-top:20px"><a class="btn ghost" href="{lang_url(lang, 'articles')}">{e(t['articles_home_cta'])}</a></p></div></section>
 {map_section(lang)}
 {europe_section(lang)}
 {news_section(lang)}
@@ -968,6 +988,559 @@ PRIVACY = {
 def privacy_block(lang):
     return PRIVACY[lang]
 
+# ---------------------------------------------------------------- articoli
+ARTICLES = [
+  {
+    "slug": "primo-campeggio-naturista",
+    "date": "2026-10-20",
+    "min_read": 7,
+    "title": {
+      "it": "Come prepararsi per il primo campeggio naturista",
+      "en": "How to prepare for your first naturist campsite",
+      "de": "So bereiten Sie sich auf Ihren ersten FKK-Campingplatz vor",
+    },
+    "summary": {
+      "it": "La prima volta in un campeggio naturista mette un po' di agitazione, è normale. Ecco cosa aspettarsi davvero, cosa portare e come comportarsi per sentirsi subito a proprio agio.",
+      "en": "A first visit to a naturist campsite brings a little nervousness — that is perfectly normal. Here is what to genuinely expect, what to bring and how to behave so you feel at ease straight away.",
+      "de": "Ein erster Besuch auf einem FKK-Campingplatz sorgt für etwas Aufregung — das ist völlig normal. Hier erfahren Sie, was Sie wirklich erwartet, was Sie mitnehmen sollten und wie Sie sich verhalten, damit Sie sich sofort wohlfühlen.",
+    },
+    "body": {
+      "it": """<p class="lead">La prima volta in un campeggio naturista mette un po' di agitazione, è normale. Tutti i naturisti esperti ci sono passati. La buona notizia è che i campeggi naturisti sono ambienti accoglienti, con regole chiare e una buona dose di normalità.</p>
+
+<h2>Cosa aspettarsi davvero</h2>
+<p>Il primo impatto è quasi sempre lo stesso: dieci minuti dopo essere arrivati, nessuno pensa più ai vestiti. L'atmosfera è rilassata, le persone sono lì per campeggiare e godersi la natura, non per giudicare gli altri. Troverai famiglie, coppie, persone sole, pensionati e giovani — un mix che non vedi in molti altri posti.</p>
+<p>Le regole non scritte sono poche ma importanti: si siede sempre su un proprio telo (anche al bar o in piscina), si rispetta la privacy degli altri senza fissare, e si indossa qualcosa quando si entra nelle aree ristorante o nei negozi del campeggio. Tutto il resto è normale campeggio.</p>
+
+<h2>Il telo: la regola numero uno</h2>
+<p>Il telo personale è l'unica cosa veramente obbligatoria nei campeggi naturisti. Si porta sempre con sé e si mette sotto di sé prima di sedersi su qualsiasi superficie comune: sdraio, panchina, sedia del bar. Non è una questione di igiene eccessiva: è semplicemente la norma condivisa che rende possibile la convivenza.</p>
+<p>Porta due o tre teli di diversa dimensione: uno grande per la spiaggia o la piscina, uno medio per il camping, uno piccolo da tenere in borsa per i posti imprevisti.</p>
+
+<h2>La tessera naturista</h2>
+<p>Molti campeggi in Italia, Germania e Austria richiedono la tessera INF (International Naturist Federation). La si ottiene dalla federazione del proprio paese — FENAIT per l'Italia — pagando una quota annuale. Vale quasi ovunque in Europa ed è spesso il modo più economico di entrare in un campeggio affiliato.</p>
+<p>Se non ce l'hai per il primo viaggio, molti campeggi vendono una tessera giornaliera o settimanale all'ingresso. Controlla sempre prima di partire sul sito del campeggio.</p>
+
+<h2>Cosa portare (e cosa non serve)</h2>
+<p>La valigia è più leggera del solito: niente costumi, pochi vestiti serali. Quello che serve davvero: crema solare ad alta protezione (le parti che non hanno mai preso il sole si scottano facilmente), sandali per docce e vialetti caldi, un pareo o kimono leggero per i momenti in cui coprirsi è richiesto o preferito.</p>
+<p>Per la spiaggia: ombrellone con picchetto a vite se prevedi vento, scarpette da scoglio se vai in Istria o in Liguria, borraccia termica perché molte spiagge naturiste sono lontane dai servizi.</p>
+
+<h2>Come comportarsi (e cosa non fare)</h2>
+<p>La regola più semplice: tratta gli altri come vorresti essere trattato. Non fissare, non fare foto senza il consenso esplicito di tutti i presenti, non fare commenti sul corpo di nessuno — né positivi né negativi. Le fotografie sono il punto più delicato: in quasi tutti i campeggi naturisti è vietato fotografare persone, anche di sfuggita, senza consenso.</p>
+<p>Il naturismo non è una pratica sessuale: qualsiasi comportamento sessuale in pubblico è vietato ovunque e porta all'espulsione immediata. I campeggi naturisti sono ambienti familiari e questo confine è preso molto sul serio.</p>
+
+<h2>Il momento del "svestirsi"</h2>
+<p>Non c'è un momento preciso in cui togliersi i vestiti. Alcuni lo fanno subito arrivando, altri aspettano di essere sistemati in piazzola, altri ancora cominciano dalla spiaggia o dalla piscina. Nessuno ti guarda. Fai come ti senti: se hai bisogno di qualche ora per ambientarti, prendila. I campeggi naturisti non sono rigidi su questo punto — l'obiettivo è che tu ti senta a tuo agio, non che rispetti un cerimoniale.</p>
+
+<h2>Dove andare per la prima volta</h2>
+<p>I campeggi grandi e organizzati, come quelli in Istria (Valalta, Koversada) o nelle Landes francesi (Euronat, CHM Montalivet), sono ideali per il debutto: strutture complete, molto personale abituato ai nuovi arrivati, atmosfera internazionale. I campeggi piccoli e isolati sono più intimi ma possono sembrare meno accessibili se non conosci ancora il mondo naturista.</p>
+<p>Guarda le schede nella nostra guida: ogni campeggio ha un giudizio specifico su quanto è adatto ai principianti.</p>""",
+      "en": """<p class="lead">A first visit to a naturist campsite brings a little nervousness — that is perfectly normal. Every experienced naturist has been there. The good news is that naturist campsites are welcoming places with clear rules and a healthy dose of normality.</p>
+
+<h2>What to genuinely expect</h2>
+<p>The first impression is almost always the same: ten minutes after arriving, nobody is thinking about clothes any more. The atmosphere is relaxed; people are there to camp and enjoy nature, not to judge anyone. You will find families, couples, solo travellers, retirees and young people — a mix you rarely see elsewhere.</p>
+<p>The unwritten rules are few but important: always sit on your own towel (even at the bar or pool), respect others' privacy without staring, and wear something when entering restaurant areas or the campsite shop. Everything else is normal camping.</p>
+
+<h2>The towel: rule number one</h2>
+<p>A personal towel is the one truly compulsory item at naturist campsites. Carry it everywhere and place it under you before sitting on any shared surface: a sun lounger, a bench, a bar chair. It is not excessive hygiene — it is simply the shared norm that makes coexistence possible.</p>
+<p>Bring two or three towels of different sizes: a large one for the beach or pool, a medium one for the pitch, a small one for unexpected moments.</p>
+
+<h2>The naturist card</h2>
+<p>Many campsites in Italy, Germany and Austria require the INF (International Naturist Federation) card. You get it from your national federation — British Naturism in the UK — for an annual fee. It is recognised almost everywhere in Europe and is often the cheapest way into an affiliated campsite.</p>
+<p>If you do not have one for your first trip, many campsites sell a day or week pass at the gate. Always check the campsite's website before you leave.</p>
+
+<h2>What to pack (and what you do not need)</h2>
+<p>Your bag is lighter than usual: no swimwear needed, few evening clothes. What you really need: high-factor sun cream (parts of your body that have never seen sun burn easily), sandals for showers and hot paths, a pareo or light kimono for moments when covering up is required or preferred.</p>
+<p>For the beach: a corkscrew-stake umbrella if you expect wind, water shoes if you are going to Istria or rocky coasts, a thermal water bottle because many naturist beaches are far from facilities.</p>
+
+<h2>How to behave (and what not to do)</h2>
+<p>The simplest rule: treat others as you would like to be treated. Do not stare, do not take photographs without the explicit consent of everyone in the frame, do not comment on anyone's body — neither positively nor negatively. Photography is the most sensitive point: at almost all naturist campsites it is forbidden to photograph people, even in passing, without consent.</p>
+<p>Naturism is not a sexual practice: any sexual behaviour in public is forbidden everywhere and leads to immediate expulsion. Naturist campsites are family environments and this boundary is taken very seriously.</p>
+
+<h2>The moment of undressing</h2>
+<p>There is no precise moment to take your clothes off. Some people do it as soon as they arrive, others wait until they are settled on their pitch, others start at the beach or pool. Nobody is watching. Do what feels right: if you need an hour or two to settle in, take it. Naturist campsites are not rigid about this — the goal is that you feel comfortable, not that you follow a ceremony.</p>
+
+<h2>Where to go for a first visit</h2>
+<p>Large, well-organised campsites — such as those in Istria (Valalta, Koversada) or in the French Landes (Euronat, CHM Montalivet) — are ideal for a first trip: full facilities, plenty of staff used to newcomers, international atmosphere. Small and remote campsites are more intimate but can feel less accessible if you do not yet know the naturist world.</p>
+<p>Check the listings in our guide: each campsite has a specific rating for how beginner-friendly it is.</p>""",
+      "de": """<p class="lead">Ein erster Besuch auf einem FKK-Campingplatz sorgt für etwas Aufregung — das ist völlig normal. Jeder erfahrene Naturist hat das hinter sich. Die gute Nachricht: Naturistencampingplätze sind einladende Orte mit klaren Regeln und einer gesunden Portion Normalität.</p>
+
+<h2>Was Sie wirklich erwartet</h2>
+<p>Der erste Eindruck ist fast immer gleich: Zehn Minuten nach der Ankunft denkt niemand mehr an Kleidung. Die Atmosphäre ist entspannt; die Menschen sind dort, um zu zelten und die Natur zu genießen — nicht um andere zu beurteilen. Sie finden Familien, Paare, Alleinreisende, Rentner und junge Menschen — eine Mischung, die man selten woanders sieht.</p>
+<p>Die ungeschriebenen Regeln sind wenige, aber wichtig: Immer auf dem eigenen Handtuch sitzen (auch an der Bar oder am Pool), die Privatsphäre anderer durch Nichtanstarren respektieren, und etwas anziehen, wenn man den Restaurantbereich oder den Campingshop betritt. Alles andere ist normales Camping.</p>
+
+<h2>Das Handtuch: Regel Nummer eins</h2>
+<p>Ein persönliches Handtuch ist das einzige wirklich obligatorische Utensil auf Naturistencampingplätzen. Immer dabei haben und vor dem Hinsetzen auf jede gemeinsame Fläche darunter legen: Liegestuhl, Bank, Barstuhl. Das ist keine übertriebene Hygiene — es ist einfach die gemeinsame Norm, die ein gutes Miteinander ermöglicht.</p>
+<p>Bringen Sie zwei bis drei Handtücher verschiedener Größen mit: ein großes für Strand oder Pool, ein mittleres für den Stellplatz, ein kleines für unvorhergesehene Momente.</p>
+
+<h2>Der Naturistenausweis</h2>
+<p>Viele Campingplätze in Italien, Deutschland und Österreich verlangen den INF-Ausweis (International Naturist Federation). Man erhält ihn beim eigenen nationalen Verband — in Deutschland beim DFK — gegen eine Jahresgebühr. Er wird fast überall in Europa anerkannt und ist oft der günstigste Weg auf einen angeschlossenen Campingplatz.</p>
+<p>Wenn Sie ihn für die erste Reise noch nicht haben: Viele Campingplätze verkaufen Tages- oder Wochenkarten am Eingang. Prüfen Sie das immer vorher auf der Website des Campingplatzes.</p>
+
+<h2>Was einpacken (und was nicht nötig ist)</h2>
+<p>Die Tasche ist leichter als sonst: kein Badeanzug, wenig Abendkleidung. Was wirklich gebraucht wird: Sonnencreme mit hohem Lichtschutzfaktor (Körperstellen, die nie Sonne gesehen haben, verbrennen leicht), Sandalen für Duschen und heiße Wege, ein Pareo oder leichter Kimono für Momente, in denen Bedeckung erforderlich oder bevorzugt ist.</p>
+<p>Für den Strand: Sonnenschirm mit Schraubhering bei erwartetem Wind, Badeschuhe für Istrien oder Felsenküsten, eine Thermotrinkflasche, da viele Naturistenstrände weit von der Infrastruktur entfernt liegen.</p>
+
+<h2>Wie man sich verhält (und was man nicht tut)</h2>
+<p>Die einfachste Regel: Behandeln Sie andere so, wie Sie selbst behandelt werden möchten. Nicht anstarren, keine Fotos ohne ausdrückliche Zustimmung aller Abgebildeten machen, keine Kommentare zum Körper anderer — weder positiv noch negativ. Fotografieren ist der heikelste Punkt: Auf fast allen Naturistencampingplätzen ist es verboten, Menschen auch nur im Vorbeigehen ohne Einwilligung zu fotografieren.</p>
+<p>Naturismus ist keine sexuelle Praxis: Jedes sexuelle Verhalten in der Öffentlichkeit ist überall verboten und führt zur sofortigen Verweisung des Platzes. Naturistencampingplätze sind Familienumgebungen, und diese Grenze wird sehr ernst genommen.</p>
+
+<h2>Der Moment des Ausziehens</h2>
+<p>Es gibt keinen genauen Zeitpunkt, die Kleidung abzulegen. Manche tun es sofort bei der Ankunft, andere warten, bis sie auf dem Stellplatz eingerichtet sind, wieder andere beginnen am Strand oder Pool. Niemand schaut zu. Tun Sie, was sich richtig anfühlt: Wenn Sie ein oder zwei Stunden Eingewöhnungszeit brauchen, nehmen Sie sie sich. Naturistencampingplätze sind in diesem Punkt nicht starr — das Ziel ist, dass Sie sich wohlfühlen, nicht dass Sie ein Ritual befolgen.</p>
+
+<h2>Wohin für den ersten Besuch</h2>
+<p>Große, gut organisierte Campingplätze — wie in Istrien (Valalta, Koversada) oder in den französischen Landes (Euronat, CHM Montalivet) — sind ideal für den Einstieg: vollständige Ausstattung, viel Personal, das Neulinge kennt, internationale Atmosphäre. Kleine und abgelegene Campingplätze sind intimer, können aber weniger zugänglich wirken, wenn man die Naturistenwelt noch nicht kennt.</p>
+<p>Schauen Sie in die Einträge unseres Führers: Jeder Campingplatz hat eine spezifische Bewertung für die Eignung für Einsteiger.</p>""",
+    },
+  },
+  {
+    "slug": "spiagge-naturiste-europa",
+    "date": "2026-10-18",
+    "min_read": 6,
+    "title": {
+      "it": "Le 10 spiagge naturiste più belle d'Europa",
+      "en": "The 10 most beautiful naturist beaches in Europe",
+      "de": "Die 10 schönsten Naturistenstrände Europas",
+    },
+    "summary": {
+      "it": "Dall'Algarve all'Istria, dalla Sardegna alle Landes: una selezione delle spiagge naturiste europee più spettacolari per paesaggio, acque e atmosfera.",
+      "en": "From the Algarve to Istria, from Sardinia to the Landes: a selection of the most spectacular naturist beaches in Europe for scenery, water and atmosphere.",
+      "de": "Von der Algarve bis Istrien, von Sardinien bis zu den Landes: eine Auswahl der spektakulärsten Naturistenstrände Europas nach Landschaft, Wasser und Atmosphäre.",
+    },
+    "body": {
+      "it": """<p class="lead">L'Europa ha alcune delle spiagge naturiste più belle al mondo. Alcune sono ufficiali e segnalate, altre tollerate e frequentate da decenni. Questa selezione privilegia il paesaggio, la qualità dell'acqua e l'atmosfera — non la vicinanza ai campeggi.</p>
+
+<h2>1. Praia do Barril, Algarve (Portogallo)</h2>
+<p>Una delle spiagge più suggestive dell'Algarve: si raggiunge a piedi attraverso una riserva naturale, il che significa pochi turisti e molta natura. La sabbia è fine, il mare è cristallino, le dune proteggono dal vento. Ufficialmente nudista per un lungo tratto.</p>
+
+<h2>2. Plage de l'Horizon, Landes (Francia)</h2>
+<p>Nel cuore della foresta atlantica delle Landes, questa spiaggia fa parte del comprensorio di CHM Montalivet, il primo campeggio naturista del mondo (1950). Chilometri di sabbia atlantica, onde grandi, pinete profumate. Solo per frequentatori del campeggio adiacente.</p>
+
+<h2>3. Punta Molentis, Sardegna (Italia)</h2>
+<p>Una piccola baia di granito rosa tra Villasimius e Capo Carbonara, raggiungibile solo a piedi o in barca. Acqua turchese, scogli bassi, pochissimi turisti nella prima parte della stagione. Tollerata da anni senza problemi.</p>
+
+<h2>4. Isola delle Femmine, Sicilia (Italia)</h2>
+<p>La spiaggia nord dell'isola, di fronte alla riserva marina, è uno dei posti più belli per fare il bagno nudi in Italia. Le acque sono protette, la riserva tiene lontano il turismo di massa. Tollerata senza problemi.</p>
+
+<h2>5. Koversada, Istria (Croazia)</h2>
+<p>La spiaggia del campeggio Koversada è su un'isola collegata da un pontile: fondo misto di sabbia e scogli, mare adriatico limpido, pini a pochi metri dall'acqua. Uno dei posti più iconici del naturismo europeo.</p>
+
+<h2>6. Playa de Vera, Almería (Spagna)</h2>
+<p>Una delle spiagge nudiste più lunghe d'Europa (oltre 20 km) e ufficialmente designata. Il paesaggio desertico alle spalle, il Mediterraneo davanti, e un'infrastruttura turistica sviluppata per chi vuole servizi. Ideale per chi viene dall'Europa del nord abituata al sole scarso.</p>
+
+<h2>7. Schwarzsee, FKK-Strand, Carinzia (Austria)</h2>
+<p>Un lago di montagna a oltre 1.000 metri, con acqua insolitamente calda per l'altitudine. La zona FKK è ben delimitata e molto rispettata. Il paesaggio delle Alpi carinziane è spettacolare.</p>
+
+<h2>8. Guvano, Cinque Terre (Italia)</h2>
+<p>Una delle spiagge più famose e più difficili da raggiungere d'Italia: solo a piedi attraverso un tunnel abbandonato. Il Mediterraneo ligure, le scogliere verticali, nessuna struttura. Tollerata da decenni ma soggetta ogni anno a incertezze normative.</p>
+
+<h2>9. Cap d'Agde, Hérault (Francia)</h2>
+<p>La "città naturista" più grande al mondo: una vera città con negozi, ristoranti, hotel e chilometri di spiaggia. Non è la scelta più solitaria, ma l'infrastruttura e l'atmosfera sono uniche. Ideale per chi vuole sperimentare il naturismo con tutti i comfort.</p>
+
+<h2>10. Kanegra, Istria (Slovenia)</h2>
+<p>La spiaggia del campeggio Adria vicino a Portorož: una lunga striscia di ghiaino e scogliera affacciata sul Golfo di Trieste. Meno frequentata delle spiagge istriane croate, molto amata dai frequentatori di lungo corso.</p>
+
+<p style="margin-top:2rem"><em>Queste spiagge sono descritte nella nostra guida con voti dettagliati e informazioni pratiche aggiornate.</em></p>""",
+      "en": """<p class="lead">Europe has some of the most beautiful naturist beaches in the world. Some are official and signposted; others have been tolerated for decades. This selection prioritises scenery, water quality and atmosphere — not proximity to campsites.</p>
+
+<h2>1. Praia do Barril, Algarve (Portugal)</h2>
+<p>One of the most evocative beaches on the Algarve: reached on foot through a nature reserve, which means few tourists and plenty of nature. Fine sand, crystal-clear water, dunes that shelter from the wind. Officially nudist for a long stretch.</p>
+
+<h2>2. Plage de l'Horizon, Landes (France)</h2>
+<p>In the heart of the Atlantic Landes forest, this beach is part of the CHM Montalivet complex — the world's first naturist campsite (1950). Miles of Atlantic sand, big waves, fragrant pine forests. For guests of the adjacent campsite only.</p>
+
+<h2>3. Punta Molentis, Sardinia (Italy)</h2>
+<p>A small pink granite cove between Villasimius and Capo Carbonara, reachable only on foot or by boat. Turquoise water, low rocks, very few tourists in the early season. Tolerated for years without issue.</p>
+
+<h2>4. Isola delle Femmine, Sicily (Italy)</h2>
+<p>The northern beach of this island, facing the marine reserve, is one of the best places for nude bathing in Italy. The protected waters keep mass tourism at bay. Long tolerated without incident.</p>
+
+<h2>5. Koversada, Istria (Croatia)</h2>
+<p>The beach at Koversada campsite sits on an island connected by a jetty: mixed sand and rock, clear Adriatic water, pines a few metres from the water. One of the most iconic spots in European naturism.</p>
+
+<h2>6. Playa de Vera, Almería (Spain)</h2>
+<p>One of the longest officially designated nudist beaches in Europe (over 20 km). Desert landscape behind, Mediterranean in front, and a well-developed tourist infrastructure for those who want facilities. Ideal for northern Europeans accustomed to limited sun.</p>
+
+<h2>7. Schwarzsee FKK-Strand, Carinthia (Austria)</h2>
+<p>A mountain lake above 1,000 metres with unusually warm water for the altitude. The FKK area is well marked and widely respected. The Carinthian Alpine scenery is spectacular.</p>
+
+<h2>8. Guvano, Cinque Terre (Italy)</h2>
+<p>One of Italy's most famous and most difficult beaches to reach: on foot only, through an abandoned tunnel. The Ligurian Mediterranean, vertical cliffs, no facilities. Tolerated for decades but subject to annual regulatory uncertainty.</p>
+
+<h2>9. Cap d'Agde, Hérault (France)</h2>
+<p>The world's largest naturist "town": a real village with shops, restaurants, hotels and miles of beach. Not the most solitary choice, but the infrastructure and atmosphere are unique. Ideal for those who want to experience naturism with all mod cons.</p>
+
+<h2>10. Kanegra, Istria (Slovenia)</h2>
+<p>The beach at Adria campsite near Portorož: a long stretch of shingle and rock facing the Gulf of Trieste. Less crowded than the Croatian Istrian beaches, very much loved by long-standing visitors.</p>
+
+<p style="margin-top:2rem"><em>These beaches are described in our guide with detailed ratings and up-to-date practical information.</em></p>""",
+      "de": """<p class="lead">Europa hat einige der schönsten Naturistenstrände der Welt. Manche sind offiziell und ausgeschildert; andere werden seit Jahrzehnten geduldet. Diese Auswahl priorisiert Landschaft, Wasserqualität und Atmosphäre — nicht die Nähe zu Campingplätzen.</p>
+
+<h2>1. Praia do Barril, Algarve (Portugal)</h2>
+<p>Einer der eindrucksvollsten Strände der Algarve: nur zu Fuß durch ein Naturschutzgebiet erreichbar, was wenige Touristen und viel Natur bedeutet. Feiner Sand, kristallklares Wasser, Dünen als Windschutz. Auf einer langen Strecke offiziell als Nudistenstrand ausgewiesen.</p>
+
+<h2>2. Plage de l'Horizon, Landes (Frankreich)</h2>
+<p>Im Herzen des atlantischen Landesdwaldes liegt dieser Strand zum CHM Montalivet-Komplex — dem ersten Naturistencampingplatz der Welt (1950). Kilometerlanger Atlantiksand, große Wellen, duftende Pinienwälder. Nur für Gäste des angrenzenden Campingplatzes.</p>
+
+<h2>3. Punta Molentis, Sardinien (Italien)</h2>
+<p>Eine kleine rosa Granitbucht zwischen Villasimius und Capo Carbonara, nur zu Fuß oder per Boot erreichbar. Türkisfarbenes Wasser, flache Felsen, sehr wenige Touristen in der Vorsaison. Seit Jahren problemlos geduldet.</p>
+
+<h2>4. Isola delle Femmine, Sizilien (Italien)</h2>
+<p>Der Nordstrand dieser Insel gegenüber dem Meeresschutzgebiet ist einer der schönsten Plätze zum Nacktbaden in Italien. Die geschützten Gewässer halten Massentourismus fern. Seit Langem problemlos geduldet.</p>
+
+<h2>5. Koversada, Istrien (Kroatien)</h2>
+<p>Der Strand des Campingplatzes Koversada liegt auf einer Insel, die durch einen Steg verbunden ist: gemischter Sand-Fels-Untergrund, klares Adriatikwasser, Pinien wenige Meter vom Wasser. Einer der ikonischsten Orte des europäischen Naturismus.</p>
+
+<h2>6. Playa de Vera, Almería (Spanien)</h2>
+<p>Einer der längsten offiziell ausgewiesenen Nudistenstrände Europas (über 20 km). Wüstenlandschaft im Hinterland, Mittelmeer davor und eine gut entwickelte touristische Infrastruktur für alle, die Annehmlichkeiten wünschen. Ideal für Nordeuropäer, die wenig Sonne gewohnt sind.</p>
+
+<h2>7. Schwarzsee FKK-Strand, Kärnten (Österreich)</h2>
+<p>Ein Bergsee auf über 1.000 Metern mit ungewöhnlich warmem Wasser für diese Höhenlage. Der FKK-Bereich ist gut ausgeschildert und wird respektiert. Die Kärntner Alpenlandschaft ist spektakulär.</p>
+
+<h2>8. Guvano, Cinque Terre (Italien)</h2>
+<p>Einer der bekanntesten und am schwierigsten erreichbaren Strände Italiens: nur zu Fuß durch einen verlassenen Tunnel. Das ligurische Mittelmeer, senkrechte Klippen, keine Einrichtungen. Seit Jahrzehnten geduldet, aber jedes Jahr normativer Unsicherheit ausgesetzt.</p>
+
+<h2>9. Cap d'Agde, Hérault (Frankreich)</h2>
+<p>Die größte Naturisten-„Stadt" der Welt: ein echtes Dorf mit Geschäften, Restaurants, Hotels und kilometerlangem Strand. Nicht die einsamste Wahl, aber Infrastruktur und Atmosphäre sind einzigartig. Ideal für alle, die Naturismus mit allem Komfort erleben möchten.</p>
+
+<h2>10. Kanegra, Istrien (Slowenien)</h2>
+<p>Der Strand des Campingplatzes Adria bei Portorož: ein langer Streifen aus Kies und Fels mit Blick auf den Golf von Triest. Weniger frequentiert als die kroatisch-istrischen Strände, sehr beliebt bei Stammbesuchern.</p>
+
+<p style="margin-top:2rem"><em>Diese Strände werden in unserem Führer mit detaillierten Bewertungen und aktuellen praktischen Informationen beschrieben.</em></p>""",
+    },
+  },
+  {
+    "slug": "naturismo-famiglia",
+    "date": "2026-10-15",
+    "min_read": 5,
+    "title": {
+      "it": "Naturismo in famiglia: guida pratica",
+      "en": "Family naturism: a practical guide",
+      "de": "Familien-Naturismus: ein praktischer Leitfaden",
+    },
+    "summary": {
+      "it": "Portare i bambini in un campeggio naturista è più semplice di quanto sembri. I bambini si adattano facilmente — spesso meglio degli adulti. Ecco come prepararsi e cosa scegliere.",
+      "en": "Taking children to a naturist campsite is simpler than it might seem. Children adapt easily — often better than adults. Here is how to prepare and what to choose.",
+      "de": "Kinder auf einen Naturistencampingplatz mitzunehmen ist einfacher als es scheint. Kinder passen sich leicht an — oft besser als Erwachsene. So bereiten Sie sich vor und treffen die richtige Wahl.",
+    },
+    "body": {
+      "it": """<p class="lead">Il naturismo è una delle vacanze più adatte alle famiglie che esistano. I bambini sono liberi, c'è spazio, i campeggi sono sicuri e la comunità è accogliente. L'unico ostacolo è spesso la titubanza degli adulti — non dei bambini.</p>
+
+<h2>Come reagiscono i bambini</h2>
+<p>I bambini piccoli (fino a 10-12 anni) accettano il naturismo senza difficoltà. Per loro "senza vestiti" è semplicemente il modo in cui si sta in questo posto, come si indossa il costume al mare. Non c'è imbarazzo perché non c'è confronto — tutti sono nudi, nessuno è diverso.</p>
+<p>I preadolescenti e gli adolescenti possono avere più riserve, ed è giusto rispettarle. Molti campeggi hanno aree miste dove chi vuole portare il costume può farlo. Non forzare mai: il naturismo funziona solo se è una scelta libera.</p>
+
+<h2>Come spiegarlo ai bambini</h2>
+<p>Non serve una spiegazione elaborata. "In questo campeggio le persone stanno senza vestiti perché è più comodo e naturale" è sufficiente per la maggior parte dei bambini. Le domande che fanno sono spesso pratiche ("anche io devo togliermi le scarpe?") più che filosofiche.</p>
+<p>Il punto più importante: il corpo non è qualcosa di cui vergognarsi, e guardare il corpo degli altri non è educato. Questi due messaggi, detti in modo semplice, bastano.</p>
+
+<h2>Quale campeggio scegliere</h2>
+<p>Per le famiglie con bambini piccoli, i campeggi grandi e attrezzati sono la scelta migliore: piscine con scivoli, animazione, aree giochi, ristoranti. Valalta e Koversada in Istria, Euronat nelle Landes, Domaine de la Jenesse in Vandea hanno strutture pensate per le famiglie.</p>
+<p>I campeggi piccoli e tranquilli sono adatti per famiglie con bambini più grandi o per chi cerca quiete. Controllate sempre nella nostra guida il giudizio specifico su "adatto alle famiglie".</p>
+
+<h2>Aspetti pratici</h2>
+<p>Crema solare: i bambini si scottano più in fretta degli adulti, specialmente nelle parti che non hanno mai preso il sole. Applica SPF 50 ogni due ore e usa un cappellino per il sole intenso. Portare un pareo o una maglietta leggera per le pause all'ombra è sempre utile.</p>
+<p>Sandali: nei campeggi ci sono vialetti caldi, docce comuni, piscine. Un paio di sandali lavabili per ogni membro della famiglia è indispensabile.</p>
+<p>Teli: ogni bambino ha bisogno del suo telo personale da portare sempre con sé. Farglielo portare da soli è un buon modo per far capire la regola.</p>
+
+<h2>Sicurezza e regole</h2>
+<p>I campeggi naturisti sono ambienti molto sicuri per i bambini: la comunità è attenta, il controllo sociale è alto, e le famiglie sono la maggioranza degli ospiti. Le regole fotografiche proteggono i bambini: in un campeggio naturista non si possono fotografare persone senza consenso, e questo vale in modo ancora più rigoroso per i minori.</p>
+<p>Se un bambino dice di non voler più stare senza vestiti, rispettate la sua scelta senza discussioni. Il naturismo non funziona per tutti, e va benissimo così.</p>""",
+      "en": """<p class="lead">Naturism is one of the most family-friendly holidays there is. Children are free, there is space, campsites are safe and the community is welcoming. The only obstacle is often the hesitation of adults — not children.</p>
+
+<h2>How children react</h2>
+<p>Young children (up to 10–12 years old) accept naturism without difficulty. For them, "without clothes" is simply how things are done here, just as one wears a swimsuit at the seaside. There is no embarrassment because there is no comparison — everyone is nude, nobody is different.</p>
+<p>Pre-teens and teenagers may have more reservations, and it is right to respect them. Many campsites have mixed areas where those who want to wear a swimsuit can do so. Never force it: naturism only works as a free choice.</p>
+
+<h2>How to explain it to children</h2>
+<p>No elaborate explanation is needed. "At this campsite people are without clothes because it is more comfortable and natural" is enough for most children. The questions they ask are often practical ("do I have to take my shoes off too?") rather than philosophical.</p>
+<p>The most important point: the body is not something to be ashamed of, and looking at other people's bodies is impolite. These two messages, said simply, are enough.</p>
+
+<h2>Which campsite to choose</h2>
+<p>For families with young children, large and well-equipped campsites are the best choice: pools with slides, activities, play areas, restaurants. Valalta and Koversada in Istria, Euronat in the Landes, Domaine de la Jenesse in the Vendée all have family-oriented facilities.</p>
+<p>Small, quiet campsites suit families with older children or those looking for peace. Always check our guide's specific rating for "family-friendly".</p>
+
+<h2>Practical points</h2>
+<p>Sun cream: children burn faster than adults, especially on parts of the body that have never seen the sun. Apply SPF 50 every two hours and use a sun hat in strong sun. Bringing a pareo or light T-shirt for shaded breaks is always useful.</p>
+<p>Sandals: campsites have hot paths, shared showers and pools. A pair of washable sandals for every family member is essential.</p>
+<p>Towels: every child needs their own personal towel to carry at all times. Getting them to carry it themselves is a good way to explain the rule.</p>
+
+<h2>Safety and rules</h2>
+<p>Naturist campsites are very safe environments for children: the community is attentive, social oversight is high, and families are the majority of guests. The photography rules protect children: at a naturist campsite you cannot photograph people without consent, and this applies even more strictly to minors.</p>
+<p>If a child says they no longer want to be without clothes, respect their choice without discussion. Naturism does not work for everyone, and that is perfectly fine.</p>""",
+      "de": """<p class="lead">Naturismus ist einer der familienfreundlichsten Urlaube, die es gibt. Kinder sind frei, es gibt Raum, Campingplätze sind sicher und die Gemeinschaft ist einladend. Das einzige Hindernis ist oft das Zögern der Erwachsenen — nicht der Kinder.</p>
+
+<h2>Wie Kinder reagieren</h2>
+<p>Kleine Kinder (bis 10–12 Jahre) akzeptieren den Naturismus problemlos. Für sie ist "ohne Kleidung" einfach die Art, wie man hier ist — genauso wie man am Meer Badekleidung trägt. Es gibt keine Verlegenheit, weil es keinen Vergleich gibt — alle sind nackt, niemand ist anders.</p>
+<p>Vorpubertäre Kinder und Teenager können mehr Vorbehalte haben, und es ist richtig, diese zu respektieren. Viele Campingplätze haben gemischte Bereiche, wo man einen Badeanzug tragen kann, wenn man möchte. Niemals zwingen: Naturismus funktioniert nur als freie Wahl.</p>
+
+<h2>Wie man es Kindern erklärt</h2>
+<p>Es braucht keine aufwendige Erklärung. "Auf diesem Campingplatz sind die Menschen ohne Kleidung, weil es bequemer und natürlicher ist" reicht für die meisten Kinder. Die Fragen, die sie stellen, sind oft praktisch ("muss ich auch die Schuhe ausziehen?") als philosophisch.</p>
+<p>Der wichtigste Punkt: Der Körper ist nichts, wofür man sich schämen muss, und andere anzustarren ist unhöflich. Diese zwei Botschaften, einfach ausgedrückt, genügen.</p>
+
+<h2>Welchen Campingplatz wählen</h2>
+<p>Für Familien mit kleinen Kindern sind große, gut ausgestattete Campingplätze die beste Wahl: Pools mit Rutschen, Animationsprogramm, Spielplätze, Restaurants. Valalta und Koversada in Istrien, Euronat in den Landes, Domaine de la Jenesse in der Vendée haben familienorientierte Einrichtungen.</p>
+<p>Kleine, ruhige Campingplätze eignen sich für Familien mit älteren Kindern oder für alle, die Ruhe suchen. Prüfen Sie immer die spezifische Bewertung für „familienfreundlich" in unserem Führer.</p>
+
+<h2>Praktische Hinweise</h2>
+<p>Sonnencreme: Kinder verbrennen schneller als Erwachsene, besonders an Körperstellen, die nie Sonne gesehen haben. LSF 50 alle zwei Stunden auftragen und bei intensiver Sonne einen Sonnenhut verwenden. Ein Pareo oder leichtes T-Shirt für Schatten-Pausen ist immer sinnvoll.</p>
+<p>Sandalen: Auf Campingplätzen gibt es heiße Wege, Gemeinschaftsduschen und Pools. Ein Paar waschbare Sandalen für jedes Familienmitglied ist unverzichtbar.</p>
+<p>Handtücher: Jedes Kind braucht sein eigenes persönliches Handtuch, das es immer dabei hat. Es selbst tragen zu lassen ist ein guter Weg, die Regel zu erklären.</p>
+
+<h2>Sicherheit und Regeln</h2>
+<p>Naturistencampingplätze sind sehr sichere Umgebungen für Kinder: Die Gemeinschaft ist aufmerksam, die soziale Kontrolle ist hoch, und Familien sind die Mehrheit der Gäste. Die Fotografierregeln schützen Kinder: Auf einem Naturistencampingplatz darf man Menschen ohne Einwilligung nicht fotografieren, und das gilt noch strenger für Minderjährige.</p>
+<p>Wenn ein Kind sagt, es möchte nicht mehr ohne Kleidung sein, respektieren Sie die Entscheidung ohne Diskussion. Naturismus funktioniert nicht für alle, und das ist völlig in Ordnung.</p>""",
+    },
+  },
+  {
+    "slug": "tessera-inf-come-ottenerla",
+    "date": "2026-10-10",
+    "min_read": 4,
+    "title": {
+      "it": "Tessera INF: cos'è e come ottenerla",
+      "en": "INF card: what it is and how to get one",
+      "de": "INF-Ausweis: Was er ist und wie man ihn bekommt",
+    },
+    "summary": {
+      "it": "La tessera INF è richiesta in molti campeggi naturisti europei. Costa poco, vale un anno intero e apre le porte a centinaia di strutture. Ecco tutto quello che devi sapere.",
+      "en": "The INF card is required at many European naturist campsites. It costs little, lasts a full year and opens the doors to hundreds of facilities. Here is everything you need to know.",
+      "de": "Der INF-Ausweis wird auf vielen europäischen Naturistencampingplätzen verlangt. Er kostet wenig, gilt ein volles Jahr und öffnet die Türen zu Hunderten von Einrichtungen. Alles, was Sie wissen müssen.",
+    },
+    "body": {
+      "it": """<p class="lead">La tessera INF (International Naturist Federation) è il documento di riconoscimento del naturismo internazionale. Non è obbligatoria ovunque, ma in molti campeggi europei — specialmente in Italia, Germania, Austria e Croazia — è richiesta all'ingresso o consente uno sconto sul prezzo.</p>
+
+<h2>Cos'è esattamente</h2>
+<p>È un tesserino plastificato (fisico o digitale, dipende dalla federazione) che certifica che sei membro di una federazione naturista affiliata all'INF. Ha una foto, il tuo nome e la data di scadenza. Molti campeggi la scannerizzano all'ingresso come documento di identità aggiuntivo.</p>
+
+<h2>Come ottenerla in Italia</h2>
+<p>In Italia si ottiene attraverso la FENAIT (Federazione Naturista Italiana). Il processo è semplice: vai sul sito fenait.org, compila il modulo di iscrizione, paga la quota annuale (circa 40-50 euro per un adulto, meno per under 18 e anziani), e ricevi la tessera per posta o digitale. La quota include l'assicurazione e la rivista associativa.</p>
+
+<h2>Come ottenerla in altri paesi</h2>
+<p>Ogni paese ha la sua federazione affiliata INF. Le principali sono: FFN per la Francia (ffn-naturisme.com), DFK per la Germania (dfk.org), British Naturism per il Regno Unito (britishnaturism.org.uk), FEN per la Spagna (naturismo.org). Tutte hanno un processo di iscrizione online.</p>
+
+<h2>Vale anche se non sono membro di una federazione locale?</h2>
+<p>Se ti trovi in un paese dove non esiste una federazione INF, o se vuoi la tessera prima di completare l'iscrizione alla federazione locale, molti campeggi vendono una tessera giornaliera o settimanale all'ingresso — a un prezzo leggermente più alto. Questa opzione non dà i benefici completi dell'iscrizione annuale (assicurazione, rivista, sconti partner) ma ti permette di accedere al campeggio.</p>
+
+<h2>Quanto risparmio con la tessera?</h2>
+<p>Varia da campeggio a campeggio. Alcuni applicano uno sconto del 5-15% sul prezzo della piazzola, altri danno l'ingresso gratuito ai bambini dei soci, altri ancora hanno prezzi fissi per i soci che sono inferiori al listino. In media, in due settimane di vacanza la tessera si ripaga ampiamente.</p>
+
+<h2>È richiesta anche per le spiagge?</h2>
+<p>No. Le spiagge naturiste — siano ufficiali o tollerate — sono accessibili a tutti senza tessera. La tessera INF è richiesta solo dai campeggi affiliati e da alcune strutture private.</p>""",
+      "en": """<p class="lead">The INF card (International Naturist Federation) is the international naturism membership document. It is not compulsory everywhere, but at many European campsites — especially in Italy, Germany, Austria and Croatia — it is required at the gate or earns a price discount.</p>
+
+<h2>What it actually is</h2>
+<p>It is a laminated card (physical or digital, depending on the federation) that certifies you are a member of a naturist federation affiliated with INF. It has a photo, your name and an expiry date. Many campsites scan it at the gate as an additional identity document.</p>
+
+<h2>How to get one in the UK</h2>
+<p>In the UK you get it through British Naturism (britishnaturism.org.uk). The process is straightforward: fill in the membership form online, pay the annual fee (around £35–45 for an adult, less for under-18s and seniors), and receive a physical or digital card. The fee includes insurance and the member magazine.</p>
+
+<h2>How to get one in other countries</h2>
+<p>Each country has its own INF-affiliated federation. The main ones are: FFN for France (ffn-naturisme.com), DFK for Germany (dfk.org), FENAIT for Italy (fenait.org), FEN for Spain (naturismo.org). All have an online sign-up process.</p>
+
+<h2>What if I am not a member of a local federation?</h2>
+<p>If you are in a country without an INF federation, or want the card before completing a local membership, many campsites sell a day or week pass at the gate — at a slightly higher price. This option does not give the full benefits of annual membership (insurance, magazine, partner discounts) but lets you access the campsite.</p>
+
+<h2>How much do I save with the card?</h2>
+<p>It varies by campsite. Some apply a 5–15% discount on the pitch price, others give free entry for members' children, and some have fixed member rates below the standard tariff. On average, over a two-week holiday the card pays for itself comfortably.</p>
+
+<h2>Is it needed for beaches too?</h2>
+<p>No. Naturist beaches — whether official or tolerated — are accessible to everyone without a card. The INF card is only required by affiliated campsites and some private facilities.</p>""",
+      "de": """<p class="lead">Der INF-Ausweis (International Naturist Federation) ist das internationale Naturismus-Mitgliedsdokument. Er ist nicht überall Pflicht, aber auf vielen europäischen Campingplätzen — besonders in Italien, Deutschland, Österreich und Kroatien — wird er am Eingang verlangt oder gewährt einen Preisnachlass.</p>
+
+<h2>Was er genau ist</h2>
+<p>Es ist ein laminierter Ausweis (physisch oder digital, je nach Verband), der bescheinigt, dass man Mitglied eines INF-angeschlossenen Naturistenverbandes ist. Er enthält ein Foto, den Namen und das Ablaufdatum. Viele Campingplätze scannen ihn am Eingang als zusätzliches Ausweisdokument.</p>
+
+<h2>Wie man ihn in Deutschland bekommt</h2>
+<p>In Deutschland erhält man ihn über den DFK (Deutscher Verband für Freikörperkultur, dfk.org). Der Prozess ist einfach: Online-Formular ausfüllen, Jahresbeitrag bezahlen (ca. 40–60 Euro für Erwachsene, weniger für Unter-18-Jährige und Senioren), und den Ausweis per Post oder digital erhalten. Der Beitrag beinhaltet Versicherung und Verbandszeitschrift.</p>
+
+<h2>Wie man ihn in anderen Ländern bekommt</h2>
+<p>Jedes Land hat seinen eigenen INF-angeschlossenen Verband. Die wichtigsten sind: FFN für Frankreich (ffn-naturisme.com), British Naturism für das Vereinigte Königreich (britishnaturism.org.uk), FENAIT für Italien (fenait.org), FEN für Spanien (naturismo.org). Alle haben ein Online-Anmeldeverfahren.</p>
+
+<h2>Was wenn ich kein Mitglied eines lokalen Verbands bin?</h2>
+<p>Wenn Sie sich in einem Land ohne INF-Verband befinden oder den Ausweis vor dem Abschluss einer lokalen Mitgliedschaft wünschen, verkaufen viele Campingplätze eine Tages- oder Wochenkarte am Eingang — zu einem etwas höheren Preis. Diese Option bietet nicht alle Vorteile einer Jahresmitgliedschaft (Versicherung, Zeitschrift, Partnerrabatte), ermöglicht aber den Zugang zum Campingplatz.</p>
+
+<h2>Wie viel spare ich mit dem Ausweis?</h2>
+<p>Das variiert je nach Campingplatz. Manche gewähren 5–15% Rabatt auf den Stellplatzpreis, andere ermöglichen freien Eintritt für Mitgliederkinder, und wieder andere haben feste Mitgliederpreise unter dem regulären Tarif. Im Durchschnitt amortisiert sich der Ausweis bei einem zweiwöchigen Urlaub deutlich.</p>
+
+<h2>Wird er auch für Strände benötigt?</h2>
+<p>Nein. Naturistenstrände — ob offiziell oder geduldet — sind für alle ohne Ausweis zugänglich. Der INF-Ausweis wird nur von angeschlossenen Campingplätzen und einigen privaten Einrichtungen verlangt.</p>""",
+    },
+  },
+  {
+    "slug": "naturismo-principianti-faq",
+    "date": "2026-10-05",
+    "min_read": 5,
+    "title": {
+      "it": "Naturismo per principianti: le domande più frequenti",
+      "en": "Naturism for beginners: the most common questions answered",
+      "de": "Naturismus für Einsteiger: die häufigsten Fragen beantwortet",
+    },
+    "summary": {
+      "it": "\"E se mi imbarazzo?\" \"Posso venire da solo?\" \"Cosa si fa se piove?\" Le domande che tutti fanno prima della prima volta — con risposte oneste.",
+      "en": "\"What if I feel embarrassed?\" \"Can I come alone?\" \"What happens if it rains?\" The questions everyone asks before their first time — with honest answers.",
+      "de": "\"Was wenn ich mich schäme?\" \"Kann ich alleine kommen?\" \"Was passiert bei Regen?\" Die Fragen, die alle vor dem ersten Mal stellen — mit ehrlichen Antworten.",
+    },
+    "body": {
+      "it": """<p class="lead">Prima della prima volta in un campeggio naturista, tutti hanno le stesse domande. Alcune sono pratiche, altre sono timori che sembrano grandi ma si dissolvono in fretta. Ecco le risposte più oneste che possiamo dare.</p>
+
+<h2>E se mi imbarazzo?</h2>
+<p>Succede quasi a tutti nei primissimi minuti. Poi passa. Il fatto che tutti siano nella stessa situazione accelera moltissimo il processo: non c'è un "vestito" rispetto a cui sentirti diverso. La maggior parte delle persone riferisce che dopo 20-30 minuti non ci pensa più.</p>
+
+<h2>Posso venire da solo/a?</h2>
+<p>Sì, ed è più comune di quanto pensi. Molti naturisti vanno nei campeggi da soli, specialmente i più esperti. I campeggi naturisti sono ambienti sociali e accoglienti — di solito è più facile attaccare discorso rispetto a un campeggio normale, perché l'ambiente informale abbassa le barriere.</p>
+
+<h2>Cosa si fa se mi viene... una reazione involontaria?</h2>
+<p>È la domanda che molti si fanno e nessuno vuole fare. La risposta pratica: mettiti sull'asciugamano a pancia in giù, tuffati in acqua, o aspetta che passi. Succede raramente dopo i primissimi minuti perché il contesto non è erotico. I campeggi naturisti non sono ambienti sessualizzati.</p>
+
+<h2>Devo togliermi tutto subito?</h2>
+<p>No. Non c'è nessuna regola che impone di spogliarsi all'ingresso. Puoi togliere i vestiti quando sei pronto/a — in piazzola, in spiaggia, dove vuoi. Molti arrivano vestiti, sistemano il campeggio e si spogliano quando sono già a proprio agio.</p>
+
+<h2>Cosa succede se piove?</h2>
+<p>Come in qualsiasi campeggio: ci si mette qualcosa addosso. Nei campeggi naturisti non c'è nessuna regola che impone di stare nudi con il brutto tempo. In molti ci sono strutture coperte, bar, sale comuni dove passare le giornate piovose.</p>
+
+<h2>Posso portare il costume da bagno?</h2>
+<p>Nella maggior parte dei campeggi naturisti le aree principali (piscina, spiaggia, zone comuni) sono nudiste. Alcuni campeggi hanno aree "miste" o permettono il costume nell'area ristorante. Controlla le regole specifiche prima di partire. In ogni caso, portare un costume è sempre prudente per le situazioni impreviste.</p>
+
+<h2>È sicuro per le donne da sole?</h2>
+<p>I campeggi naturisti sono generalmente considerati molto sicuri per le donne. Le regole sono chiare, la comunità è attenta, e qualsiasi comportamento molesto viene preso sul serio. Il codice di condotta — niente fissare, niente avances non richieste — è applicato con più rigore che in molti altri contesti. Questo non significa che non esistano situazioni sgradevoli, ma la cultura dei campeggi naturisti è strutturalmente più rispettosa di molti altri ambienti estivi.</p>
+
+<h2>E se il mio corpo non è "perfetto"?</h2>
+<p>Il naturismo è forse l'unico ambiente in cui la varietà dei corpi è davvero normale e non commentata. Vedrai corpi di tutte le età, forme e dimensioni — ed è esattamente questo il punto. Nessuno giudica. L'esperienza è spesso liberatoria per chi arriva con insicurezze sul proprio corpo.</p>
+
+<h2>Posso fare foto?</h2>
+<p>No, non senza consenso esplicito. Questa regola è applicata rigorosamente in tutti i campeggi naturisti. Per foto di paesaggio o di te stesso/a, verifica sempre che non ci siano altre persone inquadrate. In caso di dubbio, chiedi.</p>
+
+<h2>Come faccio a sapere se un campeggio è "vero" naturista?</h2>
+<p>I campeggi affiliati INF o ENF sono quelli riconosciuti ufficialmente. Quelli nella nostra guida sono tutti verificati. Diffida dei siti che si definiscono "naturisti" senza affiliazione: possono avere aspettative o atmosfere molto diverse da un campeggio naturista tradizionale.</p>""",
+      "en": """<p class="lead">Before a first visit to a naturist campsite, everyone has the same questions. Some are practical, others are fears that seem large but dissolve quickly. Here are the most honest answers we can give.</p>
+
+<h2>What if I feel embarrassed?</h2>
+<p>It happens to almost everyone in the very first minutes. Then it passes. The fact that everyone is in the same situation speeds the process enormously: there is no "clothed" norm against which to feel different. Most people report that after 20–30 minutes they stop thinking about it.</p>
+
+<h2>Can I come alone?</h2>
+<p>Yes, and it is more common than you might think. Many naturists visit campsites alone, especially the more experienced ones. Naturist campsites are social, welcoming environments — striking up a conversation is often easier than at a conventional campsite, because the informal setting lowers barriers.</p>
+
+<h2>What if I have an unwanted physical reaction?</h2>
+<p>This is the question many people have but nobody wants to ask. The practical answer: lie face-down on your towel, dive into the water, or wait for it to pass. It happens rarely after the very first minutes because the context is not erotic. Naturist campsites are not sexualised environments.</p>
+
+<h2>Do I have to undress straight away?</h2>
+<p>No. There is no rule requiring you to strip at the gate. You can undress when you are ready — on your pitch, at the beach, wherever. Many people arrive clothed, set up camp and undress once they are already comfortable.</p>
+
+<h2>What happens if it rains?</h2>
+<p>As at any campsite: you put something on. At naturist campsites there is no rule requiring nudity in bad weather. Many have covered facilities, bars and common rooms where you can spend rainy days.</p>
+
+<h2>Can I bring a swimsuit?</h2>
+<p>At most naturist campsites the main areas (pool, beach, common zones) are nude-only. Some campsites have "mixed" areas or allow swimwear in the restaurant area. Check the specific rules before you go. In any case, packing a swimsuit is always sensible for unexpected situations.</p>
+
+<h2>Is it safe for women travelling alone?</h2>
+<p>Naturist campsites are generally considered very safe for women. Rules are clear, the community is attentive, and any harassing behaviour is taken seriously. The code of conduct — no staring, no unwanted advances — is enforced more strictly than in many other settings. This does not mean unpleasant situations never occur, but the culture of naturist campsites is structurally more respectful than many other summer environments.</p>
+
+<h2>What if my body is not "perfect"?</h2>
+<p>Naturism is perhaps the only environment where body variety is truly normal and unremarked upon. You will see bodies of all ages, shapes and sizes — and that is exactly the point. Nobody judges. The experience is often liberating for those who arrive with body insecurities.</p>
+
+<h2>Can I take photos?</h2>
+<p>No, not without explicit consent. This rule is strictly enforced at all naturist campsites. For landscape photos or selfies, always check that no other people are in frame. When in doubt, ask.</p>
+
+<h2>How do I know if a campsite is a "real" naturist one?</h2>
+<p>INF- or ENF-affiliated campsites are the officially recognised ones. All campsites in our guide are verified. Be wary of sites that call themselves "naturist" without affiliation: their expectations and atmosphere can be very different from a traditional naturist campsite.</p>""",
+      "de": """<p class="lead">Vor dem ersten Besuch auf einem Naturistencampingplatz haben alle dieselben Fragen. Manche sind praktisch, andere sind Ängste, die groß erscheinen, aber sich schnell auflösen. Hier sind die ehrlichsten Antworten, die wir geben können.</p>
+
+<h2>Was wenn ich mich schäme?</h2>
+<p>Das passiert fast allen in den allerersten Minuten. Dann vergeht es. Die Tatsache, dass alle in derselben Situation sind, beschleunigt den Prozess enorm: Es gibt keine „bekleidete" Norm, gegen die man sich anders fühlen würde. Die meisten berichten, dass sie nach 20–30 Minuten nicht mehr daran denken.</p>
+
+<h2>Kann ich alleine kommen?</h2>
+<p>Ja, und es ist häufiger als man denkt. Viele Naturisten besuchen Campingplätze alleine, besonders die erfahreneren. Naturistencampingplätze sind soziale, einladende Umgebungen — ein Gespräch zu beginnen ist oft einfacher als auf einem konventionellen Campingplatz, weil das informelle Umfeld Barrieren abbaut.</p>
+
+<h2>Was wenn ich eine ungewollte körperliche Reaktion bekomme?</h2>
+<p>Das ist die Frage, die viele haben, aber niemand stellen möchte. Die praktische Antwort: Legen Sie sich mit dem Bauch auf Ihr Handtuch, springen Sie ins Wasser oder warten Sie, bis es vergeht. Es passiert selten nach den allerersten Minuten, da der Kontext nicht erotisch ist. Naturistencampingplätze sind keine sexualisierten Umgebungen.</p>
+
+<h2>Muss ich mich sofort ausziehen?</h2>
+<p>Nein. Es gibt keine Regel, die vorschreibt, sich am Eingang auszuziehen. Sie können sich ausziehen, wenn Sie bereit sind — auf dem Stellplatz, am Strand, wo immer Sie möchten. Viele kommen bekleidet, richten das Camp ein und ziehen sich aus, wenn sie sich bereits wohlfühlen.</p>
+
+<h2>Was passiert bei Regen?</h2>
+<p>Wie auf jedem Campingplatz: Man zieht etwas an. Auf Naturistencampingplätzen gibt es keine Regel, die Nacktheit bei schlechtem Wetter vorschreibt. Viele haben überdachte Einrichtungen, Bars und Gemeinschaftsräume, in denen man Regentage verbringen kann.</p>
+
+<h2>Kann ich einen Badeanzug mitbringen?</h2>
+<p>Auf den meisten Naturistencampingplätzen sind die Hauptbereiche (Pool, Strand, Gemeinschaftszonen) nur für Nackte. Manche Campingplätze haben „gemischte" Bereiche oder erlauben Badekleidung im Restaurantbereich. Prüfen Sie die spezifischen Regeln vor der Abreise. In jedem Fall ist ein Badeanzug für unvorhergesehene Situationen immer sinnvoll.</p>
+
+<h2>Ist es sicher für alleinreisende Frauen?</h2>
+<p>Naturistencampingplätze gelten im Allgemeinen als sehr sicher für Frauen. Regeln sind klar, die Gemeinschaft ist aufmerksam, und jedes belästigende Verhalten wird ernst genommen. Der Verhaltenskodex — kein Anstarren, keine unerwünschten Annäherungsversuche — wird strenger durchgesetzt als in vielen anderen Umgebungen. Das bedeutet nicht, dass es keine unangenehmen Situationen gibt, aber die Kultur der Naturistencampingplätze ist strukturell respektvoller als viele andere Sommerumgebungen.</p>
+
+<h2>Was wenn mein Körper nicht „perfekt" ist?</h2>
+<p>Naturismus ist vielleicht die einzige Umgebung, in der Körpervielfalt wirklich normal und unremarkiert ist. Sie sehen Körper aller Altersgruppen, Formen und Größen — und das ist genau der Punkt. Niemand urteilt. Die Erfahrung ist oft befreiend für alle, die mit Körperunsicherheiten ankommen.</p>
+
+<h2>Kann ich Fotos machen?</h2>
+<p>Nein, nicht ohne ausdrückliche Zustimmung. Diese Regel wird auf allen Naturistencampingplätzen streng durchgesetzt. Prüfen Sie bei Landschaftsfotos oder Selfies immer, dass keine anderen Personen im Bild sind. Im Zweifelsfall fragen.</p>
+
+<h2>Woher weiß ich, ob ein Campingplatz ein „echter" Naturistencampingplatz ist?</h2>
+<p>INF- oder ENF-angeschlossene Campingplätze sind die offiziell anerkannten. Alle Campingplätze in unserem Führer sind verifiziert. Seien Sie vorsichtig bei Websites, die sich ohne Mitgliedschaft als „naturistisch" bezeichnen: Ihre Erwartungen und Atmosphäre können sich stark von einem traditionellen Naturistencampingplatz unterscheiden.</p>""",
+    },
+  },
+]
+
+def articles_list(lang):
+    t = T[lang]
+    p = t["paths"]
+    cards = ""
+    for a in ARTICLES:
+        cards += f'''<article class="article-card">
+  <div class="article-meta"><time>{a["date"]}</time> · <span>{a["min_read"]} {e(t["articles_min_read"])}</span></div>
+  <h2 class="article-title"><a href="/{lang}/{p["articles"]}/{e(a["slug"])}/">{e(a["title"][lang])}</a></h2>
+  <p>{e(a["summary"][lang])}</p>
+  <a class="btn ghost small" href="/{lang}/{p["articles"]}/{e(a["slug"])}/">{e(t["articles_read"])} →</a>
+</article>'''
+    body = f"""<section class="block"><div class="wrap">
+  <h1>{e(t["articles_h1"])}</h1>
+  <p class="lead">{e(t["articles_p"])}</p>
+  <div class="articles-grid">{cards}</div>
+</div></section>"""
+    return page(lang, "articles", f'{t["articles_h1"]} — NaturCamp Guide', t["articles_p"], body)
+
+def article_page(a, lang):
+    t = T[lang]
+    p = t["paths"]
+    alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}/{l}/{T[l]["paths"]["articles"]}/{e(a["slug"])}/">' for l in LANGS)
+    canonical = f'{SITE}/{lang}/{p["articles"]}/{e(a["slug"])}/'
+    nav_html = "\n".join(f'<a href="{lang_url(lang, k)}">{e(t["nav"][k])}</a>' for k in ("about", "camps", "beaches", "pack", "review", "assoc", "articles"))
+    langs_html = "\n".join(f'<a href="/{l}/{T[l]["paths"]["articles"]}/{e(a["slug"])}/" lang="{l}" hreflang="{l}"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a>' for l in LANGS)
+    body_html = a["body"][lang]
+    html_page = f"""<!doctype html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(a["title"][lang])} — NaturCamp Guide</title>
+<meta name="description" content="{e(a["summary"][lang])}">
+<link rel="canonical" href="{canonical}">
+{alts}
+<link rel="alternate" hreflang="x-default" href="{SITE}/en/{T['en']['paths']['articles']}/{e(a['slug'])}/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="{lang_url(lang, 'home')}">{LOGO}<span><b>NaturCamp</b><small>{e(t["brand_sub"])}</small></span></a>
+  <nav class="nav" aria-label="Menu">{nav_html}</nav>
+  <div class="lang" aria-label="Language">{langs_html}</div>
+</div></header>
+<main>
+<article class="block article-full"><div class="wrap">
+  <div class="article-meta"><time>{a["date"]}</time> · <span>{a["min_read"]} {e(t["articles_min_read"])}</span></div>
+  <h1>{e(a["title"][lang])}</h1>
+  <p class="lead">{e(a["summary"][lang])}</p>
+  <div class="article-body">{body_html}</div>
+  <p style="margin-top:2.5rem"><a class="btn ghost" href="/{lang}/{p['articles']}/">← {e(t["articles_h1"])}</a></p>
+</div></article>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <span>© 2026 NaturCamp Guide — {e(t["footer"])}</span>
+  <span><a href="mailto:{CONTACT}">{e(t["contact"])}</a> · <a href="{lang_url(lang, 'about')}#privacy">{e(t["privacy"])}</a></span>
+</div></footer>
+</body>
+</html>
+"""
+    return html_page
+
 def about(lang):
     t = T[lang]
     body = f"""<section class="block"><div class="wrap">
@@ -1000,6 +1573,9 @@ def main():
         write(ROOT / lang / p["about"] / "index.html", about(lang))
         write(ROOT / lang / p["pack"] / "index.html", pack(lang))
         write(ROOT / lang / p["assoc"] / "index.html", assoc(lang))
+        write(ROOT / lang / p["articles"] / "index.html", articles_list(lang))
+        for a in ARTICLES:
+            write(ROOT / lang / p["articles"] / a["slug"] / "index.html", article_page(a, lang))
         for c in DATA:
             write(ROOT / lang / p["camps"] / c["slug"] / "index.html", sheet(c, lang))
         write(ROOT / lang / p["beaches"] / "index.html", beaches(lang))
@@ -1016,11 +1592,12 @@ def main():
     write(ROOT / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     urls = []
     for lang in LANGS:
-        urls += [lang_url(lang, k) for k in ("home", "camps", "beaches", "pack", "review", "about", "assoc")]
+        urls += [lang_url(lang, k) for k in ("home", "camps", "beaches", "pack", "review", "about", "assoc", "articles")]
         urls += [lang_url(lang, "camp", c["slug"]) for c in DATA]
         urls += [lang_url(lang, "beach", b["slug"]) for b in BEACHES]
+        urls += [lang_url(lang, "article", a["slug"]) for a in ARTICLES]
     write(ROOT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
-    print(f"Generato: {len(LANGS)} lingue, {len(DATA)} campeggi, {len(BEACHES)} spiagge, {len(urls)} pagine.")
+    print(f"Generato: {len(LANGS)} lingue, {len(DATA)} campeggi, {len(BEACHES)} spiagge, {len(ARTICLES)} articoli, {len(urls)} pagine.")
 
 if __name__ == "__main__":
     main()
