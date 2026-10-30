@@ -193,6 +193,10 @@ form.review .row { display: grid; gap: 18px; grid-template-columns: repeat(auto-
 .article-body p.lead { font-size: 1.05rem; color: var(--muted); }
 /* Articles list page */
 .articles-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; margin-top: 28px; }
+/* Beach description block */
+.beach-description { margin: 2rem 0; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
+.beach-description h2 { font-size: 1.1rem; margin: 0 0 .75rem; }
+.beach-description p { margin: 0; line-height: 1.75; color: var(--muted); }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 32px 0; color: var(--muted); font-size: .92rem; }

@@ -59,7 +59,7 @@ T = {
     "how_p": "Ogni campeggio riceve un voto da 1 a 5 su sette criteri, sempre motivato con un fatto concreto. Il voto complessivo è la media. Indichiamo sempre quando siamo stati sul posto, perché prezzi e servizi cambiano ogni stagione.",
     "camps_h1": "Tutti i campeggi", "camps_p": "Ordinati per paese. Il numero è il voto complessivo su 5.",
     "count": "{n} schede",
-    "facts_h2": "Dati essenziali", "criteria_h2": "I nostri voti", "verdict_h2": "Il nostro giudizio",
+    "facts_h2": "Dati essenziali", "criteria_h2": "I nostri voti", "verdict_h2": "Il nostro giudizio", "how_to_reach_h2": "Come arrivare e informazioni pratiche",
     "facts": {"region": "Regione", "season": "Stagione", "price": "Prezzo indicativo", "price_note": "piazzola per 2 persone, alta stagione, a notte", "affiliation": "Affiliazione", "card": "Tessera naturista", "type": "Tipo", "accommodation": "Sistemazioni", "website": "Sito ufficiale", "visited": "Visitato"},
     "card": {"yes": "richiesta", "no": "non richiesta", "recommended": "consigliata"},
     "criteria": {"clean": "Pulizia e manutenzione", "location": "Posizione e natura", "facilities": "Servizi", "atmosphere": "Atmosfera e rispetto delle regole", "family": "Adatto alle famiglie", "beginner": "Adatto ai principianti", "value": "Rapporto qualità-prezzo"},
@@ -118,7 +118,7 @@ T = {
     "how_p": "Every campsite gets a score from 1 to 5 on seven criteria, each backed by a concrete fact. The overall score is the average. We always say when we were there, because prices and facilities change every season.",
     "camps_h1": "All campsites", "camps_p": "Sorted by country. The number is the overall score out of 5.",
     "count": "{n} listings",
-    "facts_h2": "Key facts", "criteria_h2": "Our scores", "verdict_h2": "Our verdict",
+    "facts_h2": "Key facts", "criteria_h2": "Our scores", "verdict_h2": "Our verdict", "how_to_reach_h2": "How to get there and practical information",
     "facts": {"region": "Region", "season": "Season", "price": "Indicative price", "price_note": "pitch for 2 people, high season, per night", "affiliation": "Affiliation", "card": "Naturist card", "type": "Type", "accommodation": "Accommodation", "website": "Official website", "visited": "Visited"},
     "card": {"yes": "required", "no": "not required", "recommended": "recommended"},
     "criteria": {"clean": "Cleanliness and upkeep", "location": "Location and nature", "facilities": "Facilities", "atmosphere": "Atmosphere and respect for the rules", "family": "Family-friendly", "beginner": "Beginner-friendly", "value": "Value for money"},
@@ -177,7 +177,7 @@ T = {
     "how_p": "Jeder Platz bekommt eine Note von 1 bis 5 in sieben Kriterien, jede mit einem konkreten Fakt begründet. Die Gesamtnote ist der Durchschnitt. Wir nennen immer, wann wir dort waren, denn Preise und Ausstattung ändern sich jede Saison.",
     "camps_h1": "Alle Campingplätze", "camps_p": "Nach Land sortiert. Die Zahl ist die Gesamtnote von 5.",
     "count": "{n} Einträge",
-    "facts_h2": "Eckdaten", "criteria_h2": "Unsere Noten", "verdict_h2": "Unser Urteil",
+    "facts_h2": "Eckdaten", "criteria_h2": "Unsere Noten", "verdict_h2": "Unser Urteil", "how_to_reach_h2": "Anreise und praktische Informationen",
     "facts": {"region": "Region", "season": "Saison", "price": "Richtpreis", "price_note": "Stellplatz für 2 Personen, Hauptsaison, pro Nacht", "affiliation": "Verband", "card": "Naturistenausweis", "type": "Art", "accommodation": "Unterkünfte", "website": "Offizielle Website", "visited": "Besucht"},
     "card": {"yes": "erforderlich", "no": "nicht erforderlich", "recommended": "empfohlen"},
     "criteria": {"clean": "Sauberkeit und Pflege", "location": "Lage und Natur", "facilities": "Ausstattung", "atmosphere": "Atmosphäre und Einhaltung der Regeln", "family": "Familienfreundlich", "beginner": "Für Einsteiger geeignet", "value": "Preis-Leistungs-Verhältnis"},
@@ -640,6 +640,7 @@ def beach_sheet(b, lang):
     <div class="no"><h3>{e(t['not_for'])}</h3><p>{e(b['not_for'][lang])}</p></div>
     <div class="tip"><h3>{e(t['tip'])}</h3><p>{e(b['tip'][lang])}</p></div>
   </div>
+  {(f'<div class="beach-description"><h2>{e(t.get("how_to_reach_h2", "Come arrivare e informazioni pratiche"))}</h2><p>{e(b["description"][lang])}</p></div>') if b.get("description") else ""}
   {stay_block(b, lang)}
   {weather_widget(b, lang)}
   {sources_block(b, lang)}
