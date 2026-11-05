@@ -321,9 +321,9 @@
       ]
     },
     "summary": {
-      "it": "L'ex icona del naturismo italiano oggi è una caletta quasi inaccessibile: tunnel chiuso, sentieri franati. La inseriamo perché molti la cercano ancora, non perché la consigliamo.",
-      "en": "Italy's former naturist icon is now an almost inaccessible cove: tunnel closed, paths collapsed. We list it because many still look for it, not because we recommend it.",
-      "de": "Die einstige Ikone des italienischen Naturismus ist heute eine fast unzugängliche Bucht: Tunnel geschlossen, Pfade abgerutscht. Wir führen sie auf, weil viele sie noch suchen, nicht weil wir sie empfehlen."
+      "it": "Guvano è la spiaggia naturista più famosa della Liguria, nascosta sotto le scogliere di Corniglia nelle Cinque Terre. Raggiungibile solo a piedi attraverso un tunnel ferroviario dismesso (circa 10 minuti al buio con torcia) o dal mare. Sabbia scura, acque limpidissime, niente servizi: uno dei posti più selvaggi e spettacolari del litorale italiano.",
+      "en": "Guvano is Liguria's most famous naturist beach, hidden beneath the cliffs of Corniglia in the Cinque Terre. Accessible only on foot through a disused railway tunnel (about 10 minutes in the dark with a torch) or by sea. Dark sand, crystal-clear water, no facilities: one of the wildest and most spectacular spots on the Italian coast.",
+      "de": "Guvano ist der bekannteste Naturistenstrand Liguriens, verborgen unter den Klippen von Corniglia in den Cinque Terre. Nur zu Fuß durch einen stillgelegten Eisenbahntunnel (ca. 10 Minuten im Dunkeln mit Taschenlampe) oder vom Meer aus erreichbar. Dunkler Sand, kristallklares Wasser, keine Einrichtungen: einer der wildesten und spektakulärsten Orte der italienischen Küste."
     },
     "for": {
       "it": "Nuotatori e kayakisti esperti, in gruppo, con mare calmo.",
@@ -345,7 +345,12 @@
       "https://www.cinqueterre-travel.com/activities/outdoor/swimming",
       "https://www.spiagge.it/magazine/le-spiagge-piu-belle-delle-5-terre-foto-e-mappa/",
       "https://www.ilgiornale.it/news/naturisti-senza-pace.html"
-    ]
+    ],
+    "description": {
+      "it": "L'accesso a Guvano è l'avventura in sé. Dall'abitato di Corniglia si scende verso la ferrovia e si segue il sentiero fino all'imbocco del tunnel: un lungo cunicolo buio di circa 400 metri, umido e con il soffitto basso in alcuni punti. Portate una torcia — il telefono non basta. All'uscita si apre la spiaggia. In alternativa, d'estate alcune imbarcazioni da Vernazza e Monterosso fanno la tratta. Non ci sono servizi: né chioschi, né docce, né bagni. Portate acqua, cibo, ombrellone leggero e tutto il necessario. La spiaggia è soggetta a restrizioni normative periodiche: controllate sempre prima di partire se è accessibile.",
+      "en": "Getting to Guvano is itself the adventure. From Corniglia village, descend to the railway and follow the path to the tunnel entrance: a dark passage of about 400 metres, damp and with a low ceiling in places. Bring a torch — your phone is not enough. The beach opens out at the other end. Alternatively, in summer some boats from Vernazza and Monterosso make the crossing. No facilities at all: no kiosk, no showers, no toilets. Bring water, food, a light umbrella and everything you need. The beach is subject to periodic access restrictions: always check before setting out.",
+      "de": "Der Weg nach Guvano ist selbst das Abenteuer. Von Corniglia steigt man zur Bahnlinie ab und folgt dem Pfad zum Tunneleingang: ein dunkler Gang von etwa 400 Metern, feucht und stellenweise mit niedrigem Gewölbe. Taschenlampe mitbringen — das Telefon reicht nicht. Am anderen Ende öffnet sich der Strand. Alternativ fahren im Sommer einige Boote von Vernazza und Monterosso dorthin. Keinerlei Einrichtungen: kein Kiosk, keine Duschen, keine Toiletten. Wasser, Essen, einen leichten Sonnenschirm und alles Nötige mitbringen. Der Strand unterliegt periodischen Zugangseinschränkungen: immer vor der Abfahrt prüfen."
+    }
   },
   {
     "slug": "montalivet-gironde",
@@ -2994,9 +2999,9 @@
       ]
     },
     "summary": {
-      "it": "Torre Guaceto è una riserva naturale marina tra Brindisi e Ostuni, con acque cristalline e dune protette. La spiaggia naturista si trova nella parte nord della riserva, lontana dagli stabilimenti. L'ambiente incontaminato e la macchia mediterranea rendono questo posto unico in Puglia.",
-      "en": "Torre Guaceto is a marine nature reserve between Brindisi and Ostuni, with crystal-clear waters and protected dunes. The naturist section is located in the northern part of the reserve, away from beach clubs. The pristine environment and Mediterranean scrub make this place unique in Puglia.",
-      "de": "Torre Guaceto ist ein Meeresschutzgebiet zwischen Brindisi und Ostuni mit kristallklarem Wasser und geschützten Dünen. Der FKK-Bereich liegt im nördlichen Teil des Schutzgebiets, abseits der Badeanstalten. Die unberührte Natur und das mediterrane Gebüsch machen diesen Ort in Apulien einzigartig."
+      "it": "Torre Guaceto è una riserva marina e terrestre nella provincia di Brindisi, tra Brindisi e Fasano. La spiaggia naturista si trova nella zona nord della riserva, in un tratto di macchia mediterranea e dune basse affacciato su un mare di color turchese intenso. Accesso limitato per proteggere l'ecosistema.",
+      "en": "Torre Guaceto is a marine and land nature reserve in the province of Brindisi, between Brindisi and Fasano. The naturist beach is in the northern part of the reserve, in an area of Mediterranean scrub and low dunes facing an intensely turquoise sea. Access is limited to protect the ecosystem.",
+      "de": "Torre Guaceto ist ein Meeresschutzgebiet und Naturreservat in der Provinz Brindisi, zwischen Brindisi und Fasano. Der Naturistenstrand liegt im Nordteil des Reservats, in einem Bereich mit mediterranem Buschland und niedrigen Dünen gegenüber einem intensiv türkisfarbenen Meer. Der Zugang ist zum Schutz des Ökosystems begrenzt."
     },
     "for": {
       "it": "coppie, single, amanti della natura",
@@ -3017,7 +3022,12 @@
       "https://nudebeachmap.com/places/spiaggia-di-torre-guaceto/",
       "https://www.beachatlas.com/it/spiagge-nudiste-ostuni"
     ],
-    "website": "https://www.riservatorreguaceto.it"
+    "website": "https://www.riservatorreguaceto.it",
+    "description": {
+      "it": "La riserva di Torre Guaceto si raggiunge dall'uscita autostradale di Fasano (A14) o da Brindisi, seguendo le indicazioni per Torre Guaceto. Il parcheggio è a pagamento in estate. L'accesso alla spiaggia avviene a piedi attraverso un sentiero nella macchia: circa 15-20 minuti. Il numero di accessi giornalieri è contingentato dalla riserva — controllate il sito ufficiale prima di partire. Non portate ombrelloni con picchetti di metallo: nella riserva è vietato. Portate acqua e cibo, i servizi sono minimi.",
+      "en": "Torre Guaceto reserve is reached from the Fasano motorway exit (A14) or from Brindisi, following signs for Torre Guaceto. Parking is paid in summer. The beach is reached on foot via a path through the scrubland: about 15–20 minutes. Daily visitor numbers are limited by the reserve — check the official website before setting out. Do not bring umbrellas with metal stakes: prohibited in the reserve. Bring water and food; facilities are minimal.",
+      "de": "Das Reservat Torre Guaceto erreicht man von der Autobahnausfahrt Fasano (A14) oder von Brindisi aus, den Schildern nach Torre Guaceto folgend. Parken ist im Sommer kostenpflichtig. Der Strand wird zu Fuß über einen Weg durch das Buschland erreicht: ca. 15–20 Minuten. Die tägliche Besucherzahl ist vom Reservat begrenzt — vor der Abfahrt die offizielle Website prüfen. Keine Sonnenschirme mit Metallstäben mitbringen: im Reservat verboten. Wasser und Essen mitbringen; Einrichtungen sind minimal."
+    }
   },
   {
     "slug": "calamosche-sicilia",
@@ -3105,9 +3115,9 @@
       ]
     },
     "summary": {
-      "it": "Calamosche è considerata una delle spiagge più belle d'Italia, incastonata tra due promontori rocciosi nella Riserva Naturale Orientata di Vendicari. Le acque sono di un azzurro intenso e la sabbia bianca finissima. La zona naturista si trova nella parte più isolata della spiaggia.",
-      "en": "Calamosche is considered one of the most beautiful beaches in Italy, nestled between two rocky headlands in the Vendicari Nature Reserve. The waters are intensely blue and the sand is very fine and white. The naturist area is found in the most isolated part of the beach.",
-      "de": "Calamosche gilt als einer der schönsten Strände Italiens, eingebettet zwischen zwei Felsenvorsprüngen im Naturschutzgebiet Vendicari. Das Wasser ist intensiv blau und der Sand sehr fein und weiß. Der FKK-Bereich befindet sich im abgelegensten Teil des Strandes."
+      "it": "Calamosche è considerata una delle spiagge più belle di Sicilia: una piccola baia a mezzaluna nella Riserva Naturale di Vendicari, nel Siracusano. Sabbia finissima bianca, acque basse e limpide, dune alte che la separano dalla laguna. La nudità è tollerata senza problemi. Accesso solo a piedi: è questo che la mantiene incontaminata.",
+      "en": "Calamosche is considered one of Sicily's most beautiful beaches: a small crescent cove in the Vendicari Nature Reserve, in the Syracuse area. Very fine white sand, shallow clear water, high dunes separating it from the lagoon. Nudity is tolerated without issue. Access on foot only — that is what keeps it unspoilt.",
+      "de": "Calamosche gilt als einer der schönsten Strände Siziliens: eine kleine Halbmondbucht im Naturreservat Vendicari, in der Provinz Syrakus. Sehr feiner weißer Sand, flaches klares Wasser, hohe Dünen, die den Strand von der Lagune trennen. Nacktheit wird problemlos toleriert. Nur zu Fuß erreichbar — das ist es, was ihn unberührt hält."
     },
     "for": {
       "it": "coppie, single, famiglie",
@@ -3128,7 +3138,12 @@
       "https://www.nakedwanderings.com/naturist-beaches-italy/",
       "https://www.naturist.guide/italy/"
     ],
-    "website": null
+    "website": null,
+    "description": {
+      "it": "La Riserva di Vendicari si trova sulla costa ionica, tra Noto e Marzamemi. L'ingresso principale è a Eloro, l'alternativo a Vendicari. Dal parcheggio (gratuito fuori stagione, a pagamento in estate) si cammina circa 20-25 minuti su un sentiero pianeggiante attraverso la macchia. Calamosche è la seconda spiaggia che si incontra: la prima è Eloro, più frequentata. L'accesso alla riserva è gratuito ma contingentato in alta stagione. Non portare ombrelloni con picchetti, non raccogliere conchiglie, non fare fuochi. Nessun servizio sulla spiaggia.",
+      "en": "The Vendicari Reserve is on the Ionian coast, between Noto and Marzamemi. The main entrance is at Eloro, the alternative at Vendicari. From the car park (free off-season, paid in summer) it is a 20–25 minute walk on a flat path through the scrubland. Calamosche is the second beach you reach: the first is Eloro, more crowded. Reserve entry is free but numbers are limited in high season. No umbrella stakes, no shell collecting, no fires. No services on the beach.",
+      "de": "Das Reservat Vendicari liegt an der ionischen Küste zwischen Noto und Marzamemi. Der Haupteingang ist in Eloro, der alternative in Vendicari. Vom Parkplatz (außerhalb der Saison kostenlos, im Sommer kostenpflichtig) sind es ca. 20–25 Minuten auf einem flachen Weg durch das Buschland. Calamosche ist der zweite Strand: der erste ist Eloro, frequentierter. Eintritt ins Reservat ist frei, aber in der Hochsaison kontingentiert. Keine Sonnenschirmstäbe, keine Muschelsammlung, keine Feuer. Keine Einrichtungen am Strand."
+    }
   },
   {
     "slug": "bue-marino-sardegna",
@@ -3216,9 +3231,9 @@
       ]
     },
     "summary": {
-      "it": "La spiaggia di Bue Marino si trova nel Golfo di Orosei, accessibile solo via mare o a piedi dopo una lunga escursione. È una delle spiagge naturiste più apprezzate della Sardegna, con acque smeraldo e rocce calcaree bianche spettacolari. La nudità è praticamente la norma qui.",
-      "en": "Bue Marino beach is located in the Gulf of Orosei, accessible only by sea or on foot after a long hike. It is one of the most appreciated naturist beaches in Sardinia, with emerald waters and spectacular white limestone rocks. Nudity is practically the norm here.",
-      "de": "Der Strand Bue Marino liegt im Golf von Orosei und ist nur per Boot oder nach einer langen Wanderung zu Fuß erreichbar. Er ist einer der beliebtesten FKK-Strände Sardiniens mit Smaragdwasser und spektakulären weißen Kalksteinfelsen. Nacktheit ist hier praktisch die Norm."
+      "it": "La Spiaggia di Bue Marino si trova nel Golfo di Orosei, nel tratto di costa più selvaggio della Sardegna. È raggiungibile solo via mare o a piedi con un trekking impegnativo di circa 2 ore dal paese di Cala Gonone. Sabbia bianca, mare verde smeraldo, grotta vicina. La nudità è praticata senza problemi.",
+      "en": "Bue Marino beach is in the Gulf of Orosei, on the wildest stretch of the Sardinian coast. Accessible only by sea or on foot via a demanding 2-hour trek from the village of Cala Gonone. White sand, emerald-green water, a nearby cave. Nudity is practised without issue.",
+      "de": "Der Strand Bue Marino liegt im Golf von Orosei, an der wildesten Küstenstrecke Sardiniens. Nur per Boot oder zu Fuß über einen anspruchsvollen 2-stündigen Trek vom Ort Cala Gonone erreichbar. Weißer Sand, smaragdgrünes Wasser, eine nahegelegene Höhle. Nacktheit wird problemlos praktiziert."
     },
     "for": {
       "it": "coppie, single, avventurieri",
@@ -3239,7 +3254,12 @@
       "https://www.nakedwanderings.com/naturist-beaches-italy/",
       "https://www.naturist.guide/sardinia/"
     ],
-    "website": null
+    "website": null,
+    "description": {
+      "it": "Il modo più semplice è il traghetto da Cala Gonone: d'estate ci sono corse regolari che fermano a Bue Marino, Cala Luna e altre calette. Il trekking a piedi parte da Cala Gonone seguendo il sentiero costiero: circa 2 ore di cammino su terreno irregolare, scarpe da trekking obbligatorie. Nessun servizio sulla spiaggia: portate acqua abbondante (almeno 2 litri a persona), cibo, crema solare ad alta protezione. Il sole sul Golfo di Orosei è intenso anche a settembre. Attrezzatura minima: telo, ombrellone leggero, scarpe per gli scogli.",
+      "en": "The easiest way is the ferry from Cala Gonone: in summer there are regular services stopping at Bue Marino, Cala Luna and other coves. The on-foot trek starts from Cala Gonone following the coastal path: about 2 hours on rough terrain, proper trekking shoes required. No services on the beach: bring plenty of water (at least 2 litres per person), food, high-factor sun cream. The sun in the Gulf of Orosei is intense even in September. Minimum kit: towel, light umbrella, water shoes for the rocks.",
+      "de": "Am einfachsten ist die Fähre von Cala Gonone: Im Sommer gibt es regelmäßige Verbindungen mit Haltepunkt an Bue Marino, Cala Luna und anderen Buchten. Der Trek zu Fuß beginnt in Cala Gonone auf dem Küstenpfad: ca. 2 Stunden auf unwegsamem Gelände, festes Schuhwerk erforderlich. Keine Einrichtungen am Strand: reichlich Wasser mitbringen (mind. 2 Liter pro Person), Essen, Sonnencreme mit hohem Lichtschutzfaktor. Die Sonne im Golf von Orosei ist auch im September intensiv. Mindestausrüstung: Handtuch, leichter Sonnenschirm, Badeschuhe für die Felsen."
+    }
   },
   {
     "slug": "gongolo-calabria",
@@ -3327,9 +3347,9 @@
       ]
     },
     "summary": {
-      "it": "Il Gongolo è una spiaggia selvaggia sulla costa ionica della Calabria, nota tra i naturisti italiani per la sua tranquillità. La spiaggia è formata da ciottoli e sassi levigati, con acque limpide e blu intenso. L'ambiente è completamente naturale e non turistico.",
-      "en": "Il Gongolo is a wild beach on the Ionian coast of Calabria, known among Italian naturists for its tranquility. The beach is made of smooth pebbles and stones, with clear and deep blue waters. The environment is completely natural and non-touristy.",
-      "de": "Il Gongolo ist ein wilder Strand an der ionischen Küste Kalabriens, bekannt unter italienischen FKK-Anhängern für seine Ruhe. Der Strand besteht aus glatten Kieseln und Steinen mit klarem tiefblauem Wasser. Die Umgebung ist völlig natürlich und nicht touristisch."
+      "it": "La Spiaggia del Gongolo si trova nei pressi di Brancaleone, sul litorale ionico calabrese tra Reggio Calabria e Bova Marina. È una spiaggia di sassi e ciottoli con acque cristalline e fondali rocciosi, frequentata da naturisti locali da decenni. Poco conosciuta fuori dalla regione, è rimasta genuina e non commercializzata.",
+      "en": "Spiaggia del Gongolo is near Brancaleone on the Ionian coast of Calabria, between Reggio Calabria and Bova Marina. A beach of stones and pebbles with crystal-clear water and rocky sea bed, frequented by local naturists for decades. Little known outside the region, it has remained genuine and uncommercialized.",
+      "de": "Die Spiaggia del Gongolo liegt nahe Brancaleone an der ionischen Küste Kalabriens, zwischen Reggio Calabria und Bova Marina. Ein Strand aus Steinen und Kieselsteinen mit kristallklarem Wasser und felsigem Meeresgrund, der seit Jahrzehnten von einheimischen Naturisten frequentiert wird. Außerhalb der Region wenig bekannt, ist er authentisch und nicht kommerzialisiert geblieben."
     },
     "for": {
       "it": "coppie, single",
@@ -3349,7 +3369,12 @@
     "sources": [
       "https://www.nakedwanderings.com/naturist-beaches-italy/"
     ],
-    "website": null
+    "website": null,
+    "description": {
+      "it": "Brancaleone si raggiunge dalla SS106 Jonica, l'arteria principale del litorale ionico calabrese. La spiaggia del Gongolo è a pochi chilometri dal centro di Brancaleone in direzione sud, raggiungibile in auto su una stradina sterrata. Il fondo è a ciottoli e massi: scarpe da scoglio indispensabili. L'acqua è tra le più limpide dello Ionio meridionale. In estate ci sono turisti ma la spiaggia non è mai affollata come il litorale tirrenico. Nessun servizio fisso: portate tutto il necessario.",
+      "en": "Brancaleone is reached via the SS106 Jonica, the main road along the Calabrian Ionian coast. The Gongolo beach is a few kilometres south of Brancaleone town centre, reachable by car on a short dirt track. The shore is pebbles and boulders: water shoes are essential. The water is among the clearest in the southern Ionian. In summer there are tourists but the beach is never as crowded as the Tyrrhenian coast. No permanent facilities: bring everything you need.",
+      "de": "Brancaleone ist über die SS106 Jonica, die Hauptstraße der kalabrischen Ionisküste, erreichbar. Der Strand Gongolo liegt einige Kilometer südlich von Brancaleone, per Auto auf einer kurzen Schotterpiste erreichbar. Der Untergrund besteht aus Kieselsteinen und Felsbrocken: Badeschuhe sind unverzichtbar. Das Wasser gehört zu den klarsten im südlichen Ionischen Meer. Im Sommer gibt es Touristen, aber der Strand ist nie so überfüllt wie die Tyrrhenische Küste. Keine festen Einrichtungen: alles Nötige mitbringen."
+    }
   },
   {
     "slug": "marina-di-camerota-campania",
@@ -3437,9 +3462,9 @@
       ]
     },
     "summary": {
-      "it": "Marina di Camerota si trova nel Parco Nazionale del Cilento, con una delle coste più belle della Campania. Le spiagge naturiste sono nelle calette meno accessibili, raggiungibili via mare o a piedi. Le grotte marine e le acque turchesi rendono il contesto unico.",
-      "en": "Marina di Camerota is located in the Cilento National Park, featuring one of the most beautiful coastlines in Campania. The naturist beaches are in the less accessible coves, reachable by sea or on foot. The sea caves and turquoise waters make the setting unique.",
-      "de": "Marina di Camerota liegt im Nationalpark Cilento und verfügt über eine der schönsten Küsten Kampaniens. Die FKK-Strände befinden sich in weniger zugänglichen Buchten, die per Boot oder zu Fuß erreichbar sind. Die Meereshöhlen und türkisfarbenen Gewässer machen die Umgebung einzigartig."
+      "it": "Marina di Camerota è un borgo marinaro del Cilento, nel Parco Nazionale del Cilento e Vallo di Diano. Le spiagge naturiste si trovano nelle calette isolate a nord e a sud del paese, raggiungibili via mare o a piedi da sentieri costieri. Acque azzurre, fondali rocciosi, pochissimi turisti fuori luglio-agosto.",
+      "en": "Marina di Camerota is a fishing village in the Cilento, in the Cilento and Vallo di Diano National Park. Naturist beaches are in the isolated coves north and south of the village, accessible by sea or on foot via coastal paths. Blue water, rocky sea bed, very few tourists outside July–August.",
+      "de": "Marina di Camerota ist ein Fischerdorf im Cilento, im Nationalpark Cilento und Vallo di Diano. Naturistenstrände befinden sich in den abgelegenen Buchten nördlich und südlich des Dorfes, per Boot oder zu Fuß über Küstenpfade erreichbar. Blaues Wasser, felsiger Meeresgrund, sehr wenige Touristen außerhalb Juli-August."
     },
     "for": {
       "it": "coppie, famiglie, single",
@@ -3459,7 +3484,12 @@
     "sources": [
       "https://www.nakedwanderings.com/naturist-beaches-italy/"
     ],
-    "website": null
+    "website": null,
+    "description": {
+      "it": "Marina di Camerota si trova sulla costa cilentana (SA), raggiungibile dall'autostrada A3 uscita Battipaglia o Sala Consilina, poi SS18 e strade provinciali. D'estate ci sono barche da noleggio che portano nelle calette isolate: è il modo più comodo. A piedi si segue il sentiero costiero del Cilento che collega le calette (segnavia CAI). Le cove naturiste più frequentate sono Calanca e alcune calette senza nome a nord del porto. Nessun servizio: tutto il necessario va portato.",
+      "en": "Marina di Camerota is on the Cilento coast (SA), reachable from the A3 motorway at Battipaglia or Sala Consilina exits, then SS18 and provincial roads. In summer, hire boats take visitors to the isolated coves — the most convenient option. On foot, follow the Cilento coastal path linking the coves (CAI waymarks). The most frequented naturist coves are Calanca and some unnamed inlets north of the harbour. No facilities: bring everything.",
+      "de": "Marina di Camerota liegt an der Cilento-Küste (SA), erreichbar über die A3 (Ausfahrten Battipaglia oder Sala Consilina), dann SS18 und Provinzstraßen. Im Sommer bringen Mietboote Besucher in die abgelegenen Buchten — die bequemste Option. Zu Fuß folgt man dem Cilento-Küstenpfad, der die Buchten verbindet (CAI-Wegzeichen). Die frequentiertesten Naturistenbuchten sind Calanca und einige namenlose Buchten nördlich des Hafens. Keine Einrichtungen: alles Nötige mitbringen."
+    }
   },
   {
     "slug": "paestum-naturista-campania",
@@ -3547,9 +3577,9 @@
       ]
     },
     "summary": {
-      "it": "La spiaggia naturista di Paestum si trova lungo la lunga costa sabbiosa vicino ai famosi templi greci. Si tratta di una zona tradizionalmente frequentata dai naturisti italiani, con un'ampia spiaggia di sabbia fine. La vicinanza al sito archeologico la rende un'esperienza culturale e balneare unica.",
-      "en": "The naturist beach of Paestum lies along the long sandy coast near the famous Greek temples. This is a zone traditionally frequented by Italian naturists, with a wide beach of fine sand. The proximity to the archaeological site makes it a unique cultural and seaside experience.",
-      "de": "Der FKK-Strand von Paestum liegt entlang der langen Sandküste in der Nähe der berühmten griechischen Tempel. Dies ist ein Gebiet, das traditionell von italienischen FKK-Anhängern frequentiert wird, mit einem breiten Strand aus feinem Sand. Die Nähe zur archäologischen Stätte macht es zu einem einzigartigen kulturellen Badeerlebnis."
+      "it": "La spiaggia naturista di Paestum si trova sul Golfo di Salerno, nella piana del Sele, a pochi chilometri dai templi greci di Paestum. È una spiaggia di sabbia fine e scura, con mare basso e caldo, frequentata da naturisti campani e da chi combina visita culturale e relax al mare. Tollerata senza problemi nell'area sud della spiaggia libera.",
+      "en": "Paestum naturist beach is on the Gulf of Salerno, in the Sele plain, a few kilometres from the Greek temples of Paestum. Fine dark sand, shallow warm water, frequented by Campanian naturists and by those combining a cultural visit with time at the beach. Tolerated without issue in the southern area of the free beach.",
+      "de": "Der Naturistenstrand von Paestum liegt am Golf von Salerno, in der Sele-Ebene, wenige Kilometer von den griechischen Tempeln von Paestum entfernt. Feiner dunkler Sand, flaches warmes Wasser, besucht von kampanischen Naturisten und von denen, die einen Kulturbesuch mit Strandurlaub verbinden. Im Südteil des freien Strandes problemlos toleriert."
     },
     "for": {
       "it": "coppie, famiglie",
@@ -3569,7 +3599,12 @@
     "sources": [
       "https://www.nakedwanderings.com/naturist-beaches-italy/"
     ],
-    "website": null
+    "website": null,
+    "description": {
+      "it": "Paestum è raggiungibile dall'autostrada A3 uscita Battipaglia, poi SS18 in direzione Agropoli. L'area naturista si trova a sud del centro balneare di Paestum, oltre il Lido Azzurro, nell'area di spiaggia libera meno frequentata. Parcheggiate lungo la via del Mare e camminate verso sud fino alla zona più isolata. L'acqua è bassa e si scalda rapidamente in estate — ottima per bambini e anziani. Nessun servizio nella zona naturista; i lidi attrezzati sono a pochi minuti a piedi.",
+      "en": "Paestum is reached from the A3 motorway at Battipaglia exit, then SS18 towards Agropoli. The naturist area is south of the Paestum resort area, beyond Lido Azzurro, in the less crowded free beach section. Park along Via del Mare and walk south to the more isolated stretch. The water is shallow and warms up quickly in summer — excellent for children and elderly visitors. No services in the naturist zone; equipped beach clubs are a few minutes' walk away.",
+      "de": "Paestum ist über die A3 (Ausfahrt Battipaglia), dann SS18 Richtung Agropoli erreichbar. Der Naturistenbereich liegt südlich des Badezentrums von Paestum, jenseits des Lido Azzurro, im weniger frequentierten freien Strandbereich. Am Via del Mare parken und nach Süden zum abgeschiedeneren Abschnitt laufen. Das Wasser ist flach und erwärmt sich im Sommer schnell — ausgezeichnet für Kinder und ältere Besucher. Keine Einrichtungen im Naturistenbereich; Strandbäder sind wenige Minuten zu Fuß entfernt."
+    }
   },
   {
     "slug": "mulino-marche",
