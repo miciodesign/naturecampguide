@@ -13,6 +13,21 @@ BEACHES = json.loads((ROOT / "data" / "spiagge.json").read_text(encoding="utf-8"
 SITE = "https://naturcampguide.com"
 LANGS = ["it", "en", "de"]
 
+# ---------------------------------------------------------------- foto spiagge
+# Mappa slug -> {user, page} ricavata dai meta.json Pixabay
+BEACH_PHOTOS = {
+  "bue-marino-sardegna":        {"user": "pixmartin",      "page": "https://pixabay.com/photos/sardinia-sardegna-beach-coast-sand-2508868/"},
+  "calamosche-sicilia":         {"user": "suju-foto",      "page": "https://pixabay.com/photos/beach-lighthouse-seals-north-sea-4984023/"},
+  "capocotta-roma":             {"user": "Pitsch",         "page": "https://pixabay.com/photos/beach-sea-vacation-italy-alassio-2342578/"},
+  "gongolo-calabria":           {"user": "Walkerssk",      "page": "https://pixabay.com/photos/beach-summer-tourist-holiday-5430828/"},
+  "guvano-cinque-terre":        {"user": "Babelphotography","page": "https://pixabay.com/photos/village-sea-coast-coastline-279013/"},
+  "lido-di-dante-ravenna":      {"user": "Gioele_Tubaro",  "page": "https://pixabay.com/photos/sea-trieste-italy-boat-nature-7391990/"},
+  "marina-di-camerota-campania":{"user": "falco",          "page": "https://pixabay.com/photos/paestum-italy-ancient-ruin-2580949/"},
+  "mulino-marche":              {"user": "Cnippato78",     "page": "https://pixabay.com/photos/sirolo-monte-conero-conero-beach-1920838/"},
+  "paestum-naturista-campania": {"user": "valtercirillo",  "page": "https://pixabay.com/photos/paestum-salerno-italy-1722893/"},
+  "torre-guaceto-puglia":       {"user": "nikolaus_bader", "page": "https://pixabay.com/photos/ocean-beach-sand-people-crowd-5487703/"},
+}
+
 # ---------------------------------------------------------------- testi
 T = {
   "it": {
@@ -603,6 +618,16 @@ def beaches(lang):
     body = f'<section class="block"><div class="wrap"><h1>{e(t["beaches_h1"])}</h1><p class="lead">{e(t["beaches_p"])} {e(t["count"].format(n=len(BEACHES)))}.</p><p class="meta">{e(t["status_note"])}</p></div></section>{sections}'
     return page(lang, "beaches", f'{t["beaches_h1"]} — NaturCamp Guide', t["beaches_p"], body)
 
+def beach_photo_block(slug):
+    """Ritorna il blocco HTML con la foto hero della spiaggia, se disponibile."""
+    info = BEACH_PHOTOS.get(slug)
+    if not info:
+        return ""
+    return (f'<div class="beach-hero">'
+            f'<img src="/assets/foto/{slug}.jpg" alt="{html.escape(slug.replace("-", " ").title())}" loading="lazy" width="1200" height="630">'
+            f'<p class="photo-credit">Foto: <a href="{html.escape(info["page"])}" rel="nofollow noopener" target="_blank">{html.escape(info["user"])}</a> / <a href="https://pixabay.com" rel="nofollow noopener" target="_blank">Pixabay</a></p>'
+            f'</div>')
+
 def beach_sheet(b, lang):
     t = T[lang]; f = t["bfacts"]; sc = overall(b)
     by_slug = {c["slug"]: c for c in DATA}
@@ -623,7 +648,9 @@ def beach_sheet(b, lang):
         rows += f'<tr><th scope="row">{e(f["nearby"])}</th><td>' + ", ".join(f'<a href="{lang_url(lang, "camp", c["slug"])}">{e(c["name"])}</a>' for c in near) + "</td></tr>"
     crit = "".join(f'<li><span class="name">{e(t["bcriteria"][k])}</span><span>{dots(v[0])} <strong>{fmt_score(v[0], lang)}</strong></span><span class="why">{e(v[1][lang])}</span></li>' for k, v in b["scores"].items())
     demo = f'<div class="demo">{e(t["demo"])}</div>' if b.get("demo") else ""
+    hero = beach_photo_block(b["slug"])
     body = f"""<section class="block"><div class="wrap">
+  {hero}
   <div class="sheet-head">
     <div><h1>{e(b['name'])}</h1><p class="meta"><span>{e(t['country_names'].get(b['country'], b['country']))}, {e(b['region'][lang])}</span><span>{e(t['status_short'][b['status']])}</span><span>{e(basis_label(b, lang))}</span></p><p class="lead">{e(b['summary'][lang])}</p></div>
     <div class="score"><b>{fmt_score(sc, lang)}</b><small>{e(t['overall'])} /5</small></div>
@@ -1566,6 +1593,13 @@ def main():
     assets = ROOT / "assets"; assets.mkdir(exist_ok=True)
     for name in ("style.css", "logo.svg", "favicon.svg"):
         shutil.copy(ROOT / "src" / name, assets / name)
+    # copia foto spiagge in assets/foto/
+    foto_src = ROOT / "data" / "foto"
+    foto_dst = assets / "foto"; foto_dst.mkdir(exist_ok=True)
+    for slug in BEACH_PHOTOS:
+        src = foto_src / f"{slug}.jpg"
+        if src.exists():
+            shutil.copy(src, foto_dst / f"{slug}.jpg")
     for lang in LANGS:
         p = T[lang]["paths"]
         write(ROOT / lang / "index.html", home(lang))
