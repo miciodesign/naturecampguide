@@ -214,6 +214,12 @@ STAY22_AID = "naturcampguide"
 AMAZON_TAGS = {"it": "", "en": "", "de": ""}  # tag Amazon Associates per amazon.it / .co.uk / .de; vuoto = link senza affiliazione
 AMAZON_HOST = {"it": "www.amazon.it", "en": "www.amazon.co.uk", "de": "www.amazon.de"}  # il tuo ID affiliato Stay22 (es. "naturcampguide"); vuoto = blocco nascosto  # sostituire con l'endpoint del modulo (es. Formspree) — vedi README
 
+REGION_LANG_PATHS = {
+  "it": "regioni",
+  "en": "regions",
+  "de": "regionen",
+}
+
 LOGO = (ROOT / "src" / "logo.svg").read_text(encoding="utf-8").replace('role="img" aria-label="NaturCamp Guide"', 'aria-hidden="true"')
 HORIZON = """<svg class="horizon" viewBox="0 0 1200 160" aria-hidden="true" preserveAspectRatio="none">
   <circle cx="900" cy="120" r="70" fill="#F2B33D"/>
@@ -229,6 +235,7 @@ def lang_url(lang, kind, slug=None):
     if kind == "camp": return f"/{lang}/{p['camps']}/{slug}/"
     if kind == "beach": return f"/{lang}/{p['beaches']}/{slug}/"
     if kind == "article": return f"/{lang}/{p['articles']}/{slug}/"
+    if kind == "region": return f"/{lang}/{REGION_LANG_PATHS[lang]}/{slug}/"
     if kind in p: return f"/{lang}/{p[kind]}/"
     return f"/{lang}/{kind}/"
 
@@ -615,7 +622,17 @@ def beaches(lang):
     for k in sorted(groups, key=lambda k: t["country_names"].get(k, k)):
         items = "".join(beach_item(b, lang) for b in sorted(groups[k], key=overall, reverse=True))
         sections += f'<section class="block" id="{k}"><div class="wrap"><h2>{e(t["country_names"].get(k, k))}</h2><ul class="camps">{items}</ul></div></section>'
-    body = f'<section class="block"><div class="wrap"><h1>{e(t["beaches_h1"])}</h1><p class="lead">{e(t["beaches_p"])} {e(t["count"].format(n=len(BEACHES)))}.</p><p class="meta">{e(t["status_note"])}</p></div></section>{sections}'
+    # blocco regioni italiane
+    region_label = {"it": "Spiagge per regione (Italia)", "en": "Beaches by region (Italy)", "de": "Strände nach Region (Italien)"}
+    reg_links = " &nbsp; ".join(
+        f'<a href="/{lang}/{REGION_LANG_PATHS[lang]}/{_region_slug(r)}/">{e(r)}</a>'
+        for r in sorted(REGION_TEXTS)
+    )
+    regions_block = f'<section class="block"><div class="wrap"><h2>{e(region_label[lang])}</h2><p class="meta">{reg_links}</p></div></section>'
+    body = (f'<section class="block"><div class="wrap"><h1>{e(t["beaches_h1"])}</h1>'
+            f'<p class="lead">{e(t["beaches_p"])} {e(t["count"].format(n=len(BEACHES)))}.</p>'
+            f'<p class="meta">{e(t["status_note"])}</p></div></section>'
+            f'{regions_block}{sections}')
     return page(lang, "beaches", f'{t["beaches_h1"]} — NaturCamp Guide', t["beaches_p"], body)
 
 def beach_photo_block(slug):
@@ -673,6 +690,225 @@ def beach_sheet(b, lang):
   {sources_block(b, lang)}
 </div></section>"""
     return page(lang, "beach", f'{b["name"]} — NaturCamp Guide', b["summary"][lang], body, b["slug"])
+
+# ---------------------------------------------------------------- pagine regionali italiane
+import re as _re
+
+def _region_key(x):
+    """Estrae la regione principale da stringhe come 'Brancaleone, Calabria' → 'Calabria'."""
+    r = x["region"]["it"]
+    # se contiene virgola, prende la parte dopo (es. "Noto, Sicilia" → "Sicilia")
+    if "," in r:
+        return r.split(",")[-1].strip()
+    return r
+
+def _region_slug(region_it):
+    return _re.sub(r"[^a-z0-9]+", "-", region_it.lower()).strip("-")
+
+# Testi SEO per le regioni italiane prioritarie
+REGION_TEXTS = {
+  "Emilia-Romagna": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti in Emilia-Romagna",
+      "desc": "Guida alle spiagge naturiste e ai campeggi FKK in Emilia-Romagna: Lido di Dante (Bassona) a Ravenna, campeggi affiliati e tutto quello che serve sapere prima di partire.",
+      "intro": "L'Emilia-Romagna ospita una delle spiagge naturiste più frequentate dell'Adriatico: il Lido di Dante (o Bassona), a sud di Ravenna, una striscia di sabbia selvaggia protetta dalla pineta ravennate. La costa romagnola è pianeggiante, comoda da raggiungere in auto e ben servita dai campeggi della zona. La stagione migliore va da giugno a settembre.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Emilia-Romagna",
+      "desc": "Guide to naturist beaches and FKK campsites in Emilia-Romagna: Lido di Dante (Bassona) near Ravenna, affiliated campsites and everything you need to know before you go.",
+      "intro": "Emilia-Romagna is home to one of the most popular naturist beaches on the Adriatic: Lido di Dante (Bassona), south of Ravenna, a wild strip of sand sheltered by the Ravenna pine forest. The Romagna coast is flat, easy to reach by car and well served by campsites in the area. The best season runs from June to September.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in der Emilia-Romagna",
+      "desc": "Reiseführer zu FKK-Stränden und Naturisten-Campingplätzen in der Emilia-Romagna: Lido di Dante (Bassona) bei Ravenna und alles, was Sie vor der Abreise wissen müssen.",
+      "intro": "Die Emilia-Romagna beherbergt einen der beliebtesten FKK-Strände der Adria: Lido di Dante (Bassona), südlich von Ravenna, ein wilder Sandstreifen, geschützt durch den Ravenna-Pinienwald. Die Küste der Romagna ist flach, bequem mit dem Auto erreichbar und gut mit Campingplätzen in der Umgebung versorgt. Die beste Reisezeit ist Juni bis September.",
+    },
+  },
+  "Lazio": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti nel Lazio",
+      "desc": "Guida alle spiagge naturiste nel Lazio: Capocotta, l'oasi naturista di Roma, la spiaggia più vicina alla capitale per chi vuole stare nudo al mare a pochi chilometri dal centro.",
+      "intro": "Nel Lazio la spiaggia naturista di riferimento è Capocotta, all'interno del Parco Regionale dell'Appia Antica, a poca distanza da Ostia. È la spiaggia nudista più comoda per chi arriva da Roma: si raggiunge in auto o con i mezzi pubblici in circa 45 minuti dal centro. Sabbia fine, mare pulito, frequentata da una comunità mista di famiglie e singoli.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Lazio",
+      "desc": "Guide to naturist beaches in Lazio: Capocotta, Rome's naturist oasis, the closest nude beach to the capital just a few kilometres from the city centre.",
+      "intro": "In Lazio the main naturist beach is Capocotta, within the Regional Park of the Appia Antica, not far from Ostia. It is the most convenient nudist beach for those coming from Rome: reachable by car or public transport in about 45 minutes from the city centre. Fine sand, clean sea, frequented by a mixed community of families and singles.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in Latium",
+      "desc": "Reiseführer zu FKK-Stränden in Latium: Capocotta, Roms FKK-Oase, der nächstgelegene Nacktbadestrand zur Hauptstadt, nur wenige Kilometer vom Stadtzentrum entfernt.",
+      "intro": "In Latium ist der wichtigste FKK-Strand Capocotta, innerhalb des Regionalparks Appia Antica, in der Nähe von Ostia. Er ist der bequemste Nacktbadestrand für Besucher aus Rom: mit dem Auto oder öffentlichen Verkehrsmitteln in etwa 45 Minuten vom Stadtzentrum erreichbar. Feiner Sand, sauberes Meer, frequentiert von einer gemischten Gemeinschaft aus Familien und Einzelreisenden.",
+    },
+  },
+  "Marche": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti nelle Marche",
+      "desc": "Guida alle spiagge naturiste nelle Marche: la Spiaggia del Mulino vicino a Pesaro, una delle poche spiagge naturiste dell'Adriatico centrale, con accesso diretto dalla strada costiera.",
+      "intro": "Nelle Marche la spiaggia naturista principale è la Spiaggia del Mulino, nel tratto di costa tra Pesaro e Fano. È una spiaggia di sassi e ciottoli, con fondale pulito e profondo, frequentata da habitué locali. Il naturismo nelle Marche è una pratica discreta e consolidata: la spiaggia è tollerata da anni senza problemi. L'entroterra marchigiano offre anche alcune strutture di campeggio per chi vuole combinare mare e collina.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Marche",
+      "desc": "Guide to naturist beaches in Marche: Spiaggia del Mulino near Pesaro, one of the few naturist beaches on the central Adriatic, with direct access from the coastal road.",
+      "intro": "In Marche the main naturist beach is Spiaggia del Mulino, on the stretch of coast between Pesaro and Fano. It is a pebble beach with clean and deep water, frequented by local regulars. Naturism in Marche is a discreet and established practice: the beach has been tolerated for years without problems. The Marche hinterland also offers a few camping facilities for those who want to combine sea and hills.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in den Marken",
+      "desc": "Reiseführer zu FKK-Stränden in den Marken: Spiaggia del Mulino bei Pesaro, einer der wenigen FKK-Strände an der zentralen Adria, mit direktem Zugang von der Küstenstraße.",
+      "intro": "In den Marken ist der wichtigste FKK-Strand die Spiaggia del Mulino, an der Küste zwischen Pesaro und Fano. Es ist ein Kiesstrand mit sauberem und tiefem Wasser, der von Stammgästen aus der Region frequentiert wird. FKK in den Marken ist eine diskrete und etablierte Praxis: Der Strand wird seit Jahren problemlos toleriert. Das Hinterland der Marken bietet auch einige Campingmöglichkeiten für Gäste, die Meer und Hügel kombinieren möchten.",
+    },
+  },
+  "Calabria": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti in Calabria",
+      "desc": "Guida alle spiagge naturiste e ai campeggi FKK in Calabria: il Gongolo a Brancaleone, le strutture naturiste della costa ionica e tutto quello che serve per pianificare la vacanza.",
+      "intro": "La Calabria è una delle regioni italiane con la tradizione naturista più consolidata, grazie a un mare cristallino, coste poco affollate fuori stagione e strutture ricettive dedicate. La Spiaggia del Gongolo a Brancaleone (Reggio Calabria) è il punto di riferimento sulla costa ionica: sabbia fine, acque turchesi, accessibile in auto dalla SS106. La Calabria ospita anche campeggi naturisti affiliati a federazioni italiane e internazionali.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Calabria",
+      "desc": "Guide to naturist beaches and FKK campsites in Calabria: Gongolo beach at Brancaleone, naturist facilities on the Ionian coast and everything you need to plan your stay.",
+      "intro": "Calabria is one of the Italian regions with the most established naturist tradition, thanks to crystal-clear sea, uncrowded coasts outside the season and dedicated accommodation. Spiaggia del Gongolo at Brancaleone (Reggio Calabria) is the main reference point on the Ionian coast: fine sand, turquoise waters, accessible by car from the SS106. Calabria also hosts naturist campsites affiliated with Italian and international federations.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in Kalabrien",
+      "desc": "Reiseführer zu FKK-Stränden und Naturisten-Campingplätzen in Kalabrien: Strand Gongolo bei Brancaleone, FKK-Einrichtungen an der Ionischen Küste und alles zur Reiseplanung.",
+      "intro": "Kalabrien ist eine der italienischen Regionen mit der etabliertesten FKK-Tradition, dank kristallklarem Meer, außerhalb der Saison wenig überfüllten Küsten und speziellen Unterkünften. Die Spiaggia del Gongolo bei Brancaleone (Reggio Calabria) ist der wichtigste Anlaufpunkt an der Ionischen Küste: feiner Sand, türkisfarbenes Wasser, mit dem Auto von der SS106 erreichbar. Kalabrien beherbergt auch FKK-Campingplätze, die nationalen und internationalen Verbänden angehören.",
+    },
+  },
+  "Campania": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti in Campania",
+      "desc": "Guida alle spiagge naturiste in Campania: la Spiaggia di Paestum e Marina di Camerota nel Cilento, due mete naturiste con mare pulito e accesso comodo dalla costiera.",
+      "intro": "La Campania offre due spiagge naturiste nel Cilento, uno dei tratti di costa più integri del Mediterraneo. La Spiaggia Naturista di Paestum, vicino ai famosi templi greci, e la Spiaggia di Marina di Camerota sono frequentate da una comunità affiatata di habitué italiani e stranieri. Il Cilento è Patrimonio UNESCO: natura, archeologia e mare in un'unica destinazione.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Campania",
+      "desc": "Guide to naturist beaches in Campania: Paestum beach and Marina di Camerota in Cilento, two naturist destinations with clean sea and easy access from the coastal road.",
+      "intro": "Campania offers two naturist beaches in Cilento, one of the most unspoilt stretches of coast in the Mediterranean. The Naturist Beach of Paestum, near the famous Greek temples, and Marina di Camerota beach are frequented by a close-knit community of Italian and international regulars. Cilento is a UNESCO Heritage site: nature, archaeology and sea in a single destination.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in Kampanien",
+      "desc": "Reiseführer zu FKK-Stränden in Kampanien: Strand von Paestum und Marina di Camerota im Cilento, zwei FKK-Ziele mit sauberem Meer und bequemem Zugang von der Küstenstraße.",
+      "intro": "Kampanien bietet zwei FKK-Strände im Cilento, einem der unberührtesten Küstenabschnitte des Mittelmeers. Der Naturisten-Strand von Paestum, in der Nähe der berühmten griechischen Tempel, und der Strand von Marina di Camerota werden von einer eng verbundenen Gemeinschaft italienischer und internationaler Stammgäste besucht. Der Cilento ist UNESCO-Erbe: Natur, Archäologie und Meer an einem einzigen Reiseziel.",
+    },
+  },
+  "Puglia": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti in Puglia",
+      "desc": "Guida alle spiagge naturiste e campeggi FKK in Puglia: Torre Guaceto (riserva naturale statale), campeggi naturisti sul Gargano e tutto quello che serve per organizzare la vacanza.",
+      "intro": "La Puglia è una delle destinazioni naturiste più interessanti del Sud Italia: acque limpide, coste rocciose e sabbiose, e strutture ricettive che spaziano dalla riserva naturale al campeggio affiliated. La Spiaggia di Torre Guaceto, all'interno dell'omonima riserva naturale statale vicino a Brindisi, è protetta da pesca e attività industriali: il mare è tra i più puliti della costa adriatica. Il Gargano ospita invece campeggi naturisti storici con accesso diretto al mare.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Puglia",
+      "desc": "Guide to naturist beaches and FKK campsites in Puglia: Torre Guaceto (state nature reserve), naturist campsites on the Gargano and everything you need to plan your holiday.",
+      "intro": "Puglia is one of the most interesting naturist destinations in southern Italy: clear waters, rocky and sandy coasts, and accommodation ranging from nature reserves to affiliated campsites. The beach of Torre Guaceto, within the state nature reserve of the same name near Brindisi, is protected from fishing and industrial activities: the sea is among the cleanest on the Adriatic coast. The Gargano, meanwhile, is home to historic naturist campsites with direct sea access.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in Apulien",
+      "desc": "Reiseführer zu FKK-Stränden und Naturisten-Campingplätzen in Apulien: Torre Guaceto (staatliches Naturschutzgebiet), FKK-Campingplätze am Gargano und alles zur Urlaubsplanung.",
+      "intro": "Apulien ist eines der interessantesten FKK-Reiseziele in Süditalien: klares Wasser, felsige und sandige Küsten und Unterkünfte von Naturschutzgebieten bis zu anerkannten Campingplätzen. Der Strand von Torre Guaceto, innerhalb des gleichnamigen staatlichen Naturschutzgebiets bei Brindisi, ist vor Fischerei und Industrieaktivitäten geschützt: Das Meer gehört zu den saubersten an der Adriaküste. Der Gargano beherbergt historische FKK-Campingplätze mit direktem Meereszugang.",
+    },
+  },
+  "Liguria": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti in Liguria",
+      "desc": "Guida alle spiagge naturiste in Liguria: Guvano alle Cinque Terre (Corniglia), la spiaggia naturista più scenografica d'Italia, e campeggi FKK sulla riviera ligure.",
+      "intro": "La Liguria ospita la spiaggia naturista più fotografata d'Italia: Guvano, sotto le scogliere di Corniglia nelle Cinque Terre. Raggiungibile solo a piedi attraverso un tunnel ferroviario dismesso (circa 10 minuti con torcia) o dal mare, è una delle esperienze più autentiche del naturismo italiano. Sabbia scura, rocce, acqua trasparente e nessun servizio: si arriva preparati con cibo, acqua e tutto il necessario.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Liguria",
+      "desc": "Guide to naturist beaches in Liguria: Guvano at Cinque Terre (Corniglia), Italy's most scenic naturist beach, and FKK campsites on the Ligurian riviera.",
+      "intro": "Liguria is home to Italy's most photographed naturist beach: Guvano, beneath the cliffs of Corniglia in the Cinque Terre. Reachable only on foot through a disused railway tunnel (about 10 minutes with a torch) or by sea, it is one of the most authentic naturist experiences in Italy. Dark sand, rocks, clear water and no services: come prepared with food, water and everything you need.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in Ligurien",
+      "desc": "Reiseführer zu FKK-Stränden in Ligurien: Guvano in den Cinque Terre (Corniglia), Italiens malerischster FKK-Strand, und FKK-Campingplätze an der Ligurischen Riviera.",
+      "intro": "Ligurien beherbergt Italiens meistfotografierten FKK-Strand: Guvano, unterhalb der Klippen von Corniglia in den Cinque Terre. Nur zu Fuß durch einen stillgelegten Eisenbahntunnel (etwa 10 Minuten mit Taschenlampe) oder vom Meer aus erreichbar, ist es eines der authentischsten FKK-Erlebnisse Italiens. Dunkler Sand, Felsen, klares Wasser und keine Einrichtungen: Kommen Sie mit Essen, Wasser und allem Notwendigen vorbereitet.",
+    },
+  },
+  "Sardegna": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti in Sardegna",
+      "desc": "Guida alle spiagge naturiste in Sardegna: Bue Marino a Dorgali, una delle baie più selvagge della costa orientale, accessibile solo via mare o a piedi tra i ginepri.",
+      "intro": "La Sardegna è una delle mete naturiste più ambite d'Europa: mare turchese, coste rocciose quasi deserte e una tradizione di nudismo discreto e rispettoso. La Spiaggia di Bue Marino, nel Golfo di Orosei vicino a Dorgali, è accessibile solo via mare o attraverso un sentiero tra i ginepri: circa 2 ore a piedi dalla strada. Un'esperienza selvaggia per chi vuole davvero staccare.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Sardinia",
+      "desc": "Guide to naturist beaches in Sardinia: Bue Marino at Dorgali, one of the wildest bays on the eastern coast, accessible only by sea or on foot through the junipers.",
+      "intro": "Sardinia is one of the most sought-after naturist destinations in Europe: turquoise sea, almost deserted rocky coasts and a tradition of discreet and respectful nudism. Bue Marino beach, in the Gulf of Orosei near Dorgali, is accessible only by sea or through a path through the junipers: about 2 hours on foot from the road. A wild experience for those who truly want to get away.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in Sardinien",
+      "desc": "Reiseführer zu FKK-Stränden in Sardinien: Bue Marino bei Dorgali, eine der wildesten Buchten an der Ostküste, nur per Boot oder zu Fuß durch Wacholderbüsche erreichbar.",
+      "intro": "Sardinien ist eines der begehrtesten FKK-Reiseziele Europas: türkisfarbenes Meer, fast menschenleere Felsküsten und eine Tradition des diskreten und respektvollen Nacktbadens. Der Strand Bue Marino im Golf von Orosei bei Dorgali ist nur per Boot oder über einen Pfad durch Wacholderbüsche erreichbar: etwa 2 Stunden zu Fuß von der Straße. Ein Wildnis-Erlebnis für alle, die wirklich abschalten wollen.",
+    },
+  },
+  "Sicilia": {
+    "it": {
+      "title": "Spiagge e campeggi naturisti in Sicilia",
+      "desc": "Guida alle spiagge naturiste in Sicilia: Calamosche nella Riserva di Vendicari (Siracusa), una delle spiagge più belle d'Italia, e campeggi FKK nell'entroterra siciliano.",
+      "intro": "La Sicilia ospita Calamosche, considerata una delle spiagge più belle d'Italia: sabbia bianca finissima, acque color smeraldo, all'interno della Riserva Naturale di Vendicari nel siracusano. L'accesso è a piedi (circa 20 minuti dal parcheggio), la spiaggia è frequentata ma non sovraffollata, e il naturismo è praticato in modo discreto nella parte più lontana dall'entrata.",
+    },
+    "en": {
+      "title": "Naturist beaches and campsites in Sicily",
+      "desc": "Guide to naturist beaches in Sicily: Calamosche in the Vendicari Nature Reserve (Siracusa), one of the most beautiful beaches in Italy, and FKK campsites in the Sicilian interior.",
+      "intro": "Sicily is home to Calamosche, considered one of the most beautiful beaches in Italy: very fine white sand, emerald-coloured waters, within the Vendicari Nature Reserve near Siracusa. Access is on foot (about 20 minutes from the car park), the beach is busy but not overcrowded, and naturism is practised discreetly in the part furthest from the entrance.",
+    },
+    "de": {
+      "title": "FKK-Strände und Campingplätze in Sizilien",
+      "desc": "Reiseführer zu FKK-Stränden in Sizilien: Calamosche im Naturschutzgebiet Vendicari (Siracusa), einer der schönsten Strände Italiens, und FKK-Campingplätze im sizilianischen Inland.",
+      "intro": "Sizilien beherbergt Calamosche, das als einer der schönsten Strände Italiens gilt: sehr feiner weißer Sand, smaragdgrünes Wasser, innerhalb des Naturschutzgebiets Vendicari bei Siracusa. Der Zugang ist zu Fuß (ca. 20 Minuten vom Parkplatz), der Strand ist belebt, aber nicht überfüllt, und FKK wird im Teil am weitesten vom Eingang diskret praktiziert.",
+    },
+  },
+}
+
+def region_page(region_it, lang):
+    t = T[lang]
+    texts = REGION_TEXTS.get(region_it, {}).get(lang, {})
+    rslug = _region_slug(region_it)
+
+    # Spiagge di questa regione
+    region_beaches = [b for b in BEACHES if _region_key(b) == region_it]
+    # Campeggi di questa regione
+    region_camps = [c for c in DATA if _region_key(c) == region_it]
+
+    title = texts.get("title", f'{region_it} — NaturCamp Guide')
+    desc = texts.get("desc", "")
+    intro = texts.get("intro", "")
+
+    # Blocco spiagge
+    beach_items = "".join(beach_item(b, lang) for b in sorted(region_beaches, key=overall, reverse=True))
+    beach_section = ""
+    if beach_items:
+        beach_section = f'<h2>{e(t["beaches_h1"])}</h2><ul class="camps">{beach_items}</ul>'
+
+    # Blocco campeggi
+    def camp_item_simple(c):
+        sc = overall(c)
+        return (f'<li class="camp">'
+                f'<div class="score"><b>{fmt_score(sc, lang)}</b><small>/5</small></div>'
+                f'<div><h3><a href="{lang_url(lang, "camp", c["slug"])}">{e(c["name"])}</a></h3>'
+                f'<p class="meta"><span>{e(c.get("region", {}).get(lang, ""))}</span></p>'
+                f'<p class="forwhom">{e(c["summary"][lang][:120])}…</p></div></li>')
+
+    camp_items = "".join(camp_item_simple(c) for c in sorted(region_camps, key=overall, reverse=True))
+    camp_section = ""
+    if camp_items:
+        camp_section = f'<h2>{e(t["nav"]["camps"])}</h2><ul class="camps">{camp_items}</ul>'
+
+    hreflang = ""
+    for l2 in LANGS:
+        url = f'/{l2}/{REGION_LANG_PATHS[l2]}/{rslug}/'
+        hreflang += f'<link rel="alternate" hreflang="{l2}" href="{SITE}{url}">'
+
+    body = f"""<section class="block"><div class="wrap">
+  <h1>{e(title.split(" — ")[0])}</h1>
+  <p class="lead">{e(intro)}</p>
+  {beach_section}
+  {camp_section}
+  <p class="meta"><a href="{lang_url(lang, "beaches")}">&larr; {e(t["beaches_h1"])}</a> &nbsp; <a href="{lang_url(lang, "camps")}">{e(t["nav"]["camps"])}</a></p>
+</div></section>"""
+    return page(lang, "region", title, desc, body, rslug)
 
 PACK = {
   "it": {
@@ -1616,6 +1852,9 @@ def main():
         write(ROOT / lang / p["beaches"] / "index.html", beaches(lang))
         for b in BEACHES:
             write(ROOT / lang / p["beaches"] / b["slug"] / "index.html", beach_sheet(b, lang))
+        for region_it in REGION_TEXTS:
+            rslug = _region_slug(region_it)
+            write(ROOT / lang / REGION_LANG_PATHS[lang] / rslug / "index.html", region_page(region_it, lang))
     # Pagina radice: sceglie la lingua del browser, altrimenti inglese
     write(ROOT / "index.html", """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>NaturCamp Guide</title>
@@ -1631,6 +1870,7 @@ def main():
         urls += [lang_url(lang, "camp", c["slug"]) for c in DATA]
         urls += [lang_url(lang, "beach", b["slug"]) for b in BEACHES]
         urls += [lang_url(lang, "article", a["slug"]) for a in ARTICLES]
+        urls += [lang_url(lang, "region", _region_slug(r)) for r in REGION_TEXTS]
     write(ROOT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     print(f"Generato: {len(LANGS)} lingue, {len(DATA)} campeggi, {len(BEACHES)} spiagge, {len(ARTICLES)} articoli, {len(urls)} pagine.")
 
