@@ -296,7 +296,7 @@ def page(lang, kind, title, desc, body, slug=None):
 <link rel="alternate" hreflang="x-default" href="{SITE}/en/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&family=Lora:ital,wght@0,600;1,500&display=swap">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
@@ -1778,7 +1778,7 @@ def article_page(a, lang):
 <link rel="alternate" hreflang="x-default" href="{SITE}/en/{T['en']['paths']['articles']}/{e(a['slug'])}/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&family=Lora:ital,wght@0,600;1,500&display=swap">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
